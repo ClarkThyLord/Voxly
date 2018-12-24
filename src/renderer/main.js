@@ -2,16 +2,17 @@ import Vue from 'vue'
 
 import App from './App'
 
-import $ from 'jquery'
-window.$ = $
+window.$ = require('jquery')
 
-import metro from 'metro4/build/js/metro.min.js'
-window.metro = metro
+window.metro = require('metro4/build/js/metro.min.js')
 import 'metro4/build/css/metro-all.min.css'
 import 'metro4/build/css/schemes/darcula.min.css'
 
-import three from 'three/build/three.min.js'
-window.three = three
+window.hotkeys = require('hotkeys-js').default
+
+window.three = require('three/build/three.min.js')
+
+window.actions = require('./core/actions.js').default
 
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.config.productionTip = false

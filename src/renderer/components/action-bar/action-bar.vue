@@ -31,7 +31,7 @@
 		name: 'action-bar',
 		methods: {
 			toggle: () => {
-				window.$('#action-bar .content-holder').toggle()
+				window.actions.trigger('action bar toggle')
 			}
 		}
 	}
