@@ -1,20 +1,28 @@
 <template>
   <div id="app">
-    <landing-page></landing-page>
+		<loader iconWidth="25%" id="main-loader"></loader>
+
+    <work-space></work-space>
   </div>
 </template>
 
 <script>
-  import LandingPage from '@/components/LandingPage'
+	import loader from '@/components/WorkSpace/loader'
+
+  import WorkSpace from '@/components/WorkSpace'
 
   export default {
     name: 'voxly',
     components: {
-      LandingPage
+			loader,
+
+      WorkSpace
     }
   }
 </script>
 
-<style>
-  /* CSS */
+<style scoped>
+	#main-loader {
+		position: absolute;
+	}
 </style>

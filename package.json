@@ -1,5 +1,5 @@
 {
-	"private": true,
+  "private": true,
   "name": "Voxly",
   "version": "0.0.1",
   "author": "Christian Cuevas <ccpotential@gmail.com>",
@@ -51,6 +51,9 @@
     }
   },
   "dependencies": {
+    "jquery": "^3.3.1",
+    "metro4": "^4.2.31",
+    "three": "^0.99.0",
     "vue": "^2.5.16",
     "vue-electron": "^1.0.6"
   },
