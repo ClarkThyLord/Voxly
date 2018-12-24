@@ -1,5 +1,5 @@
 <template>
-	<div class="loader d-flex flex-column">
+	<div :style="{backgroundColor: backgroundColor || 'rgba(0,0,0,0.6)'}" class="loader d-flex flex-column">
 		<div style="flex: 1;"></div>
 
 		<img :src="icon || require('@/../../static/voxly.svg')" :style="{width: iconWidth, height: iconHeight}" class="loader-icon ani-heartbeat" />
@@ -17,7 +17,7 @@
 <script>
 	export default {
 		name: 'loader',
-		props: ['icon', 'iconWidth', 'iconHeight', 'caption']
+		props: ['backgroundColor', 'icon', 'iconWidth', 'iconHeight', 'caption']
 	}
 </script>
 
