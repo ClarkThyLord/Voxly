@@ -31,7 +31,7 @@
 		name: 'action-bar',
 		methods: {
 			toggle: () => {
-				window.actions.trigger('action bar toggle')
+				window._actions.trigger('action bar toggle')
 			}
 		}
 	}

@@ -1,10 +1,10 @@
 <template>
-  <div class="d-flex flex-column" id="app">
+  <div id="app">
 		<loader iconWidth="25%" id="main-loader"></loader>
 
 		<action-bar></action-bar>
 
-		<workspace style="flex: 1;"></workspace>
+		<workspace></workspace>
   </div>
 </template>
 
