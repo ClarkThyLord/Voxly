@@ -12,6 +12,7 @@ window.hotkeys = require('hotkeys-js')
 
 window.three = require('three/build/three.min.js')
 
+window._util = require('./core/util.js').default
 window._editor = require('./core/editor.js').default
 window._actions = require('./core/actions.js').default
 window._history = require('./core/history.js').default
