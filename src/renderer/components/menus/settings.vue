@@ -37,15 +37,18 @@
 					<div class="w-100">
 					</div>
 		    </div>
-		    <div class="wh-100 flex-column" id="settings_actions">
-					<h1 class="pb-2 d-none d-block-md text-normal border-bottom bd-default">
-						<span class="mif-power"></span> Actions
-					</h1>
 
-					<div class="w-100">
+		    <div class="w-100 h-100" id="settings_actions">
+					<div class="w-100 h-100 d-flex flex-column">
+						<h1 class="pb-2 d-none d-block-md text-normal border-bottom bd-default">
+							<span class="mif-power"></span> Actions
+						</h1>
+
+						<actions style="flex: 1; overflow-y: auto;" class="m-3"></actions>
 					</div>
 		    </div>
-		    <div class="wh-100 flex-column" id="settings_theming">
+
+		    <div class="wh-100" id="settings_theming">
 					<h1 class="pb-2 d-none d-block-md text-normal border-bottom bd-default">
 						<span class="mif-widgets"></span> Theming
 					</h1>
@@ -64,7 +67,16 @@
 </template>
 
 <script>
+	import actions from '@/components/menus/settings/actions'
+
 	export default {
-		name: 'menu-settings'
+		name: 'menu-settings',
+		components: {
+			actions
+		}
 	}
 </script>
+
+<style scoped>
+
+</style>

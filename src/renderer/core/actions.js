@@ -5,7 +5,7 @@ export default {
 			name: 'action bar toggle',
 			category: 'workspace',
 			description: 'Toggles the view of the action bar',
-			shortcut: 'tab',
+			hotkeys: 'tab',
 			action: function () {
 				window.$('#action-bar .content-holder').toggle()
 			}
@@ -24,8 +24,8 @@ function action(options) {
 		console.log(`- ACTION TRIGGERED -\nName: ${this.name}\nCategory: ${this.category}\nDescription: ${this.description}\n---`)
 	}
 
-	this.shortcut = options.shortcut || ''
-	if (this.shortcut != '') window.hotkeys(this.shortcut, (e, h) => {
+	this.hotkeys = options.hotkeys || ''
+	if (this.hotkeys != '') window.hotkeys(this.hotkeys, (e, h) => {
 		e.preventDefault()
 		this.action()
 	});
