@@ -1,5 +1,20 @@
 <template>
 	<div>
+		<div data-role="dialog" clsDialog="taco" class="dialog" id="menu-settings-actions-modify">
+	    <div class="dialog-title">
+				Change hotkey(s) for <span class="text-cap">{{ action.name || 'Action' }}</span>
+			</div>
+
+		  <div class="dialog-content">
+				<input type="text" v-model="action.hotkeys || ''" />
+	    </div>
+
+		  <div class="dialog-actions">
+        <button class="button js-dialog-close">Cancel</button>
+        <button disabled class="button primary js-dialog-close">Confirm</button>
+	    </div>
+		</div>
+
 		<div style="position: sticky; top: 0px;" class="m-3 mb-4 d-flex">
 			<input type="text" placeholder="Search by name..." v-model="name" />
 			<input type="text" placeholder="Search by category..." v-model="category" />
@@ -17,9 +32,9 @@
 	    </thead>
 
 	    <tbody>
-		    <tr v-for="action in _actions" class="c-pointer border-bottom border-dashed bd-white">
-	        <td class="row-hover text-cap">{{ action.name }}</td>
-	        <td class="row-hover text-cap">{{ action.category }}</td>
+		    <tr v-for="action in _actions" @click="modify(action)" class="c-pointer border-bottom border-dashed bd-white">
+	        <td class="text-cap">{{ action.name }}</td>
+	        <td class="text-cap">{{ action.category }}</td>
 	        <td class="d-none d-block-md text-ellipsis">{{ action.description }}</td>
 	        <td>{{ action.hotkeys }}</td>
 		    </tr>
@@ -36,6 +51,7 @@
 				name: '',
 				category: '',
 				hotkeys: '',
+				action: {},
 				actions: window._actions.actions
 			}
 		},
@@ -52,6 +68,12 @@
 						return valid
 					})
 				}
+			}
+		},
+		methods: {
+			modify: function (action) {
+				this.action = action
+				window.metro.dialog.open('#menu-settings-actions-modify')
 			}
 		}
 	}

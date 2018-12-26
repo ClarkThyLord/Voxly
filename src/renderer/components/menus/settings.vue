@@ -9,19 +9,19 @@
 		<div style="flex: 1;" class="dialog-content m-0 p-0 d-flex">
 			<ul data-role="tabs" data-tabs-position="vertical h-100" style="flex: 0.33;" class="bg-dark bd-default">
 		    <li title="General" class="fg-white bg-dark bg-gray-hover bd-default">
-					<a href="#settings_general">
+					<a href="#settings-general">
 						<span class="mif-tools mif-2x"></span>
 						<span class="d-none d-block-md"> General</span>
 					</a>
 				</li>
 		    <li title="Actions" class="fg-white bg-dark bg-gray-hover bd-default">
-					<a href="#settings_actions">
+					<a href="#settings-actions">
 						<span class="mif-power mif-2x"></span>
 						<span class="d-none d-block-md"> Actions</span>
 					</a>
 				</li>
 		    <li title="Theming" class="fg-white bg-dark bg-gray-hover bd-default">
-					<a href="#settings_theming">
+					<a href="#settings-theming">
 						<span class="mif-widgets mif-2x"></span>
 						<span class="d-none d-block-md"> Theming</span>
 					</a>
@@ -29,7 +29,7 @@
 			</ul>
 
 			<div style="flex: 1;" class="pt-2 pb-2 pl-5 pr-5 border border-left-none bd-default">
-		    <div class="wh-100" id="settings_general">
+		    <div class="wh-100" id="settings-general">
 					<h1 class="pb-2 d-none d-block-md text-normal border-bottom bd-default">
 						<span class="mif-tools"></span> General
 					</h1>
@@ -38,7 +38,7 @@
 					</div>
 		    </div>
 
-		    <div class="w-100 h-100" id="settings_actions">
+		    <div class="w-100 h-100" id="settings-actions">
 					<div class="w-100 h-100 d-flex flex-column">
 						<h1 class="pb-2 d-none d-block-md text-normal border-bottom bd-default">
 							<span class="mif-power"></span> Actions
@@ -48,7 +48,7 @@
 					</div>
 		    </div>
 
-		    <div class="wh-100" id="settings_theming">
+		    <div class="wh-100" id="settings-theming">
 					<h1 class="pb-2 d-none d-block-md text-normal border-bottom bd-default">
 						<span class="mif-widgets"></span> Theming
 					</h1>
