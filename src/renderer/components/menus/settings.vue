@@ -7,20 +7,20 @@
 		</div>
 
 		<div style="flex: 1;" class="dialog-content m-0 p-0 d-flex">
-			<ul data-tabs-position="vertical h-100" data-role="tabs" style="flex: 0.33;" class="bg-dark bd-default">
-		    <li title="General" class="bg-dark bg-gray-hover fg-white bd-default">
+			<ul data-role="tabs" data-tabs-position="vertical h-100" style="flex: 0.33;" class="bg-dark bd-default">
+		    <li title="General" class="fg-white bg-dark bg-gray-hover bd-default">
 					<a href="#settings_general">
 						<span class="mif-tools mif-2x"></span>
 						<span class="d-none d-block-md"> General</span>
 					</a>
 				</li>
-		    <li title="Actions" class="bg-dark bg-gray-hover fg-white bd-default">
+		    <li title="Actions" class="fg-white bg-dark bg-gray-hover bd-default">
 					<a href="#settings_actions">
 						<span class="mif-power mif-2x"></span>
 						<span class="d-none d-block-md"> Actions</span>
 					</a>
 				</li>
-		    <li title="Theming" class="bg-dark bg-gray-hover fg-white bd-default">
+		    <li title="Theming" class="fg-white bg-dark bg-gray-hover bd-default">
 					<a href="#settings_theming">
 						<span class="mif-widgets mif-2x"></span>
 						<span class="d-none d-block-md"> Theming</span>
@@ -44,7 +44,7 @@
 							<span class="mif-power"></span> Actions
 						</h1>
 
-						<actions style="flex: 1; overflow-y: auto;" class="m-3"></actions>
+						<actions style="flex: 1; overflow-x: hidden; overflow-y: auto;" class="m-3"></actions>
 					</div>
 		    </div>
 
@@ -78,5 +78,13 @@
 </script>
 
 <style scoped>
+	.tabs > ul > li {
+		border-top: none !important;
+		border-left: none !important;
+		border-bottom: none !important;
+	}
 
+	.tabs > ul > li.active > a {
+		border-right: 2px solid white !important;
+	}
 </style>

@@ -1,26 +1,26 @@
 <template>
-	<div style="d-flex flex-column">
+	<div>
 		<div style="position: sticky; top: 0px;" class="m-3 mb-4 d-flex">
 			<input type="text" placeholder="Search by name..." v-model="name" />
 			<input type="text" placeholder="Search by category..." v-model="category" />
 			<input type="text" placeholder="Search by hotkey(s)..." v-model="hotkeys" />
 		</div>
 
-		<table style="flex: 1; overflow-y: auto;" class="table table-border row-border row-hover">
+		<table class="table table-border row-border row-hover">
 	    <thead>
-	    <tr>
-        <th>Name</th>
-				<th>Category</th>
-        <th>Description</th>
-        <th>Hotkey(s)</th>
-	    </tr>
+		    <tr>
+	        <th>Name</th>
+					<th>Category</th>
+	        <th class="d-none d-block-md">Description</th>
+	        <th>Hotkey(s)</th>
+		    </tr>
 	    </thead>
 
 	    <tbody>
-		    <tr v-for="action in _actions" class="border-dashed border-bottom bd-white">
+		    <tr v-for="action in _actions" class="c-pointer border-bottom border-dashed bd-white">
 	        <td class="row-hover text-cap">{{ action.name }}</td>
 	        <td class="row-hover text-cap">{{ action.category }}</td>
-	        <td class="text-ellipsis">{{ action.description }}</td>
+	        <td class="d-none d-block-md text-ellipsis">{{ action.description }}</td>
 	        <td>{{ action.hotkeys }}</td>
 		    </tr>
 			</tbody>
