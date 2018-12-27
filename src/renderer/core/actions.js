@@ -25,10 +25,12 @@ function action(options) {
 	}
 
 	this.hotkeys = options.hotkeys || ''
-	if (this.hotkeys != '') window.hotkeys(this.hotkeys, (e, h) => {
-		e.preventDefault()
-		this.action()
-	});
+	if (this.hotkeys != '') {
+		window.hotkeys(this.hotkeys, (e, h) => {
+			e.preventDefault()
+			this.action()
+		})
+	}
 }
 
 function trigger(name) {

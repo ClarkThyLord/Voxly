@@ -8,10 +8,11 @@ window.metro = require('metro4/build/js/metro.min.js')
 import 'metro4/build/css/metro-all.min.css'
 import 'metro4/build/css/schemes/darcula.min.css'
 
-window.hotkeys = require('hotkeys-js')
+window.hotkeys = require('hotkeys-js/dist/hotkeys.min.js')
 
 window.three = require('three/build/three.min.js')
 
+window._package = require('@/../../package.json')
 window._util = require('./core/util.js').default
 window._editor = require('./core/editor.js').default
 window._actions = require('./core/actions.js').default
