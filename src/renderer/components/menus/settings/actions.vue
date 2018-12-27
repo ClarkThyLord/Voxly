@@ -6,12 +6,12 @@
 			</div>
 
 		  <div class="dialog-content">
-				<input type="text" v-model="action.hotkeys || ''" />
+				<input type="text" v-model="temp_hotkeys" />
 	    </div>
 
 		  <div class="dialog-actions">
         <button class="button js-dialog-close">Cancel</button>
-        <button disabled class="button primary js-dialog-close">Confirm</button>
+        <button :disabled="!(this.temp_hotkeys.length > 0)" @click="update" class="button primary js-dialog-close">Confirm</button>
 	    </div>
 		</div>
 
@@ -51,6 +51,9 @@
 				name: '',
 				category: '',
 				hotkeys: '',
+
+				temp_hotkeys: '',
+
 				action: {},
 				actions: window._actions.actions
 			}
@@ -73,7 +76,11 @@
 		methods: {
 			modify: function (action) {
 				this.action = action
+				this.temp_hotkeys = action.hotkeys
 				window.metro.dialog.open('#menu-settings-actions-modify')
+			},
+			update: function () {
+				window._actions.update(this.action.name, this.temp_hotkeys)
 			}
 		}
 	}

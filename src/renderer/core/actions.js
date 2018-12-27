@@ -1,5 +1,7 @@
 export default {
+	get,
 	trigger,
+	update,
 	actions: [
 		new action({
 			name: 'action bar toggle',
@@ -26,20 +28,38 @@ function action(options) {
 
 	this.hotkeys = options.hotkeys || ''
 	if (this.hotkeys != '') {
-		window.hotkeys(this.hotkeys, (e, h) => {
+		this.trigger = (e, h) => {
 			e.preventDefault()
 			this.action()
-		})
+		}
+		window.hotkeys(this.hotkeys, this.trigger)
 	}
 }
 
-function trigger(name) {
-	let action = window._actions.actions.find((action) => {
+function get(name) {
+	return window._actions.actions.find((action) => {
 		return action.name == name
 	})
+}
+
+function trigger(name) {
+	action = get(name)
 
 	if (action) {
 		action.action();
+
+		return true;
+	} else return false;
+}
+
+function update(name, hotkeys) {
+	action = get(name)
+
+	if (action) {
+		window.hotkeys.unbind(action.hotkeys, action.trigger)
+
+		action.hotkeys = hotkeys
+		window.hotkeys(action.hotkeys, action.trigger)
 
 		return true;
 	} else return false;
