@@ -61,7 +61,7 @@
 
 		<div class="dialog-actions mt-0 text-right">
 			<button class="button js-dialog-close">Close</button>
-			<button disabled class="button primary js-dialog-close">Save</button>
+			<!-- <button disabled class="button primary js-dialog-close">Save</button> -->
 		</div>
 	</div>
 </template>

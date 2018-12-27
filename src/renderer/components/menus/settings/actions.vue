@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div data-role="dialog" clsDialog="taco" class="dialog" id="menu-settings-actions-modify">
+		<div data-role="dialog" class="dialog" id="menu-settings-actions-modify">
 	    <div class="dialog-title">
 				Change hotkey(s) for <span class="text-cap">{{ action.name || 'Action' }}</span>
 			</div>
