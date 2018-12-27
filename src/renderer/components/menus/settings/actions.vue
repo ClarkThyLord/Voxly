@@ -80,7 +80,17 @@
 				window.metro.dialog.open('#menu-settings-actions-modify')
 			},
 			update: function () {
-				window._actions.update(this.action.name, this.temp_hotkeys)
+				if (window._actions.update(this.action.name, this.temp_hotkeys)) {
+	        window.metro.notify.create(`<b class="text-cap">${this.action.name}</b> hotkey(s) successfully updated!`, "Action Hotkeys", {
+            cls: "success",
+						timeout: 5000
+	        })
+				} else {
+	        window.metro.notify.create(`<b class="text-cap">${this.action.name}</b> hotkey(s) unsuccessfully updated...`, "Action Hotkeys", {
+            cls: "alert",
+						timeout: 7000
+	        })
+				}
 			}
 		}
 	}
