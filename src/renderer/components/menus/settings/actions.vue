@@ -11,6 +11,7 @@
 
 		  <div class="dialog-actions">
         <button class="button js-dialog-close">Cancel</button>
+        <button v-if="temp_reset" @click="reset" class="button alert js-dialog-close">Reset</button>
         <button :disabled="!(this.temp_hotkeys.length > 0)" @click="update" class="button primary js-dialog-close">Confirm</button>
 	    </div>
 		</div>
@@ -40,6 +41,10 @@
 		    </tr>
 			</tbody>
 		</table>
+
+		<div class="text-right">
+			<button @click="resetAll" class="button alert">Reset Hotkeys</button>
+		</div>
 	</div>
 </template>
 
@@ -52,6 +57,7 @@
 				category: '',
 				hotkeys: '',
 
+				temp_reset: false,
 				temp_hotkeys: '',
 
 				action: {},
@@ -76,8 +82,15 @@
 		methods: {
 			modify: function (action) {
 				this.action = action
-				this.temp_hotkeys = action.hotkeys
+				this.temp_reset = window.localStorage.getItem(`action.${this.action.name}`) && window.localStorage.getItem(`action.${this.action.name}`) != this.action._hotkeys ? true : false
+				this.temp_hotkeys = this.action.hotkeys
 				window.metro.dialog.open('#menu-settings-actions-modify')
+			},
+			reset: function () {
+				window._actions.reset(this.action.name)
+			},
+			resetAll: function () {
+				window._actions.resetAll()
 			},
 			update: function () {
 				if (window._actions.update(this.action.name, this.temp_hotkeys)) {

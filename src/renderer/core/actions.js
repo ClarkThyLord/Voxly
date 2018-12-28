@@ -2,6 +2,8 @@ export default {
 	load,
 	get,
 	trigger,
+	reset,
+	resetAll,
 	update,
 	action,
 	actions: []
@@ -18,7 +20,8 @@ function action(options) {
 		console.log(`- ACTION TRIGGERED -\nName: ${this.name}\nCategory: ${this.category}\nDescription: ${this.description}\n---`)
 	}
 
-	this.hotkeys = window.localStorage.getItem(`action.${this.name}`) || options.hotkeys || ''
+	this._hotkeys = options.hotkeys || ''
+	this.hotkeys = window.localStorage.getItem(`action.${this.name}`) || this._hotkeys
 	if (this.hotkeys != '') {
 		this.trigger = (e, h) => {
 			e.preventDefault()
@@ -41,7 +44,7 @@ function get(name) {
 }
 
 function trigger(name) {
-	action = get(name)
+	let action = get(name)
 
 	if (action) {
 		action.action();
@@ -50,8 +53,21 @@ function trigger(name) {
 	} else return false;
 }
 
+function reset(name) {
+	let action = get(name)
+	action.hotkeys = action._hotkeys
+	window.localStorage.setItem(`action.${action.name}`, action.hotkeys)
+}
+
+function resetAll() {
+	for (let action of window._actions.actions) {
+		action.hotkeys = action._hotkeys
+		window.localStorage.setItem(`action.${action.name}`, action.hotkeys)
+	}
+}
+
 function update(name, hotkeys) {
-	action = get(name)
+	let action = get(name)
 
 	if (action) {
 		window.hotkeys.unbind(action.hotkeys, action.trigger)
