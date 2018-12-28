@@ -60,6 +60,19 @@
 			settings_menu: () => {
 				window.metro.dialog.open('#menu-settings')
 			}
+		},
+		mounted: () => {
+			window._actions.load([
+				{
+					name: 'action bar toggle',
+					category: 'action bar',
+					description: 'Toggles the view of the action bar',
+					hotkeys: 'tab',
+					action: function () {
+						window.$('#action-bar .content-holder').toggle()
+					}
+				}
+			])
 		}
 	}
 </script>

@@ -1,18 +1,10 @@
 export default {
+	load,
 	get,
 	trigger,
 	update,
-	actions: [
-		new action({
-			name: 'action bar toggle',
-			category: 'action bar',
-			description: 'Toggles the view of the action bar',
-			hotkeys: 'tab',
-			action: function () {
-				window.$('#action-bar .content-holder').toggle()
-			}
-		})
-	]
+	action,
+	actions: []
 }
 
 function action(options) {
@@ -22,7 +14,7 @@ function action(options) {
 
 	this.record = options.record || false
 
-	this.action = options.action || function () {
+	this.action = options.action || function (e) {
 		console.log(`- ACTION TRIGGERED -\nName: ${this.name}\nCategory: ${this.category}\nDescription: ${this.description}\n---`)
 	}
 
@@ -30,9 +22,15 @@ function action(options) {
 	if (this.hotkeys != '') {
 		this.trigger = (e, h) => {
 			e.preventDefault()
-			this.action()
+			this.action(e)
 		}
 		window.hotkeys(this.hotkeys, this.trigger)
+	}
+}
+
+function load(actions) {
+	for (action of actions) {
+		window._actions.actions.push(new window._actions.action(action))
 	}
 }
 

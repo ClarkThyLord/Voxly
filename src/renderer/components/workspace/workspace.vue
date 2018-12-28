@@ -1,6 +1,6 @@
 <template>
 	<main class="bg-black" id="workspace">
-		<canvas></canvas>
+		<canvas tabindex="1"></canvas>
 	</main>
 </template>
 
