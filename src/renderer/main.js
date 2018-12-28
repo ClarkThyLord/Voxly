@@ -9,6 +9,12 @@ import 'metro4/build/css/metro-all.min.css'
 import 'metro4/build/css/schemes/darcula.min.css'
 
 window.hotkeys = require('hotkeys-js/dist/hotkeys.min.js')
+window.hotkeys.areSomePressed = function (hotkeys) {
+	return hotkeys.split(", ").some((hotkeys) => { return window.hotkeys.isPressed(hotkeys) })
+}
+window.hotkeys.areAllPressed = function (hotkeys) {
+	return hotkeys.split(", ").every((hotkeys) => { return window.hotkeys.isPressed(hotkeys) })
+}
 
 window.three = require('three/build/three.min.js')
 

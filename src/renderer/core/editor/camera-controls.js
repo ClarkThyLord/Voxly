@@ -8,33 +8,14 @@ export default function (camera, domElement) {
 	this.moving = false
 	this.movement = new window.three.Vector3(0, 0, 0)
 
-	$(this.domElement).on('camera.foward', (e, ov) => {
-		this.movement.z -= 1
-		this.moving = true
-	})
+	$(this.domElement).on('camera.move', (e, ov) => {
+		if (window.hotkeys.areSomePressed(window._actions.get('camera foward').hotkeys)) this.movement.z -= 1;
+		if (window.hotkeys.areSomePressed(window._actions.get('camera backwards').hotkeys)) this.movement.z += 1;
+		if (window.hotkeys.areSomePressed(window._actions.get('camera up').hotkeys)) this.movement.y += 1;
+		if (window.hotkeys.areSomePressed(window._actions.get('camera down').hotkeys)) this.movement.y -= 1;
+		if (window.hotkeys.areSomePressed(window._actions.get('camera right').hotkeys)) this.movement.x += 1;
+		if (window.hotkeys.areSomePressed(window._actions.get('camera left').hotkeys)) this.movement.x -= 1;
 
-	$(this.domElement).on('camera.backwards', (e, ov) => {
-		this.movement.z += 1
-		this.moving = true
-	})
-
-	$(this.domElement).on('camera.up', (e, ov) => {
-		this.movement.y += 1
-		this.moving = true
-	})
-
-	$(this.domElement).on('camera.right', (e, ov) => {
-		this.movement.x += 1
-		this.moving = true
-	})
-
-	$(this.domElement).on('camera.down', (e, ov) => {
-		this.movement.y -= 1
-		this.moving = true
-	})
-
-	$(this.domElement).on('camera.left', (e, ov) => {
-		this.movement.x -= 1
 		this.moving = true
 	})
 
