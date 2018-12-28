@@ -42,8 +42,6 @@ function init() {
 			description: 'Moves the editor\'s camera foward',
 			hotkeys: 'w',
 			action: function (e) {
-				// if (document.activeElement == $('canvas')[0]) $("canvas").trigger("camera.foward", [e]);
-
 				if (document.activeElement == $('canvas')[0]) $("canvas").trigger("camera.move", [e]);
 			}
 		},
@@ -53,8 +51,6 @@ function init() {
 			description: 'Moves the editor\'s camera backwards',
 			hotkeys: 's',
 			action: function (e) {
-				// if (document.activeElement == $('canvas')[0]) $("canvas").trigger("camera.backwards", [e]);
-
 				if (document.activeElement == $('canvas')[0]) $("canvas").trigger("camera.move", [e]);
 			}
 		},
@@ -64,8 +60,6 @@ function init() {
 			description: 'Moves the editor\'s camera up',
 			hotkeys: 'up',
 			action: function (e) {
-				// if (document.activeElement == $('canvas')[0]) $("canvas").trigger("camera.up", [e]);
-
 				if (document.activeElement == $('canvas')[0]) $("canvas").trigger("camera.move", [e]);
 			}
 		},
@@ -75,8 +69,6 @@ function init() {
 			description: 'Moves the editor\'s camera right',
 			hotkeys: 'd, right',
 			action: function (e) {
-				// if (document.activeElement == $('canvas')[0]) $("canvas").trigger("camera.right", [e]);
-
 				if (document.activeElement == $('canvas')[0]) $("canvas").trigger("camera.move", [e]);
 			}
 		},
@@ -86,8 +78,6 @@ function init() {
 			description: 'Moves the editor\'s camera down',
 			hotkeys: 'down',
 			action: function (e) {
-				// if (document.activeElement == $('canvas')[0]) $("canvas").trigger("camera.down", [e]);
-
 				if (document.activeElement == $('canvas')[0]) $("canvas").trigger("camera.move", [e]);
 			}
 		},
@@ -97,8 +87,6 @@ function init() {
 			description: 'Moves the editor\'s camera left',
 			hotkeys: 'a, left',
 			action: function (e) {
-				// if (document.activeElement == $('canvas')[0]) $("canvas").trigger("camera.left", [e]);
-
 				if (document.activeElement == $('canvas')[0]) $("canvas").trigger("camera.move", [e]);
 			}
 		}
