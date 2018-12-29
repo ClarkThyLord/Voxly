@@ -39,6 +39,13 @@ Contains a Windows, x64, distribution.
 * **Installer** for project
 * Automatically *updates*
 
+#### [dist/mac](https://github.com/ClarkThyLord/Voxly/tree/master/dist/mac)
+
+Contains a Mac distribution.
+
+* **Installer** for project
+* Automatically *updates*
+
 ---
 
 ### Project Setup
