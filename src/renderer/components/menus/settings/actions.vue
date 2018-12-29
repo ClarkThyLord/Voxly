@@ -41,10 +41,6 @@
 		    </tr>
 			</tbody>
 		</table>
-
-		<div class="text-right">
-			<button @click="resetAll" class="button alert">Reset Hotkeys</button>
-		</div>
 	</div>
 </template>
 
