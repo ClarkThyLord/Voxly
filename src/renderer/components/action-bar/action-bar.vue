@@ -8,7 +8,14 @@
 				</a>
 			</li>
 
-			<li>
+			<li @click="visible">
+				<a href="#action-bar-files">
+					<span class="mif-file-empty"></span>
+					<span class="d-none d-inline-md">Files</span>
+				</a>
+			</li>
+
+			<li @click="visible">
 				<a href="#action-bar-main">
 					<span class="mif-home"></span>
 					<span class="d-none d-inline-md">Main</span>
@@ -37,6 +44,10 @@
     </ul>
 
 		<div class="content-holder">
+      <div class="section" id="action-bar-files">
+
+      </div>
+
       <div class="section" id="action-bar-main">
 
       </div>
@@ -48,6 +59,12 @@
 	export default {
 		name: 'action-bar',
 		methods: {
+			visible: () => {
+				window.$('#action-bar .content-holder').show()
+			},
+			invisible: () => {
+				window.$('#action-bar .content-holder').hide()
+			},
 			toggle: () => {
 				window._actions.trigger('action bar toggle')
 			},
