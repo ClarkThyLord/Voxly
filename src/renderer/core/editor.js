@@ -39,8 +39,36 @@ function init() {
 		{
 			name: 'editor action',
 			category: 'editor',
-			description: 'Action for current tool in editor',
+			description: 'Use current tool in editor',
 			hotkeys: 'left mouse click, single touch',
+			bind: false
+		},
+		{
+			name: 'camera rotation',
+			category: 'editor',
+			description: 'Rotate the editor\'s camera',
+			hotkeys: 'right mouse click',
+			bind: false
+		},
+		{
+			name: 'camera pan',
+			category: 'editor',
+			description: 'Pan the editor\'s camera the camera',
+			hotkeys: 'middle mouse click',
+			bind: false
+		},
+		{
+			name: 'camera zoom +',
+			category: 'editor',
+			description: 'Move the editor\'s camera foward',
+			hotkeys: 'scroll up',
+			bind: false
+		},
+		{
+			name: 'camera zoom -',
+			category: 'editor',
+			description: 'Move the editor\'s camera backwards',
+			hotkeys: 'scroll down',
 			bind: false
 		},
 		{

@@ -3,7 +3,7 @@ export default function (camera, domElement) {
 	this.domElement = domElement
 
 	this.speed = 10
-	this.sensitivity = 60
+	this.sensitivity = 100
 
 	this.moving = false
 	this.movement = new window.three.Vector3(0, 0, 0)
@@ -19,18 +19,6 @@ export default function (camera, domElement) {
 		this.__activity.set(x, y)
 		this.activity.subVectors(this.__activity, this._activity).clampScalar(-1, 1)
 		this._activity.set(x, y)
-	}
-
-	this.zoom = () => {
-
-	}
-
-	this.rotate = () => {
-
-	}
-
-	this.translate = () => {
-
 	}
 
 	window.$(this.domElement).on('camera.move', (e, ov) => {
@@ -93,6 +81,7 @@ export default function (camera, domElement) {
 		}
 	})
 
+	// TODO touch support
 	window.$(domElement).on('touchstart', (e) => {
 		console.log('touch down');
 
@@ -113,6 +102,7 @@ export default function (camera, domElement) {
 		this.active = false
 	})
 
+	// TODO smoother translation and zooming (e.g. updating)
 	this.update = (delta) => {
 		if (!this.moving && !this.active) return;
 		this.moving = false
