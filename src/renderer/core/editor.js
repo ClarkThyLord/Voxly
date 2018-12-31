@@ -37,6 +37,13 @@ function init() {
 
 	window._actions.load([
 		{
+			name: 'editor action',
+			category: 'editor',
+			description: 'Action for current tool in editor',
+			hotkeys: 'left mouse click, single touch',
+			bind: false
+		},
+		{
 			name: 'camera foward',
 			category: 'editor',
 			description: 'Moves the editor\'s camera foward',

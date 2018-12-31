@@ -14,15 +14,20 @@ function action(options) {
 	this.category = options.category || 'misc'
 	this.description = options.description || `This is a ${this.category} action`
 
+	// TODO record in history
 	this.record = options.record || false
 
-	this.action = options.action || function (e) {
-		console.log(`- ACTION TRIGGERED -\nName: ${this.name}\nCategory: ${this.category}\nDescription: ${this.description}\n---`)
+	this.bind = options.bind == false ? false : true
+	this.editable = options.editable || this.bind
+	if (this.bind) {
+		this.action = options.action || function (e) {
+			console.log(`- ACTION TRIGGERED -\nName: ${this.name}\nCategory: ${this.category}\nDescription: ${this.description}\n---`)
+		}
 	}
 
 	this._hotkeys = options.hotkeys || ''
 	this.hotkeys = window.localStorage.getItem(`action.${this.name}`) || this._hotkeys
-	if (this.hotkeys != '') {
+	if (this.bind && this.hotkeys != '') {
 		this.trigger = (e, h) => {
 			e.preventDefault()
 			this.action(e)

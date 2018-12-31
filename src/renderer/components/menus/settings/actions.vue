@@ -33,7 +33,7 @@
 	    </thead>
 
 	    <tbody>
-		    <tr v-for="action in _actions" @click="modify(action)" class="c-pointer border-bottom border-dashed bd-white">
+		    <tr v-for="action in _actions" @click="modify(action)" class="border-bottom border-dashed bd-white" :class="{'c-pointer': action.editable, 'c-default': !action.editable}">
 	        <td class="text-cap">{{ action.name }}</td>
 	        <td class="text-cap">{{ action.category }}</td>
 	        <td class="d-none d-block-md text-ellipsis">{{ action.description }}</td>
@@ -77,6 +77,8 @@
 		},
 		methods: {
 			modify: function (action) {
+				if (!action.editable) return;
+
 				this.action = action
 				this.temp_reset = window.localStorage.getItem(`action.${this.action.name}`) && window.localStorage.getItem(`action.${this.action.name}`) != this.action._hotkeys ? true : false
 				this.temp_hotkeys = this.action.hotkeys
