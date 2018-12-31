@@ -3,7 +3,7 @@ export default function (camera, domElement) {
 	this.domElement = domElement
 
 	this.speed = 10
-	this.sensitivity = 100
+	this.sensitivity = 60
 
 	this.moving = false
 	this.movement = new window.three.Vector3(0, 0, 0)
@@ -75,10 +75,10 @@ export default function (camera, domElement) {
 				if (this.activity.y < 0) this.movement.y += 1;
 				break;
 			case 2:
-				if (this.activity.x > 0) this.rotation.x -= 1;
-				if (this.activity.x < 0) this.rotation.x += 1;
-				if (this.activity.y > 0) this.rotation.y += 1;
-				if (this.activity.y < 0) this.rotation.y -= 1;
+				if (this.activity.x > 0) this.rotation.y -= 1;
+				if (this.activity.x < 0) this.rotation.y += 1;
+				if (this.activity.y > 0) this.rotation.x -= 1;
+				if (this.activity.y < 0) this.rotation.x += 1;
 				break;
 		}
 	})
@@ -119,12 +119,13 @@ export default function (camera, domElement) {
 
 		this.movement.clampScalar(-1, 1)
 		let motion = this.speed * (delta || 0.02)
-		let rotation = (this.sensitivity / 400) * delta
+		let rotation = ((this.sensitivity * Math.PI) / 180) * delta
 		this.camera.translateX(this.movement.x * motion)
 		this.camera.translateY(this.movement.y * motion)
 		this.camera.translateZ(this.movement.z * motion)
 		this.camera.rotation.x +=  rotation * this.rotation.x
-		this.camera.rotation.y +=  rotation * this.rotation.x
+		this.camera.rotation.y +=  rotation * this.rotation.y
 		this.movement.set(0, 0, 0)
+		this.rotation.set(0, 0, 0)
 	}
 }
