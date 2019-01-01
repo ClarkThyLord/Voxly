@@ -43,12 +43,14 @@
 					<span class="d-none d-inline-md">GitHub</span>
 				</a>
 			</li>
+
 			<li @click="about_menu" class="static c-pointer">
 				<a>
 					<span class="mif-info"></span>
 					<span class="d-none d-inline-md">About</span>
 				</a>
 			</li>
+
 			<li @click="settings_menu" class="static c-pointer">
 				<a>
 					<span class="mif-cogs"></span>

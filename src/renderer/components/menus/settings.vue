@@ -2,7 +2,8 @@
 	<div data-role="dialog" class="dialog w-75 h-75 d-flex flex-column" id="menu-settings">
 		<div class="dialog-title mb-2">
 			<h1>
-				Settings
+				<span class="mif-cogs"></span>
+				 Settings
 			</h1>
 		</div>
 
@@ -14,7 +15,7 @@
 						<span class="d-none d-block-md"> General</span>
 					</a>
 				</li>
-				
+
 		    <li title="Actions" @click="tab = 'actions'" class="fg-white bg-dark bg-gray-hover bd-default">
 					<a href="#settings-actions">
 						<span class="mif-power mif-2x"></span>
