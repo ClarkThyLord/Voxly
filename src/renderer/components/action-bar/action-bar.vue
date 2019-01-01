@@ -22,6 +22,20 @@
 				</a>
 			</li>
 
+			<li @click="visible">
+				<a href="#action-bar-view">
+					<span class="mif-widgets"></span>
+					<span class="d-none d-inline-md">View</span>
+				</a>
+			</li>
+
+			<li @click="visible">
+				<a href="#action-bar-configuration">
+					<span class="mif-cog"></span>
+					<span class="d-none d-inline-md">Configuration</span>
+				</a>
+			</li>
+
 			<span style="margin-left: auto;"></span>
 			<li @click="github" title="Check us out on GitHub!" class="static c-pointer">
 				<a>
@@ -98,6 +112,14 @@
       </div>
 
       <div class="section" id="action-bar-main">
+
+      </div>
+
+      <div class="section" id="action-bar-view">
+
+      </div>
+
+      <div class="section" id="action-bar-configuration">
 
       </div>
     </div>

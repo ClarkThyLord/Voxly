@@ -14,16 +14,25 @@
 						<span class="d-none d-block-md"> General</span>
 					</a>
 				</li>
+				
 		    <li title="Actions" @click="tab = 'actions'" class="fg-white bg-dark bg-gray-hover bd-default">
 					<a href="#settings-actions">
 						<span class="mif-power mif-2x"></span>
 						<span class="d-none d-block-md"> Actions</span>
 					</a>
 				</li>
+
 		    <li title="Theming" @click="tab = 'theming'" class="fg-white bg-dark bg-gray-hover bd-default">
 					<a href="#settings-theming">
-						<span class="mif-widgets mif-2x"></span>
+						<span class="mif-paint mif-2x"></span>
 						<span class="d-none d-block-md"> Theming</span>
+					</a>
+				</li>
+
+		    <li title="Extensions" @click="tab = 'extensions'" class="fg-white bg-dark bg-gray-hover bd-default">
+					<a href="#settings-extensions">
+						<span class="mif-add mif-2x"></span>
+						<span class="d-none d-block-md"> Extensions</span>
 					</a>
 				</li>
 			</ul>
@@ -50,7 +59,16 @@
 
 		    <div class="wh-100" id="settings-theming">
 					<h1 class="pb-2 d-none d-block-md text-normal border-bottom bd-default">
-						<span class="mif-widgets"></span> Theming
+						<span class="mif-paint"></span> Theming
+					</h1>
+
+					<div class="w-100">
+					</div>
+		    </div>
+
+		    <div class="wh-100" id="settings-extensions">
+					<h1 class="pb-2 d-none d-block-md text-normal border-bottom bd-default">
+						<span class="mif-add"></span> Extensions
 					</h1>
 
 					<div class="w-100">
