@@ -131,10 +131,10 @@ function init() {
 }
 
 function resize() {
-	camera.aspect = window.innerWidth / window.innerHeight
+	camera.aspect = (window.innerWidth) / (window.innerHeight - window.$('#action-bar').height())
   camera.updateProjectionMatrix()
 
-  renderer.setSize(window.innerWidth, window.innerHeight)
+  renderer.setSize(window.innerWidth, window.innerHeight - window.$('#action-bar').height())
 }
 
 function update() {

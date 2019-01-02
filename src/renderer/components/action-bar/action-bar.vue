@@ -1,5 +1,5 @@
 <template>
-	<nav data-role="ribbonmenu" id="action-bar">
+	<nav data-role="ribbonmenu" data-on-tab="window._editor.resize()" id="action-bar">
     <ul class="tabs-holder">
       <li @click="toggle" class="static c-pointer">
 				<a>
@@ -134,12 +134,15 @@
 		methods: {
 			visible: () => {
 				window.$('#action-bar .content-holder').show()
+				window._editor.resize()
 			},
 			invisible: () => {
 				window.$('#action-bar .content-holder').hide()
+				window._editor.resize()
 			},
 			toggle: () => {
 				window._actions.trigger('action bar toggle')
+				window._editor.resize()
 			},
 			about_menu: () => {
 				window.metro.dialog.open('#menu-about')
@@ -160,6 +163,7 @@
 					hotkeys: 'tab',
 					action: function () {
 						window.$('#action-bar .content-holder').toggle()
+						window._editor.resize()
 					}
 				}
 			])

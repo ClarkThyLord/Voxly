@@ -32,5 +32,6 @@ window.vue = new Vue({
   template: '<App/>',
 	mounted: () => {
 		window.metro.init()
+		window._editor.resize()
 	}
 }).$mount('#app')
