@@ -2,8 +2,11 @@
 	<div data-role="dialog" data-overlay-click-close="true" class="dialog" id="menu-about">
 		<div style="overflow-x: none; overflow-y: auto;" class="dialog-content text-center">
 			<img src="@/../../static/voxly.svg" style="width: 75%;" />
-			<h3 class="text-cap">
-				{{ package.name }}
+			<h3>
+				<span class="text-cap">
+					{{ package.name }}
+				</span>
+
 				<h5>
 					<small>
 						<i>

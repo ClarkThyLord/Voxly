@@ -16,9 +16,9 @@
 			</li>
 
 			<li @click="visible">
-				<a href="#action-bar-main">
-					<span class="mif-home"></span>
-					<span class="d-none d-inline-md">Main</span>
+				<a href="#action-bar-editor">
+					<span class="mif-pencil"></span>
+					<span class="d-none d-inline-md">Editor</span>
 				</a>
 			</li>
 
@@ -113,9 +113,50 @@
 				</div>
       </div>
 
-      <div class="section" id="action-bar-main">
+			<div class="section" id="action-bar-editor">
+				<div class="group">
+					<span class="title fg-black">Tools</span>
 
-      </div>
+					<button class="ribbon-button">
+						<span class="icon">
+							<img src="./icons/add.svg" />
+						</span>
+						<span class="caption">Add</span>
+					</button>
+
+					<button class="ribbon-button">
+						<span class="icon">
+							<img src="./icons/subtract.svg">
+						</span>
+						<span class="caption">Subtract</span>
+					</button>
+
+					<button class="ribbon-button">
+						<span class="icon">
+							<img src="./icons/paint.svg">
+						</span>
+						<span class="caption">Paint</span>
+					</button>
+
+					<button class="ribbon-button">
+						<span class="icon">
+							<img src="./icons/select.svg">
+						</span>
+						<span class="caption">Select</span>
+					</button>
+
+					<button class="ribbon-button">
+						<span class="icon">
+							<img src="./icons/translate.svg">
+						</span>
+						<span class="caption">Transform</span>
+					</button>
+				</div>
+
+				<div style="flex: 1;" class="group">
+					<span class="title fg-black">About</span>
+				</div>
+			</div>
 
       <div class="section" id="action-bar-view">
 
