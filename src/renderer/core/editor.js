@@ -3,9 +3,9 @@ import CameraControls from './editor/camera-controls.js'
 export default new editor()
 
 function editor() {
-	this.init = () => {
-		this.actions = require('./editor/actions.js').default
+	this.action = ''
 
+	this.init = () => {
 		this.scene = new window.three.Scene()
 
 		let ligth = new window.three.AmbientLight(0x606060);
@@ -23,6 +23,10 @@ function editor() {
 
 		window.addEventListener('resize', this.resize, false)
 
+		window.$(this.renderer.domElement).on('action', (e, ov, domElement) => {
+			this.actions.trigger(this.action)
+		})
+
 		this.camera.controls = new CameraControls(this.camera, this.renderer.domElement)
 
 		let geometry = new window.three.BoxGeometry(1, 1, 1)
@@ -32,7 +36,7 @@ function editor() {
 
 		this.camera.position.z = 5
 
-		this.update()
+		this._update()
 	}
 
 	this.resize = () => {
@@ -43,8 +47,6 @@ function editor() {
 	}
 
 	this.update = () => {
-		requestAnimationFrame(this.update)
-
 		let delta = this.clock.getDelta()
 
 		this.camera.controls.update(delta)
@@ -53,5 +55,10 @@ function editor() {
 		this.cube.rotation.y += 0.01
 
 		this.renderer.render(this.scene, this.camera)
+	}
+
+	this._update = () => {
+		requestAnimationFrame(this._update)
+		this.update()
 	}
 }

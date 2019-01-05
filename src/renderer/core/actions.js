@@ -14,6 +14,8 @@ function actions() {
 		this.bind = options.bind == false ? false : true
 		this.editable = options.editable || this.bind
 		if (this.bind) {
+			this.filter = options.filter || false
+
 			this.action = options.action || function (e) {
 				console.log(`- ACTION TRIGGERED -\nName: ${this.name}\nCategory: ${this.category}\nDescription: ${this.description}\n---`)
 			}
@@ -23,6 +25,8 @@ function actions() {
 		this.hotkeys = window.localStorage.getItem(`action.${this.name}`) || this._hotkeys
 		if (this.bind && this.hotkeys != '') {
 			this.trigger = (e, h) => {
+				if (this.filter && !this.filter()) return;
+
 				e.preventDefault()
 				this.action(e)
 			}
@@ -83,4 +87,7 @@ function actions() {
 			return true;
 		} else return false;
 	}
+
+	require('./actions/action-bar.js').default(this);
+	require('./actions/editor.js').default(this);
 }
