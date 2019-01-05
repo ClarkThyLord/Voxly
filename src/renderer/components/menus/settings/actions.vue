@@ -87,8 +87,8 @@
 			reset: function () {
 				window._actions.reset(this.action.name)
 			},
-			resetAll: function () {
-				window._actions.resetAll()
+			resets: function () {
+				window._actions.resets()
 			},
 			update: function () {
 				if (window._actions.update(this.action.name, this.temp_hotkeys)) {

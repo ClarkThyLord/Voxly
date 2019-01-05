@@ -196,9 +196,9 @@
 			}
 		},
 		mounted: () => {
-			window._actions.load([
+			window._actions.loads([
 				{
-					name: 'action bar toggle',
+					name: 'toggle',
 					category: 'action bar',
 					description: 'Toggles the view of the action bar',
 					hotkeys: 'tab',

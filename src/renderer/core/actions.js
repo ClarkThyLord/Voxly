@@ -1,86 +1,86 @@
-export default {
-	load,
-	get,
-	trigger,
-	reset,
-	resetAll,
-	update,
-	action,
-	actions: []
-}
+export default new actions()
 
-function action(options) {
-	this.name = options.name || 'action'
-	this.category = options.category || 'misc'
-	this.description = options.description || `This is a ${this.category} action`
+function actions() {
+	this.actions = []
 
-	// TODO record in history
-	this.record = options.record || false
+	this.action = function (options) {
+		this.name = options.name || 'action'
+		this.category = options.category || 'misc'
+		this.description = options.description || `This is a ${this.category} action`
 
-	this.bind = options.bind == false ? false : true
-	this.editable = options.editable || this.bind
-	if (this.bind) {
-		this.action = options.action || function (e) {
-			console.log(`- ACTION TRIGGERED -\nName: ${this.name}\nCategory: ${this.category}\nDescription: ${this.description}\n---`)
+		// TODO record in history
+		this.record = options.record || false
+
+		this.bind = options.bind == false ? false : true
+		this.editable = options.editable || this.bind
+		if (this.bind) {
+			this.action = options.action || function (e) {
+				console.log(`- ACTION TRIGGERED -\nName: ${this.name}\nCategory: ${this.category}\nDescription: ${this.description}\n---`)
+			}
+		}
+
+		this._hotkeys = options.hotkeys || ''
+		this.hotkeys = window.localStorage.getItem(`action.${this.name}`) || this._hotkeys
+		if (this.bind && this.hotkeys != '') {
+			this.trigger = (e, h) => {
+				e.preventDefault()
+				this.action(e)
+			}
+			window.hotkeys(this.hotkeys, this.trigger)
 		}
 	}
 
-	this._hotkeys = options.hotkeys || ''
-	this.hotkeys = window.localStorage.getItem(`action.${this.name}`) || this._hotkeys
-	if (this.bind && this.hotkeys != '') {
-		this.trigger = (e, h) => {
-			e.preventDefault()
-			this.action(e)
+	this.load = (_action) => {
+		this.actions.push(new this.action(_action))
+	}
+
+	this.loads = (_actions) => {
+		for (let _action of _actions) {
+			this.load(_action)
 		}
-		window.hotkeys(this.hotkeys, this.trigger)
 	}
-}
 
-function load(actions) {
-	for (action of actions) {
-		window._actions.actions.push(new window._actions.action(action))
+	this.get = (name) => {
+		return this.actions.find((action) => {
+			return action.name == name
+		})
 	}
-}
 
-function get(name) {
-	return window._actions.actions.find((action) => {
-		return action.name == name
-	})
-}
+	this.trigger = (name) => {
+		let action = get(name)
 
-function trigger(name) {
-	let action = get(name)
+		if (action) {
+			action.action();
 
-	if (action) {
-		action.action();
+			return true;
+		} else return false;
+	}
 
-		return true;
-	} else return false;
-}
+	this.reset = (name) => {
+		let action = get(name)
 
-function reset(name) {
-	let action = get(name)
-	action.hotkeys = action._hotkeys
-	window.localStorage.setItem(`action.${action.name}`, action.hotkeys)
-}
-
-function resetAll() {
-	for (let action of window._actions.actions) {
 		action.hotkeys = action._hotkeys
 		window.localStorage.setItem(`action.${action.name}`, action.hotkeys)
 	}
-}
 
-function update(name, hotkeys) {
-	let action = get(name)
+	this.resets = () => {
+		for (let action of this.actions) {
+			action.hotkeys = action._hotkeys
+			window.localStorage.setItem(`action.${action.name}`, action.hotkeys)
+		}
+	}
 
-	if (action) {
-		window.hotkeys.unbind(action.hotkeys, action.trigger)
+	this.update = (name, hotkeys) => {
+		let action = get(name)
 
-		action.hotkeys = hotkeys
-		window.localStorage.setItem(`action.${action.name}`, action.hotkeys)
-		window.hotkeys(action.hotkeys, action.trigger)
+		if (action) {
+			window.hotkeys.unbind(action.hotkeys, action.trigger)
 
-		return true;
-	} else return false;
+			action.hotkeys = hotkeys
+			window.localStorage.setItem(`action.${action.name}`, action.hotkeys)
+			window.hotkeys(action.hotkeys, action.trigger)
+
+			return true;
+		} else return false;
+	}
 }

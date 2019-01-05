@@ -1,151 +1,57 @@
 import CameraControls from './editor/camera-controls.js'
 
-export default {
-	init,
-	update,
-	resize
-}
+export default new editor()
 
-var scene, camera, clock, renderer, ligth, cube
+function editor() {
+	this.init = () => {
+		this.actions = require('./editor/actions.js').default
 
-function init() {
-	scene = new window.three.Scene()
+		this.scene = new window.three.Scene()
 
-	ligth = new window.three.AmbientLight(0x606060);
-	scene.add(ligth);
+		let ligth = new window.three.AmbientLight(0x606060);
+		this.scene.add(ligth);
 
-	camera = new window.three.PerspectiveCamera(75, 1, 0.1, 1000)
+		this.camera = new window.three.PerspectiveCamera(75, 1, 0.1, 1000)
 
-	clock = new window.three.Clock()
+		this.clock = new window.three.Clock()
 
-	renderer = new window.three.WebGLRenderer({
-		canvas: window.$('#workspace canvas')[0],
-		antialias: true
-	})
-	resize()
+		this.renderer = new window.three.WebGLRenderer({
+			canvas: window.$('#workspace canvas')[0],
+			antialias: true
+		})
+		this.resize()
 
-	window.addEventListener('resize', resize, false)
+		window.addEventListener('resize', this.resize, false)
 
-	camera.controls = new CameraControls(camera, renderer.domElement)
+		this.camera.controls = new CameraControls(this.camera, this.renderer.domElement)
 
-	let geometry = new window.three.BoxGeometry(1, 1, 1)
-	let material = new window.three.MeshBasicMaterial({color: 0x00ff00})
- 	cube = new window.three.Mesh(geometry, material)
-	scene.add(cube)
+		let geometry = new window.three.BoxGeometry(1, 1, 1)
+		let material = new window.three.MeshBasicMaterial({color: 0x00ff00})
+	 	this.cube = new window.three.Mesh(geometry, material)
+		this.scene.add(this.cube)
 
-	camera.position.z = 5
+		this.camera.position.z = 5
 
-	window._actions.load([
-		{
-			name: 'editor action',
-			category: 'editor',
-			description: 'Use current tool in editor',
-			hotkeys: 'left mouse click, single touch',
-			bind: false
-		},
-		{
-			name: 'camera rotation',
-			category: 'editor',
-			description: 'Rotate the editor\'s camera',
-			hotkeys: 'right mouse click',
-			bind: false
-		},
-		{
-			name: 'camera pan',
-			category: 'editor',
-			description: 'Pan the editor\'s camera the camera',
-			hotkeys: 'middle mouse click',
-			bind: false
-		},
-		{
-			name: 'camera zoom +',
-			category: 'editor',
-			description: 'Move the editor\'s camera foward',
-			hotkeys: 'scroll up',
-			bind: false
-		},
-		{
-			name: 'camera zoom -',
-			category: 'editor',
-			description: 'Move the editor\'s camera backwards',
-			hotkeys: 'scroll down',
-			bind: false
-		},
-		{
-			name: 'camera foward',
-			category: 'editor',
-			description: 'Moves the editor\'s camera foward',
-			hotkeys: 'w',
-			action: function (e) {
-				if (document.activeElement == $('canvas')[0]) $("canvas").trigger("camera.move", [e]);
-			}
-		},
-		{
-			name: 'camera backwards',
-			category: 'editor',
-			description: 'Moves the editor\'s camera backwards',
-			hotkeys: 's',
-			action: function (e) {
-				if (document.activeElement == $('canvas')[0]) $("canvas").trigger("camera.move", [e]);
-			}
-		},
-		{
-			name: 'camera up',
-			category: 'editor',
-			description: 'Moves the editor\'s camera up',
-			hotkeys: 'up',
-			action: function (e) {
-				if (document.activeElement == $('canvas')[0]) $("canvas").trigger("camera.move", [e]);
-			}
-		},
-		{
-			name: 'camera right',
-			category: 'editor',
-			description: 'Moves the editor\'s camera right',
-			hotkeys: 'd, right',
-			action: function (e) {
-				if (document.activeElement == $('canvas')[0]) $("canvas").trigger("camera.move", [e]);
-			}
-		},
-		{
-			name: 'camera down',
-			category: 'editor',
-			description: 'Moves the editor\'s camera down',
-			hotkeys: 'down',
-			action: function (e) {
-				if (document.activeElement == $('canvas')[0]) $("canvas").trigger("camera.move", [e]);
-			}
-		},
-		{
-			name: 'camera left',
-			category: 'editor',
-			description: 'Moves the editor\'s camera left',
-			hotkeys: 'a, left',
-			action: function (e) {
-				if (document.activeElement == $('canvas')[0]) $("canvas").trigger("camera.move", [e]);
-			}
-		}
-	])
+		this.update()
+	}
 
-	update()
-}
+	this.resize = () => {
+		this.camera.aspect = (window.innerWidth) / (window.innerHeight - window.$('#action-bar').height())
+	  this.camera.updateProjectionMatrix()
 
-function resize() {
-	camera.aspect = (window.innerWidth) / (window.innerHeight - window.$('#action-bar').height())
-  camera.updateProjectionMatrix()
+	  this.renderer.setSize(window.innerWidth, window.innerHeight - window.$('#action-bar').height())
+	}
 
-  renderer.setSize(window.innerWidth, window.innerHeight - window.$('#action-bar').height())
-}
+	this.update = () => {
+		requestAnimationFrame(this.update)
 
-function update() {
-	requestAnimationFrame(update)
+		let delta = this.clock.getDelta()
 
-	let delta = clock.getDelta()
+		this.camera.controls.update(delta)
 
-	camera.controls.update(delta)
+		this.cube.rotation.x += 0.01
+		this.cube.rotation.y += 0.01
 
-	cube.rotation.x += 0.01
-	cube.rotation.y += 0.01
-
-	renderer.render(scene, camera)
+		this.renderer.render(this.scene, this.camera)
+	}
 }

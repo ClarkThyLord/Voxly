@@ -83,7 +83,7 @@
 				<div v-if="this.tab == 'general'">
 				</div>
 				<div v-if="this.tab == 'actions'">
-					<button @click="$refs.actions.resetAll()" class="button alert">Reset Hotkeys</button>
+					<button @click="$refs.actions.resets()" class="button alert">Reset Hotkeys</button>
 				</div>
 				<div v-if="this.tab == 'theming'">
 				</div>
