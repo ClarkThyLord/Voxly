@@ -32,6 +32,8 @@ function actions() {
 			}
 			window.hotkeys(this.hotkeys, this.trigger)
 		}
+
+		this.represents = options.represents || undefined
 	}
 
 	this.load = (_action) => {

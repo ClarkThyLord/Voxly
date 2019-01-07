@@ -24,7 +24,7 @@ function editor() {
 		window.addEventListener('resize', this.resize, false)
 
 		window.$(this.renderer.domElement).on('action', (e, ov, domElement) => {
-			this.actions.trigger(this.action)
+			if (this.action != '') window._actions.get(this.action).represents(ov, domElement)
 		})
 
 		this.camera.controls = new CameraControls(this.camera, this.renderer.domElement)
