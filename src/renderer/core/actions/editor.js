@@ -10,7 +10,8 @@ export default function (actions) {
 		require('./editor/camera-right.js').default,
 		require('./editor/camera-down.js').default,
 		require('./editor/camera-left.js').default,
-		require('./editor/add.js').default
+		require('./editor/add.js').default,
+		require('./editor/remove.js').default
 	]) {
 		if (action.filter) typeof action.filter == 'function' ? true : action.filter = function () {
 			return (document.activeElement == $('canvas')[0])

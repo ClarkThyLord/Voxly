@@ -4,10 +4,9 @@ export default new editor()
 
 function editor() {
 	this.tool = 'add'
-	this.layer = undefined
-
 	this.tools = [
-		require('./editor/tools/add.js').default
+		require('./editor/tools/add.js').default,
+		require('./editor/tools/remove.js').default
 	]
 
 	this.get_action = (name) => {
@@ -84,6 +83,9 @@ function editor() {
 		return position.divideScalar(0.5).floor().multiplyScalar(0.5).addScalar(0.25)
 	}
 
+	this.layer = undefined
+	this.layers = new window.three.Group()
+
 	this.new_layer = function (options) {
 		let layer = new window.three.Group()
 		layer.name = options.name || 'new layer'
@@ -96,7 +98,6 @@ function editor() {
 
 		return layer
 	}
-	this.layers = new window.three.Group()
 
 	this.add_layer = (options, parent_layer) => {
 		let layer = this.new_layer(options)
