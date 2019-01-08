@@ -81,10 +81,7 @@ function editor() {
 	}
 
 	this.position_to_grid = function (position) {
-		console.log(`${position.x}, ${position.y}, ${position.z}`);
-		let temp = position.divideScalar(0.5).floor().multiplyScalar(0.5).addScalar(0.25)
-		console.log(`${temp.x}, ${temp.y}, ${temp.z}`);
-		return temp
+		return position.divideScalar(0.5).floor().multiplyScalar(0.5).addScalar(0.25)
 	}
 
 	this.new_layer = function (options) {

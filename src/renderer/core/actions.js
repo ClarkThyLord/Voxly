@@ -51,7 +51,7 @@ function actions() {
 	}
 
 	this.trigger = (name) => {
-		let action = get(name)
+		let action = this.get(name)
 
 		if (action) {
 			action.action();
@@ -61,7 +61,7 @@ function actions() {
 	}
 
 	this.reset = (name) => {
-		let action = get(name)
+		let action = this.get(name)
 
 		action.hotkeys = action._hotkeys
 		window.localStorage.setItem(`action.${action.name}`, action.hotkeys)
@@ -75,7 +75,7 @@ function actions() {
 	}
 
 	this.update = (name, hotkeys) => {
-		let action = get(name)
+		let action = this.get(name)
 
 		if (action) {
 			window.hotkeys.unbind(action.hotkeys, action.trigger)

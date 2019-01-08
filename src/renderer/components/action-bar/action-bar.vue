@@ -182,7 +182,7 @@
 				window._editor.resize()
 			},
 			toggle: () => {
-				window._actions.trigger('action bar toggle')
+				window._actions.trigger('toggle')
 				window._editor.resize()
 			},
 			about_menu: () => {

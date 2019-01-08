@@ -21,7 +21,7 @@ export default function (camera, domElement) {
 		this._activity.set(x, y)
 	}
 
-	window.$(this.domElement).on('camera.move', (e, ov) => {
+	this.check_movement = (e, ov) => {
 		if (window.hotkeys.areSomePressed(window._actions.get('camera foward').hotkeys)) this.movement.z -= 1;
 		if (window.hotkeys.areSomePressed(window._actions.get('camera backwards').hotkeys)) this.movement.z += 1;
 		if (window.hotkeys.areSomePressed(window._actions.get('camera up').hotkeys)) this.movement.y += 1;
@@ -30,7 +30,7 @@ export default function (camera, domElement) {
 		if (window.hotkeys.areSomePressed(window._actions.get('camera left').hotkeys)) this.movement.x -= 1;
 
 		this.moving = true
-	})
+	}
 
 	window.$(domElement).on('contextmenu', (e) => {
 		event.preventDefault()
@@ -106,6 +106,8 @@ export default function (camera, domElement) {
 
 	// TODO smoother translation and zooming (e.g. updating)
 	this.update = (delta) => {
+		this.check_movement()
+
 		if (!this.moving && !this.active) return;
 		this.moving = false
 

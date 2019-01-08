@@ -16,9 +16,7 @@ export default {
 
 		let temp = new window.three.Vector3()
 		temp.copy(intersect.point).add(intersect.face.normal.multiplyScalar(0.25))
-		console.log(intersect.face.normal);
 		temp = window._editor.position_to_grid(temp)
-		console.log(temp);
 		voxel.position.copy(temp);
 		window._editor.layer.add(voxel)
 	}
