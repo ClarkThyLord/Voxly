@@ -45,7 +45,7 @@ export default function (camera, domElement) {
 
 	window.$(domElement).on('mousedown', (e) => {
 		if (e.button == 0) {
-			window.$('canvas').trigger('action', [e, domElement])
+			window.$('canvas').trigger('tool', [e, domElement])
 		} else if (e.button == 1 || e.button == 2) {
 			this.active = true
 			this.state = e.button

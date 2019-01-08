@@ -3,13 +3,33 @@ import CameraControls from './editor/camera-controls.js'
 export default new editor()
 
 function editor() {
-	this.action = ''
+	this.tool = 'add'
+	this.layer = undefined
+
+	this.tools = [
+		require('./editor/tools/add.js').default
+	]
+
+	this.get_action = (name) => {
+		return this.tools.find((tool) => {
+			return tool.name == name
+		})
+	}
 
 	this.init = () => {
 		this.scene = new window.three.Scene()
 
+		this.ground = new window.three.Mesh(
+			new window.three.PlaneBufferGeometry( 10, 10, 10 ),
+			new window.three.MeshBasicMaterial( {wireframe: true} )
+		);
+		this.scene.add(this.ground);
+
+		this.layer = this.add_layer({name: 'base layer'})
+		this.scene.add(this.layers)
+
 		let ligth = new window.three.AmbientLight(0x606060);
-		this.scene.add(ligth);
+		this.layer.add(ligth);
 
 		this.camera = new window.three.PerspectiveCamera(75, 1, 0.1, 1000)
 
@@ -23,18 +43,19 @@ function editor() {
 
 		window.addEventListener('resize', this.resize, false)
 
-		window.$(this.renderer.domElement).on('action', (e, ov, domElement) => {
-			if (this.action != '') window._actions.get(this.action).represents(ov, domElement)
+		window.$(this.renderer.domElement).on('tool', (e, ov, domElement) => {
+			let tool = this.get_action(this.tool)
+			if (tool) tool.update(ov, domElement)
 		})
 
+		this.mouse = new window.three.Vector2()
+
 		this.camera.controls = new CameraControls(this.camera, this.renderer.domElement)
+		this.camera.position.y -= 7
+		this.camera.position.z = 7
+		this.camera.lookAt(0, 0, 0)
 
-		let geometry = new window.three.BoxGeometry(1, 1, 1)
-		let material = new window.three.MeshBasicMaterial({color: 0x00ff00})
-	 	this.cube = new window.three.Mesh(geometry, material)
-		this.scene.add(this.cube)
-
-		this.camera.position.z = 5
+		this.raycaster = new window.three.Raycaster()
 
 		this._update()
 	}
@@ -51,14 +72,41 @@ function editor() {
 
 		this.camera.controls.update(delta)
 
-		this.cube.rotation.x += 0.01
-		this.cube.rotation.y += 0.01
-
 		this.renderer.render(this.scene, this.camera)
 	}
 
 	this._update = () => {
 		requestAnimationFrame(this._update)
 		this.update()
+	}
+
+	this.new_layer = function (options) {
+		let layer = new window.three.Group()
+		layer.name = options.name || 'new layer'
+
+		if (options.objects) {
+			for (let object of options.objects) {
+				layer.objects.add(object)
+			}
+		}
+
+		return layer
+	}
+	this.layers = new window.three.Group()
+
+	this.add_layer = (options, parent_layer) => {
+		let layer = this.new_layer(options)
+
+		if (parent_layer) {
+			parent_layer.add(layer)
+		} else {
+			this.layers.add(layer)
+		}
+
+		return layer
+	}
+
+	this.remove_layer = (layer) => {
+		layer.parent.remove(layer)
 	}
 }
