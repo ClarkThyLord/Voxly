@@ -80,6 +80,13 @@ function editor() {
 		this.update()
 	}
 
+	this.position_to_grid = function (position) {
+		console.log(`${position.x}, ${position.y}, ${position.z}`);
+		let temp = position.divideScalar(0.5).floor().multiplyScalar(0.5).addScalar(0.25)
+		console.log(`${temp.x}, ${temp.y}, ${temp.z}`);
+		return temp
+	}
+
 	this.new_layer = function (options) {
 		let layer = new window.three.Group()
 		layer.name = options.name || 'new layer'

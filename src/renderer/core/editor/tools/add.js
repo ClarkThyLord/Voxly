@@ -10,11 +10,16 @@ export default {
 		let intersect = intersects[0];
 
 		let voxel = new window.three.Mesh(
-			new window.three.BoxBufferGeometry(1, 1, 1),
+			new window.three.BoxBufferGeometry(0.5, 0.5, 0.5),
 			new window.three.MeshLambertMaterial({ color: 'green' })
 		)
 
-		voxel.position.copy(intersect.point)
+		let temp = new window.three.Vector3()
+		temp.copy(intersect.point).add(intersect.face.normal.multiplyScalar(0.25))
+		console.log(intersect.face.normal);
+		temp = window._editor.position_to_grid(temp)
+		console.log(temp);
+		voxel.position.copy(temp);
 		window._editor.layer.add(voxel)
 	}
 }
