@@ -1,4 +1,4 @@
-import CameraControls from './editor/camera-controls.js'
+import controls from './editor/controls.js'
 
 export default new editor()
 
@@ -13,6 +13,8 @@ function editor() {
 		this.camera = new window.three.PerspectiveCamera(75, 1, 0.1, 1000)
 
 		this.clock = new window.three.Clock()
+
+		this.raycaster = new window.three.Raycaster()
 
 		this.ligth = new window.three.AmbientLight(0x606060)
 		this.layer.add(this.ligth)
@@ -33,26 +35,6 @@ function editor() {
 		window.addEventListener('resize', this.resize, false)
 
 		this._update()
-
-
-		// this.renderer = new window.three.WebGLRenderer({
-		// 	canvas: window.$('#workspace canvas')[0],
-		// 	antialias: true
-		// })
-		// this.resize()
-		//
-		//
-		// window.$(this.renderer.domElement).on('tool', (e, ov, domElement) => {
-		// 	let tool = this.get_tool(this.tool)
-		// 	if (tool) tool.update(ov, domElement)
-		// })
-		//
-		// this.mouse = new window.three.Vector2()
-		//
-		// this.camera.controls = new CameraControls(this.camera, this.renderer.domElement)
-		//
-		// this.raycaster = new window.three.Raycaster()
-		//
 	}
 
 	this.update = () => {
@@ -88,6 +70,10 @@ function editor() {
 		return this.tools.find((tool) => {
 			return tool.name == name
 		})
+	}
+
+	this.activate_tool = (e, view) => {
+		this.get_tool(this.tool).update(e, view)
 	}
 
 	this.layer = undefined
@@ -140,13 +126,10 @@ function editor() {
 			antialias: true
 		})
 
-		// this.camera.controls = new CameraControls(
-		// 	this.camera,
-		// 	this.renderer.domElement
-		// )
+		this.controls = new controls(this)
 
 		this.update = (delta) => {
-			// this.camera.controls.update(delta)
+			this.controls.update(delta)
 
 			this.renderer.render(window._editor.scene, this.camera)
 		}
@@ -167,13 +150,5 @@ function editor() {
 		this.views.push(view)
 
 		return view
-	}
-
-	this.update_views = () => {
-		for (let v = 3; v < this.views; v++) {
-			let view = this.views[v]
-
-			console.log(v);
-		}
 	}
 }
