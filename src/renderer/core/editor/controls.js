@@ -38,7 +38,7 @@ export default function (view) {
 	}
 
 	window.$(this.domElement).on('contextmenu', (e) => {
-		event.preventDefault()
+		e.preventDefault()
 	})
 
 	window.$(this.domElement).on('wheel', (e) => {
@@ -52,7 +52,7 @@ export default function (view) {
 		if (e.button == 0) {
 			window._editor.view = this.view
 
-			this.mouse.set((event.offsetX / this.domElement.width ) * 2 - 1, -(event.offsetY / this.domElement.height) * 2 + 1)
+			this.mouse.set((e.offsetX / this.domElement.width ) * 2 - 1, -(e.offsetY / this.domElement.height) * 2 + 1)
 			window._editor.raycaster.setFromCamera(this.mouse, this.camera)
 
 			window._editor.activate_tool(e, this.view)

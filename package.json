@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "Voxly",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Christian Cuevas <ccpotential@gmail.com>",
   "description": "Intuitive open source voxel editor; for both small and big ideas!",
   "license": "MIT",
