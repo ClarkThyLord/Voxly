@@ -5,9 +5,11 @@
 		<menu-about></menu-about>
 		<menu-settings></menu-settings>
 
-		<action-bar></action-bar>
+		<div class="w-100 h-100 d-flex flex-column">
+			<action-bar></action-bar>
 
-		<workspace></workspace>
+			<workspace style="flex: 1;"></workspace>
+		</div>
   </div>
 </template>
 
