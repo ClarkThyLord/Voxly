@@ -7,7 +7,7 @@
 						<h5>View #1</h5>
 					</div>
 
-					<canvas class="bg-black"></canvas>
+					<canvas ref="view_1" style="position: absolute;" class="bg-black"></canvas>
 				</div>
 
 				<div id="editor-view-3">
@@ -15,7 +15,7 @@
 						<h5>View #3</h5>
 					</div>
 
-					<canvas class="bg-black"></canvas>
+					<canvas ref="view_3" style="position: absolute;" class="bg-black"></canvas>
 				</div>
 			</div>
 
@@ -25,7 +25,7 @@
 						<h5>View #2</h5>
 					</div>
 
-					<canvas class="bg-black"></canvas>
+					<canvas ref="view_2" style="position: absolute;" class="bg-black"></canvas>
 				</div>
 
 				<div id="editor-view-4">
@@ -33,7 +33,7 @@
 						<h5>View #4</h5>
 					</div>
 
-					<canvas class="bg-black"></canvas>
+					<canvas ref="view_4" style="position: absolute;" class="bg-black"></canvas>
 				</div>
 			</div>
 		</div>
@@ -43,8 +43,13 @@
 <script>
 	export default {
 		name: 'workspace',
-		mounted: () => {
-			window._editor.init()
+		mounted: function () {
+			window._editor.init([
+				this.$refs.view_1,
+				this.$refs.view_2,
+				this.$refs.view_3,
+				this.$refs.view_4
+			])
 		}
 	}
 </script>

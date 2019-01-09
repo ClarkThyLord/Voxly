@@ -6,6 +6,6 @@
 
 <script>
 	export default {
-		name: 'view'
+		name: 'section-view'
 	}
 </script>

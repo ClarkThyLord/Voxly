@@ -64,7 +64,7 @@
 
 			<editor></editor>
 
-      <view></view>
+      <section-view></section-view>
 
       <configuration></configuration>
     </div>
@@ -74,7 +74,7 @@
 <script>
 	import file from './sections/file.vue'
 	import editor from './sections/editor.vue'
-	import view from './sections/view.vue'
+	import SectionView from './sections/view.vue'
 	import configuration from './sections/view.vue'
 
 	export default {
@@ -82,7 +82,7 @@
 		components: {
 			file,
 			editor,
-			view,
+			SectionView,
 			configuration
 		},
 		methods: {

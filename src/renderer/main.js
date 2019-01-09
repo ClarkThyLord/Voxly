@@ -33,5 +33,8 @@ window.vue = new Vue({
 	mounted: () => {
 		window.metro.init()
 		window._editor.resize()
+		$('.gutter').on('mousedown mousemove mouseup', function (e, ov) {
+			window._editor.resize()
+		})
 	}
 }).$mount('#app')
