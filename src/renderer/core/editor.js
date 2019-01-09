@@ -9,7 +9,7 @@ function editor() {
 		require('./editor/tools/remove.js').default
 	]
 
-	this.get_action = (name) => {
+	this.get_tool = (name) => {
 		return this.tools.find((tool) => {
 			return tool.name == name
 		})
@@ -43,7 +43,7 @@ function editor() {
 		window.addEventListener('resize', this.resize, false)
 
 		window.$(this.renderer.domElement).on('tool', (e, ov, domElement) => {
-			let tool = this.get_action(this.tool)
+			let tool = this.get_tool(this.tool)
 			if (tool) tool.update(ov, domElement)
 		})
 

@@ -14,6 +14,9 @@ export default {
 			new window.three.MeshLambertMaterial({ color: 'green' })
 		)
 
+		voxel.name = 'voxel'
+		console.log(voxel.name);
+
 		let temp = new window.three.Vector3()
 		temp.copy(intersect.point).add(intersect.face.normal.multiplyScalar(0.25))
 		temp = window._editor.position_to_grid(temp)
