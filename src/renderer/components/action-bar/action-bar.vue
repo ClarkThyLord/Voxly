@@ -9,9 +9,9 @@
 			</li>
 
 			<li @click="visible">
-				<a href="#action-bar-files">
+				<a href="#action-bar-file">
 					<span class="mif-file-empty"></span>
-					<span class="d-none d-inline-md">Files</span>
+					<span class="d-none d-inline-md">File</span>
 				</a>
 			</li>
 
@@ -37,21 +37,21 @@
 			</li>
 
 			<span style="margin-left: auto;"></span>
-			<li @click="github" title="Check us out on GitHub!" class="static c-pointer">
+			<li onclick="window._util.url_open('https://github.com/ClarkThyLord/Voxly')" title="Check us out on GitHub!" class="static c-pointer">
 				<a>
 					<span class="mif-github"></span>
 					<span class="d-none d-inline-md">GitHub</span>
 				</a>
 			</li>
 
-			<li @click="about_menu" class="static c-pointer">
+			<li onclick="window.metro.dialog.open('#menu-about')" class="static c-pointer">
 				<a>
 					<span class="mif-info"></span>
 					<span class="d-none d-inline-md">About</span>
 				</a>
 			</li>
 
-			<li @click="settings_menu" class="static c-pointer">
+			<li onclick="window.metro.dialog.open('#menu-settings')" class="static c-pointer">
 				<a>
 					<span class="mif-cogs"></span>
 					<span class="d-none d-inline-md">Settings</span>
@@ -60,118 +60,31 @@
     </ul>
 
 		<div class="content-holder">
-      <div class="section" id="action-bar-files">
-				<div class="group">
-					<span class="title fg-black">File Options</span>
+      <file></file>
 
-					<button title="New file..." class="ribbon-button">
-						<span class="icon">
-							<span class="mif-file-empty"></span>
-						</span>
-						<span class="caption d-none d-block-md">New file...</span>
-					</button>
-					<button title="Save file..." class="ribbon-button">
-						<span class="icon">
-							<span class="mif-file-download"></span>
-						</span>
-						<span class="caption d-none d-block-md">Save file...</span>
-					</button>
-					<button title="Save file as..." class="ribbon-button">
-						<span class="icon">
-							<span class="mif-download2"></span>
-						</span>
-						<span class="caption d-none d-block-md">Save file as...</span>
-					</button>
-					<button title="Open file..." class="ribbon-button">
-						<span class="icon">
-							<span class="mif-folder-open"></span>
-						</span>
-						<span class="caption d-none d-block-md">Open file...</span>
-					</button>
-				</div>
+			<editor></editor>
 
-				<div style="flex: 1;" class="group">
-					<span class="title fg-black">Recent Files</span>
+      <view></view>
 
-					<div style="flex: 1;" class="d-flex">
-						<button class="ribbon-button">
-							<span class="icon">
-								<span class="mif-chevron-thin-left"></span>
-							</span>
-						</button>
-
-						<div style="flex: 1;" class="m-1">
-							<div data-role="tile" data-size="small" class="bg-gray"></div>
-						</div>
-
-						<button class="ribbon-button">
-							<span class="icon">
-								<span class="mif-chevron-thin-right"></span>
-							</span>
-						</button>
-					</div>
-				</div>
-      </div>
-
-			<div class="section" id="action-bar-editor">
-				<div class="group">
-					<span class="title fg-black">Tools</span>
-
-					<button class="ribbon-button">
-						<span class="icon">
-							<img src="./icons/add.svg" />
-						</span>
-						<span class="caption">Add</span>
-					</button>
-
-					<button class="ribbon-button">
-						<span class="icon">
-							<img src="./icons/subtract.svg">
-						</span>
-						<span class="caption">Subtract</span>
-					</button>
-
-					<button class="ribbon-button">
-						<span class="icon">
-							<img src="./icons/paint.svg">
-						</span>
-						<span class="caption">Paint</span>
-					</button>
-
-					<button class="ribbon-button">
-						<span class="icon">
-							<img src="./icons/select.svg">
-						</span>
-						<span class="caption">Select</span>
-					</button>
-
-					<button class="ribbon-button">
-						<span class="icon">
-							<img src="./icons/translate.svg">
-						</span>
-						<span class="caption">Transform</span>
-					</button>
-				</div>
-
-				<div style="flex: 1;" class="group">
-					<span class="title fg-black">About</span>
-				</div>
-			</div>
-
-      <div class="section" id="action-bar-view">
-
-      </div>
-
-      <div class="section" id="action-bar-configuration">
-
-      </div>
+      <configuration></configuration>
     </div>
 	</nav>
 </template>
 
 <script>
+	import file from './sections/file.vue'
+	import editor from './sections/editor.vue'
+	import view from './sections/view.vue'
+	import configuration from './sections/view.vue'
+
 	export default {
 		name: 'action-bar',
+		components: {
+			file,
+			editor,
+			view,
+			configuration
+		},
 		methods: {
 			visible: () => {
 				window.$('#action-bar .content-holder').show()
@@ -184,15 +97,6 @@
 			toggle: () => {
 				window._actions.trigger('toggle')
 				window._editor.resize()
-			},
-			about_menu: () => {
-				window.metro.dialog.open('#menu-about')
-			},
-			github: () => {
-				window._util.url_open('https://github.com/ClarkThyLord/Voxly')
-			},
-			settings_menu: () => {
-				window.metro.dialog.open('#menu-settings')
 			}
 		}
 	}
