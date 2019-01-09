@@ -8,7 +8,9 @@
 		<div class="w-100 h-100 d-flex flex-column">
 			<action-bar></action-bar>
 
-			<workspace style="flex: 1;"></workspace>
+			<div style="flex: 1;">
+				<workspace style="position: absolute;" class="w-100 h-100"></workspace>
+			</div>
 		</div>
   </div>
 </template>
