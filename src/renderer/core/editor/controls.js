@@ -25,6 +25,8 @@ export default function (view) {
 	}
 
 	this.check_movement = (e, ov) => {
+		if (window._editor.view != this.view) return;
+
 		if (window.hotkeys.areSomePressed(window._actions.get('camera foward').hotkeys)) this.movement.z -= 1;
 		if (window.hotkeys.areSomePressed(window._actions.get('camera backwards').hotkeys)) this.movement.z += 1;
 		if (window.hotkeys.areSomePressed(window._actions.get('camera up').hotkeys)) this.movement.y += 1;
@@ -48,6 +50,8 @@ export default function (view) {
 
 	window.$(this.domElement).on('mousedown', (e) => {
 		if (e.button == 0) {
+			window._editor.view = this.view
+
 			this.mouse.set((event.offsetX / this.domElement.width ) * 2 - 1, -(event.offsetY / this.domElement.height) * 2 + 1)
 			window._editor.raycaster.setFromCamera(this.mouse, this.camera)
 
@@ -112,20 +116,20 @@ export default function (view) {
 
 	// TODO smoother translation and zooming (e.g. updating)
 	this.update = (delta) => {
-		// this.check_movement()
-		//
-		// if (!this.moving && !this.active) return;
-		// this.moving = false
-		//
-		// this.movement.clampScalar(-1, 1)
-		// let motion = this.speed * (delta || 0.02)
-		// let rotation = ((this.sensitivity * Math.PI) / 180) * delta
-		// this.camera.translateX(this.movement.x * motion)
-		// this.camera.translateY(this.movement.y * motion)
-		// this.camera.translateZ(this.movement.z * motion)
-		// this.camera.rotation.x +=  rotation * this.rotation.x
-		// this.camera.rotation.y +=  rotation * this.rotation.y
-		// this.movement.set(0, 0, 0)
-		// this.rotation.set(0, 0, 0)
+		this.check_movement()
+
+		if (!this.moving && !this.active) return;
+		this.moving = false
+
+		this.movement.clampScalar(-1, 1)
+		let motion = this.speed * (delta || 0.02)
+		let rotation = ((this.sensitivity * Math.PI) / 180) * delta
+		this.camera.translateX(this.movement.x * motion)
+		this.camera.translateY(this.movement.y * motion)
+		this.camera.translateZ(this.movement.z * motion)
+		this.camera.rotation.x +=  rotation * this.rotation.x
+		this.camera.rotation.y +=  rotation * this.rotation.y
+		this.movement.set(0, 0, 0)
+		this.rotation.set(0, 0, 0)
 	}
 }

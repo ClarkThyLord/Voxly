@@ -41,7 +41,7 @@ function editor() {
 		let delta = this.clock.getDelta()
 
 		for (let view of this.views) {
-			view.update()
+			view.update(delta)
 		}
 	}
 
