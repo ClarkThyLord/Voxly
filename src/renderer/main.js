@@ -32,9 +32,10 @@ window.vue = new Vue({
   template: '<App/>',
 	mounted: () => {
 		window.metro.init()
+		
 		window._editor.resize()
-		$('.gutter').on('mousedown mousemove mouseup', function (e, ov) {
-			window._editor.resize()
+		window.$('.gutter').on('mousedown', function (e, ov) {
+			window.$(window).one('mouseup', window._editor.resize)
 		})
 	}
 }).$mount('#app')

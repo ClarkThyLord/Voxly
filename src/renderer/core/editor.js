@@ -7,11 +7,21 @@ function editor() {
 
 		this.scene = new window.three.Scene()
 
+		this.layer = this.add_layer({name: 'base layer'})
+		this.scene.add(this.layers)
+
+		this.camera = new window.three.PerspectiveCamera(75, 1, 0.1, 1000)
+
+		this.clock = new window.three.Clock()
+
+		this.ligth = new window.three.AmbientLight(0x606060)
+		this.layer.add(this.ligth)
+
 		this.ground = new window.three.Mesh(
 			new window.three.PlaneBufferGeometry(10, 10, 10),
 			new window.three.MeshBasicMaterial({wireframe: true})
 		);
-		this.scene.add(this.ground);
+		this.scene.add(this.ground)
 
 		for (let view of views) {
 			this.new_view({
@@ -22,16 +32,9 @@ function editor() {
 
 		window.addEventListener('resize', this.resize, false)
 
-		// this.layer = this.add_layer({name: 'base layer'})
-		// this.scene.add(this.layers)
-		//
-		// let ligth = new window.three.AmbientLight(0x606060);
-		// this.layer.add(ligth);
-		//
-		// this.camera = new window.three.PerspectiveCamera(75, 1, 0.1, 1000)
-		//
-		// this.clock = new window.three.Clock()
-		//
+		this._update()
+
+
 		// this.renderer = new window.three.WebGLRenderer({
 		// 	canvas: window.$('#workspace canvas')[0],
 		// 	antialias: true
@@ -47,13 +50,9 @@ function editor() {
 		// this.mouse = new window.three.Vector2()
 		//
 		// this.camera.controls = new CameraControls(this.camera, this.renderer.domElement)
-		// this.camera.position.y -= 7
-		// this.camera.position.z = 7
-		// this.camera.lookAt(0, 0, 0)
 		//
 		// this.raycaster = new window.three.Raycaster()
 		//
-		// this._update()
 	}
 
 	this.update = () => {
@@ -132,32 +131,34 @@ function editor() {
 		this.options = options.scene
 
 		this.camera = new window.three.PerspectiveCamera(75, 1, 0.1, 1000)
+		this.camera.position.y -= 7
+		this.camera.position.z = 7
+		this.camera.lookAt(0, 0, 0)
 
 		this.renderer = new window.three.WebGLRenderer({
 			canvas: options.canvas,
 			antialias: true
 		})
 
-		this.camera.controls = new CameraControls(
-			this.camera,
-			this.renderer.domElement
-		)
+		// this.camera.controls = new CameraControls(
+		// 	this.camera,
+		// 	this.renderer.domElement
+		// )
 
 		this.update = (delta) => {
-			this.camera.controls.update(delta)
+			// this.camera.controls.update(delta)
 
-			this.renderer.render(this.scene, this.camera)
+			this.renderer.render(window._editor.scene, this.camera)
 		}
 
 		this.resize = () => {
-			// console.log(this.renderer.domElement.parentNode);
-			console.log(`x: ${this.renderer.domElement.parentNode.offsetWidth}, y: ${this.renderer.domElement.parentNode.offsetHeight}`);
+			this.camera.aspect = this.renderer.domElement.parentNode.offsetWidth / this.renderer.domElement.parentNode.offsetHeight
+		  this.camera.updateProjectionMatrix()
 
-			// this.camera.aspect = (window.innerWidth) / (window.innerHeight - window.$('#action-bar').height())
-		  // this.camera.updateProjectionMatrix()
-			//
-		  // this.renderer.setSize(window.innerWidth, window.innerHeight - window.$('#action-bar').height())
+		  this.renderer.setSize(this.renderer.domElement.parentNode.offsetWidth, this.renderer.domElement.parentNode.offsetHeight)
 		}
+
+		this.resize()
 	}
 
 	this.new_view = (options) => {
