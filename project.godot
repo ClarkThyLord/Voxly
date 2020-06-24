@@ -8,9 +8,20 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Container",
+"class": "Dock",
+"language": "GDScript",
+"path": "res://src/Controls/Docker/Dock/Dock.gd"
+}, {
+"base": "Container",
+"class": "Docker",
+"language": "GDScript",
+"path": "res://src/Controls/Docker/Docker.gd"
+} ]
 _global_script_class_icons={
-
+"Dock": "",
+"Docker": ""
 }
 
 [application]
