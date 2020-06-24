@@ -17,6 +17,7 @@ _global_script_class_icons={
 
 config/name="Voxly"
 config/description="Intuitive open source voxel editor; for both small and big ideas!"
+run/main_scene="res://src/Editor/Editor.tscn"
 boot_splash/image="res://assets/Voxly.splash.png"
 boot_splash/bg_color=Color( 1, 1, 1, 1 )
 config/icon="res://icon.png"

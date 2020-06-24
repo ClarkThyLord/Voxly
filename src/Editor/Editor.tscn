@@ -1,0 +1,156 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/Editor/EditorBar/EditorBar.tscn" type="PackedScene" id=2]
+
+[node name="Editor" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EditorBar" parent="VBoxContainer" instance=ExtResource( 2 )]
+anchor_right = 0.0
+margin_right = 1024.0
+margin_bottom = 72.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 72.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_vertical = 3
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer/HBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 528.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+split_offset = 3
+
+[node name="Left" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/HSplitContainer"]
+margin_right = 178.0
+margin_bottom = 528.0
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/HBoxContainer/HSplitContainer/Left"]
+margin_right = 178.0
+margin_bottom = 528.0
+rect_min_size = Vector2( 175, 0 )
+size_flags_vertical = 3
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer/HBoxContainer/HSplitContainer"]
+margin_left = 190.0
+margin_right = 1024.0
+margin_bottom = 528.0
+split_offset = 3
+
+[node name="Center" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer"]
+margin_right = 647.0
+margin_bottom = 528.0
+size_flags_horizontal = 3
+
+[node name="Views" type="HSplitContainer" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/Center"]
+margin_right = 647.0
+margin_bottom = 374.0
+size_flags_vertical = 3
+
+[node name="Left" type="VSplitContainer" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/Center/Views"]
+margin_right = 317.0
+margin_bottom = 374.0
+size_flags_horizontal = 3
+
+[node name="First" type="ViewportContainer" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/Center/Views/Left"]
+margin_right = 317.0
+margin_bottom = 181.0
+size_flags_vertical = 3
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/Center/Views/Left/First"]
+size = Vector2( 317, 181 )
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="Camera" type="Camera" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/Center/Views/Left/First/Viewport"]
+current = true
+
+[node name="Second" type="ViewportContainer" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/Center/Views/Left"]
+margin_top = 193.0
+margin_right = 317.0
+margin_bottom = 374.0
+size_flags_vertical = 3
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/Center/Views/Left/Second"]
+size = Vector2( 317, 181 )
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="Camera" type="Camera" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/Center/Views/Left/Second/Viewport"]
+current = true
+
+[node name="Right" type="VSplitContainer" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/Center/Views"]
+margin_left = 329.0
+margin_right = 647.0
+margin_bottom = 374.0
+size_flags_horizontal = 3
+
+[node name="Third" type="ViewportContainer" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/Center/Views/Right"]
+margin_right = 318.0
+margin_bottom = 181.0
+size_flags_vertical = 3
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/Center/Views/Right/Third"]
+size = Vector2( 318, 181 )
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="Camera" type="Camera" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/Center/Views/Right/Third/Viewport"]
+current = true
+
+[node name="Fourth" type="ViewportContainer" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/Center/Views/Right"]
+margin_top = 193.0
+margin_right = 318.0
+margin_bottom = 374.0
+size_flags_vertical = 3
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/Center/Views/Right/Fourth"]
+size = Vector2( 318, 181 )
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="Camera" type="Camera" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/Center/Views/Right/Fourth/Viewport"]
+current = true
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/Center"]
+margin_top = 378.0
+margin_right = 647.0
+margin_bottom = 528.0
+rect_min_size = Vector2( 0, 150 )
+
+[node name="Right" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer"]
+margin_left = 659.0
+margin_right = 834.0
+margin_bottom = 528.0
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/Right"]
+margin_right = 175.0
+margin_bottom = 528.0
+rect_min_size = Vector2( 175, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 3
