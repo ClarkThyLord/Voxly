@@ -4,7 +4,7 @@ class_name Dock
 
 
 
-# Declarations
+# References
 onready var panel : PanelContainer
 
 onready var options_left : HBoxContainer
@@ -16,12 +16,29 @@ onready var content_ref : Control
 
 
 
+# Declarations
+func _get_minimum_size() -> Vector2:
+	return Vector2(125, 125)
+
+
 
 # Core
 func _notification(what : int):
 	match what:
 		NOTIFICATION_SORT_CHILDREN:
 			sort_children()
+
+
+func sort_children() -> void:
+	fit_child_in_rect(panel, Rect2(Vector2(), rect_size))
+	if get_child_count() >= 2:
+		yield(get_tree(), "idle_frame")
+		fit_child_in_rect(content_ref, Rect2(
+			content.rect_global_position - rect_global_position,
+			content.rect_size
+			)
+		)
+		move_child(content_ref, 1)
 
 
 func _ready():
@@ -34,7 +51,6 @@ func _ready():
 	.add_child(panel)
 	var container := VBoxContainer.new()
 	panel.add_child(container)
-	
 	
 	var options := HBoxContainer.new()
 	container.add_child(options)
@@ -57,7 +73,6 @@ func _ready():
 	options_right.size_flags_horizontal = SIZE_EXPAND_FILL
 	options.add_child(options_right)
 	
-	
 	content = Panel.new()
 	content.size_flags_vertical = SIZE_EXPAND_FILL
 	container.add_child(content)
@@ -65,9 +80,6 @@ func _ready():
 	
 	sort_children()
 
-
-func _get_minimum_size() -> Vector2:
-	return Vector2(125, 125)
 
 func add_child(node : Node, legible_unique_name := false) -> void:
 	if node is Control:
@@ -80,15 +92,3 @@ func add_child(node : Node, legible_unique_name := false) -> void:
 		printerr("Dock content can only be Control")
 		return
 	.add_child(node, legible_unique_name)
-
-
-func sort_children() -> void:
-	fit_child_in_rect(panel, Rect2(Vector2(), rect_size))
-	if get_child_count() >= 2:
-		yield(get_tree(), "idle_frame")
-		fit_child_in_rect(content_ref, Rect2(
-			content.rect_global_position - rect_global_position,
-			content.rect_size
-			)
-		)
-		move_child(content_ref, 1)
