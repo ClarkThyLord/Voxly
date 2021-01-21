@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/themes/default/default.tres" type="Theme" id=1]
 [ext_resource path="res://src/controls/view/view.tscn" type="PackedScene" id=2]
@@ -12,7 +12,11 @@ background_sky = SubResource( 1 )
 [sub_resource type="World" id=3]
 environment = SubResource( 2 )
 
-[node name="Panel" type="Panel"]
+[sub_resource type="CubeMesh" id=4]
+
+[node name="Node" type="Node"]
+
+[node name="Editor" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
@@ -20,7 +24,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Editor" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="Editor"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 6.0
@@ -31,67 +35,67 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="EditorBar" type="HBoxContainer" parent="Editor"]
+[node name="EditorBar" type="HBoxContainer" parent="Editor/VBoxContainer"]
 margin_right = 1012.0
 margin_bottom = 22.0
 
-[node name="Left" type="HBoxContainer" parent="Editor/EditorBar"]
+[node name="Left" type="HBoxContainer" parent="Editor/VBoxContainer/EditorBar"]
 margin_right = 334.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="File" type="MenuButton" parent="Editor/EditorBar/Left"]
+[node name="File" type="MenuButton" parent="Editor/VBoxContainer/EditorBar/Left"]
 margin_right = 35.0
 margin_bottom = 22.0
 text = "File"
 
-[node name="Center" type="HBoxContainer" parent="Editor/EditorBar"]
+[node name="Center" type="HBoxContainer" parent="Editor/VBoxContainer/EditorBar"]
 margin_left = 338.0
 margin_right = 673.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Right" type="HBoxContainer" parent="Editor/EditorBar"]
+[node name="Right" type="HBoxContainer" parent="Editor/VBoxContainer/EditorBar"]
 margin_left = 677.0
 margin_right = 1012.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Workspace" type="HSplitContainer" parent="Editor"]
+[node name="Workspace" type="HSplitContainer" parent="Editor/VBoxContainer"]
 margin_top = 26.0
 margin_right = 1012.0
 margin_bottom = 588.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Left" type="PanelContainer" parent="Editor/Workspace"]
+[node name="Left" type="PanelContainer" parent="Editor/VBoxContainer/Workspace"]
 margin_right = 150.0
 margin_bottom = 562.0
 rect_min_size = Vector2( 150, 0 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Editor/Workspace/Left"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Editor/VBoxContainer/Workspace/Left"]
 margin_left = 6.0
 margin_top = 4.0
 margin_right = 144.0
 margin_bottom = 558.0
 
-[node name="SceneTree" type="Tree" parent="Editor/Workspace/Left/VBoxContainer"]
+[node name="SceneTree" type="Tree" parent="Editor/VBoxContainer/Workspace/Left/VBoxContainer"]
 margin_right = 138.0
 margin_bottom = 275.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Inspector" type="Panel" parent="Editor/Workspace/Left/VBoxContainer"]
+[node name="Inspector" type="Panel" parent="Editor/VBoxContainer/Workspace/Left/VBoxContainer"]
 margin_top = 279.0
 margin_right = 138.0
 margin_bottom = 554.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HSplitContainer" type="HSplitContainer" parent="Editor/Workspace"]
+[node name="HSplitContainer" type="HSplitContainer" parent="Editor/VBoxContainer/Workspace"]
 margin_left = 158.0
 margin_right = 1012.0
 margin_bottom = 562.0
@@ -99,20 +103,20 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 split_offset = 250
 
-[node name="VSplitContainer" type="VSplitContainer" parent="Editor/Workspace/HSplitContainer"]
+[node name="VSplitContainer" type="VSplitContainer" parent="Editor/VBoxContainer/Workspace/HSplitContainer"]
 margin_right = 696.0
 margin_bottom = 562.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 split_offset = 450
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Editor/Workspace/HSplitContainer/VSplitContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Editor/VBoxContainer/Workspace/HSplitContainer/VSplitContainer"]
 margin_right = 696.0
 margin_bottom = 429.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Files" type="Tabs" parent="Editor/Workspace/HSplitContainer/VSplitContainer/VBoxContainer"]
+[node name="Files" type="Tabs" parent="Editor/VBoxContainer/Workspace/HSplitContainer/VSplitContainer/VBoxContainer"]
 margin_right = 696.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
@@ -120,73 +124,81 @@ tab_align = 0
 tab_close_display_policy = 1
 drag_to_rearrange_enabled = true
 
-[node name="ToolBar" type="HBoxContainer" parent="Editor/Workspace/HSplitContainer/VSplitContainer/VBoxContainer"]
+[node name="ToolBar" type="HBoxContainer" parent="Editor/VBoxContainer/Workspace/HSplitContainer/VSplitContainer/VBoxContainer"]
 margin_top = 28.0
 margin_right = 696.0
 margin_bottom = 50.0
 
-[node name="Button" type="Button" parent="Editor/Workspace/HSplitContainer/VSplitContainer/VBoxContainer/ToolBar"]
+[node name="Button" type="Button" parent="Editor/VBoxContainer/Workspace/HSplitContainer/VSplitContainer/VBoxContainer/ToolBar"]
 margin_right = 20.0
 margin_bottom = 22.0
 rect_min_size = Vector2( 20, 20 )
 
-[node name="Views" type="Control" parent="Editor/Workspace/HSplitContainer/VSplitContainer/VBoxContainer"]
+[node name="Views" type="Control" parent="Editor/VBoxContainer/Workspace/HSplitContainer/VSplitContainer/VBoxContainer"]
 margin_top = 54.0
 margin_right = 696.0
 margin_bottom = 429.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="view" parent="Editor/Workspace/HSplitContainer/VSplitContainer/VBoxContainer/Views" instance=ExtResource( 2 )]
+[node name="view" parent="Editor/VBoxContainer/Workspace/HSplitContainer/VSplitContainer/VBoxContainer/Views" instance=ExtResource( 2 )]
+margin_left = 2.51984
+margin_right = 2.51984
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Editor/Workspace/HSplitContainer/VSplitContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Editor/VBoxContainer/Workspace/HSplitContainer/VSplitContainer"]
 margin_top = 437.0
 margin_right = 696.0
 margin_bottom = 562.0
 rect_min_size = Vector2( 0, 125 )
 
-[node name="BottomPanel" type="PanelContainer" parent="Editor/Workspace/HSplitContainer/VSplitContainer/VBoxContainer2"]
+[node name="BottomPanel" type="PanelContainer" parent="Editor/VBoxContainer/Workspace/HSplitContainer/VSplitContainer/VBoxContainer2"]
 margin_right = 696.0
 margin_bottom = 125.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel" type="Panel" parent="Editor/Workspace/HSplitContainer/VSplitContainer/VBoxContainer2/BottomPanel"]
+[node name="Panel" type="Panel" parent="Editor/VBoxContainer/Workspace/HSplitContainer/VSplitContainer/VBoxContainer2/BottomPanel"]
 margin_left = 6.0
 margin_top = 4.0
 margin_right = 690.0
 margin_bottom = 121.0
 
-[node name="Right" type="PanelContainer" parent="Editor/Workspace/HSplitContainer"]
+[node name="Right" type="PanelContainer" parent="Editor/VBoxContainer/Workspace/HSplitContainer"]
 margin_left = 704.0
 margin_right = 854.0
 margin_bottom = 562.0
 rect_min_size = Vector2( 150, 0 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Editor/Workspace/HSplitContainer/Right"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Editor/VBoxContainer/Workspace/HSplitContainer/Right"]
 margin_left = 6.0
 margin_top = 4.0
 margin_right = 144.0
 margin_bottom = 558.0
 
-[node name="Palette" type="Panel" parent="Editor/Workspace/HSplitContainer/Right/VBoxContainer"]
+[node name="Palette" type="Panel" parent="Editor/VBoxContainer/Workspace/HSplitContainer/Right/VBoxContainer"]
 margin_right = 138.0
 margin_bottom = 414.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Preview" type="ViewportContainer" parent="Editor/Workspace/HSplitContainer/Right/VBoxContainer"]
+[node name="Preview" type="ViewportContainer" parent="Editor/VBoxContainer/Workspace/HSplitContainer/Right/VBoxContainer"]
 margin_top = 418.0
 margin_right = 138.0
 margin_bottom = 554.0
 rect_min_size = Vector2( 136, 136 )
 stretch = true
 
-[node name="Viewport" type="Viewport" parent="Editor/Workspace/HSplitContainer/Right/VBoxContainer/Preview"]
+[node name="Viewport" type="Viewport" parent="Editor/VBoxContainer/Workspace/HSplitContainer/Right/VBoxContainer/Preview"]
 size = Vector2( 138, 136 )
 world = SubResource( 3 )
 handle_input_locally = false
 render_target_update_mode = 3
 
-[node name="Camera" type="Camera" parent="Editor/Workspace/HSplitContainer/Right/VBoxContainer/Preview/Viewport"]
+[node name="Camera" type="Camera" parent="Editor/VBoxContainer/Workspace/HSplitContainer/Right/VBoxContainer/Preview/Viewport"]
 current = true
+
+[node name="Scene" type="Spatial" parent="."]
+
+[node name="MeshInstance" type="MeshInstance" parent="Scene"]
+mesh = SubResource( 4 )
+material/0 = null

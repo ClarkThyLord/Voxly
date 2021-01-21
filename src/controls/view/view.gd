@@ -1,5 +1,10 @@
 extends ViewportContainer
-# Used to view scene, can be split horizontally and vertically into sub views
+# Used to view scene, can be split into sub views horizontally and vertically
+
+
+
+## OnReady Variables
+onready var camera : Camera = get_node("Viewport/Camera")
 
 
 
@@ -22,6 +27,7 @@ func _gui_input(event : InputEvent) -> void:
 				context_menu.connect("popup_hide", self, "_on_ContextMenu_id_popup_hide")
 				
 				context_menu.open(event.global_position)
+	camera.handle_input(event)
 
 
 
@@ -70,6 +76,14 @@ func _split_view(split : SplitContainer) -> void:
 	split.add_child(new_view)
 
 
+func _on_mouse_entered():
+	camera.focused = true
+
+
+func _on_mouse_exited():
+	camera.focused = false
+
+
 func _on_ContextMenu_id_pressed(id : int) -> void:
 	var context_menu : PopupMenu = get_node("/root/ContextMenu")
 	match id:
@@ -87,4 +101,3 @@ func _on_ContextMenu_id_popup_hide() -> void:
 		context_menu.disconnect("id_pressed", self, "_on_ContextMenu_id_pressed")
 	if context_menu.is_connected("popup_hide", self, "_on_ContextMenu_id_popup_hide"):
 		context_menu.disconnect("popup_hide", self, "_on_ContextMenu_id_popup_hide")
-	
