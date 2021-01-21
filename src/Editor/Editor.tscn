@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/themes/default/default.tres" type="Theme" id=1]
+[ext_resource path="res://src/controls/view/view.tscn" type="PackedScene" id=2]
 
 [sub_resource type="ProceduralSky" id=1]
 
@@ -83,7 +84,7 @@ margin_bottom = 275.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ObjectProperties" type="Panel" parent="Editor/Workspace/Left/VBoxContainer"]
+[node name="Inspector" type="Panel" parent="Editor/Workspace/Left/VBoxContainer"]
 margin_top = 279.0
 margin_right = 138.0
 margin_bottom = 554.0
@@ -129,23 +130,14 @@ margin_right = 20.0
 margin_bottom = 22.0
 rect_min_size = Vector2( 20, 20 )
 
-[node name="ViewportContainer" type="ViewportContainer" parent="Editor/Workspace/HSplitContainer/VSplitContainer/VBoxContainer"]
+[node name="Views" type="Control" parent="Editor/Workspace/HSplitContainer/VSplitContainer/VBoxContainer"]
 margin_top = 54.0
 margin_right = 696.0
 margin_bottom = 429.0
-rect_min_size = Vector2( 128, 128 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-stretch = true
 
-[node name="Viewport" type="Viewport" parent="Editor/Workspace/HSplitContainer/VSplitContainer/VBoxContainer/ViewportContainer"]
-size = Vector2( 696, 375 )
-world = SubResource( 3 )
-handle_input_locally = false
-render_target_update_mode = 3
-
-[node name="Camera" type="Camera" parent="Editor/Workspace/HSplitContainer/VSplitContainer/VBoxContainer/ViewportContainer/Viewport"]
-current = true
+[node name="view" parent="Editor/Workspace/HSplitContainer/VSplitContainer/VBoxContainer/Views" instance=ExtResource( 2 )]
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Editor/Workspace/HSplitContainer/VSplitContainer"]
 margin_top = 437.0
@@ -153,13 +145,13 @@ margin_right = 696.0
 margin_bottom = 562.0
 rect_min_size = Vector2( 0, 125 )
 
-[node name="Center" type="PanelContainer" parent="Editor/Workspace/HSplitContainer/VSplitContainer/VBoxContainer2"]
+[node name="BottomPanel" type="PanelContainer" parent="Editor/Workspace/HSplitContainer/VSplitContainer/VBoxContainer2"]
 margin_right = 696.0
 margin_bottom = 125.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel" type="Panel" parent="Editor/Workspace/HSplitContainer/VSplitContainer/VBoxContainer2/Center"]
+[node name="Panel" type="Panel" parent="Editor/Workspace/HSplitContainer/VSplitContainer/VBoxContainer2/BottomPanel"]
 margin_left = 6.0
 margin_top = 4.0
 margin_right = 690.0
@@ -177,24 +169,24 @@ margin_top = 4.0
 margin_right = 144.0
 margin_bottom = 558.0
 
-[node name="ViewportContainer2" type="ViewportContainer" parent="Editor/Workspace/HSplitContainer/Right/VBoxContainer"]
+[node name="Palette" type="Panel" parent="Editor/Workspace/HSplitContainer/Right/VBoxContainer"]
 margin_right = 138.0
-margin_bottom = 136.0
+margin_bottom = 414.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Preview" type="ViewportContainer" parent="Editor/Workspace/HSplitContainer/Right/VBoxContainer"]
+margin_top = 418.0
+margin_right = 138.0
+margin_bottom = 554.0
 rect_min_size = Vector2( 136, 136 )
 stretch = true
 
-[node name="Viewport" type="Viewport" parent="Editor/Workspace/HSplitContainer/Right/VBoxContainer/ViewportContainer2"]
+[node name="Viewport" type="Viewport" parent="Editor/Workspace/HSplitContainer/Right/VBoxContainer/Preview"]
 size = Vector2( 138, 136 )
 world = SubResource( 3 )
 handle_input_locally = false
 render_target_update_mode = 3
 
-[node name="Camera" type="Camera" parent="Editor/Workspace/HSplitContainer/Right/VBoxContainer/ViewportContainer2/Viewport"]
+[node name="Camera" type="Camera" parent="Editor/Workspace/HSplitContainer/Right/VBoxContainer/Preview/Viewport"]
 current = true
-
-[node name="Panel" type="Panel" parent="Editor/Workspace/HSplitContainer/Right/VBoxContainer"]
-margin_top = 140.0
-margin_right = 138.0
-margin_bottom = 554.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
