@@ -14,6 +14,7 @@ onready var camera : Camera = get_node("Viewport/Camera")
 
 ## Built-In Virtual Methods
 func _ready() -> void:
+	options_menu.connect("id_focused", self, "_on_options_menu_id_focused")
 	options_menu.connect("id_pressed", self, "_on_options_menu_id_pressed")
 
 
@@ -81,8 +82,10 @@ func _on_options_about_to_show():
 		options_menu.add_item("Merge views", 2)
 		options_menu.add_separator()
 	
-	options_menu.add_item("Split vertically", 1)
-	options_menu.add_item("Split horizontally", 0)
+	if rect_size.x / rect_min_size.x > 2:
+		options_menu.add_item("Split vertically", 1)
+	if rect_size.y / rect_min_size.y > 2:
+		options_menu.add_item("Split horizontally", 0)
 
 
 func _on_options_menu_id_pressed(id : int) -> void:
@@ -93,5 +96,3 @@ func _on_options_menu_id_pressed(id : int) -> void:
 			split_vertically()
 		2: # Merge views
 			merge_view()
-
-

@@ -18,6 +18,8 @@ var focused := false
 
 
 ## Private Variables
+var _mouse_position := Vector2()
+
 var _direction := Vector3.ZERO
 
 var _is_boosting := false
@@ -51,11 +53,11 @@ func _input(event : InputEvent):
 		return
 	
 	_direction = Vector3()
-	Input.set_mouse_mode(
-			Input.MOUSE_MODE_CAPTURED
-			if Input.is_mouse_button_pressed(BUTTON_RIGHT) else
-			Input.MOUSE_MODE_VISIBLE)
-	if Input.is_mouse_button_pressed(BUTTON_RIGHT):
+	if event is InputEventMouseMotion and event.button_mask == BUTTON_MASK_RIGHT:
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
+			_mouse_position = get_viewport().get_mouse_position()
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		
 		if event is InputEventMouseMotion:
 			var movement : Vector2 = event.relative.normalized()
 			var x := rotation_degrees.x + (-movement.y * sensitivity)
@@ -74,3 +76,6 @@ func _input(event : InputEvent):
 			_direction += Vector3.LEFT
 		
 		_is_boosting = Input.is_action_just_pressed("camera_boost")
+	elif event is InputEventMouseButton and event.button_index == BUTTON_RIGHT and not event.is_pressed():
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		owner.warp_mouse(_mouse_position)

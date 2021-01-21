@@ -134,7 +134,7 @@ margin_right = 20.0
 margin_bottom = 22.0
 rect_min_size = Vector2( 20, 20 )
 
-[node name="Views" type="Control" parent="Editor/VBoxContainer/Workspace/HSplitContainer/VSplitContainer/VBoxContainer"]
+[node name="Views" type="PanelContainer" parent="Editor/VBoxContainer/Workspace/HSplitContainer/VSplitContainer/VBoxContainer"]
 margin_top = 54.0
 margin_right = 696.0
 margin_bottom = 429.0
@@ -142,8 +142,12 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="view" parent="Editor/VBoxContainer/Workspace/HSplitContainer/VSplitContainer/VBoxContainer/Views" instance=ExtResource( 2 )]
-margin_left = 2.51984
-margin_right = 2.51984
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 6.0
+margin_top = 4.0
+margin_right = 690.0
+margin_bottom = 371.0
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Editor/VBoxContainer/Workspace/HSplitContainer/VSplitContainer"]
 margin_top = 437.0

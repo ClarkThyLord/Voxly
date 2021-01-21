@@ -6,6 +6,7 @@
 [node name="view" type="ViewportContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_min_size = Vector2( 150, 150 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 stretch = true
