@@ -8,31 +8,23 @@
 
 config_version=4
 
-_global_script_classes=[ {
-"base": "Container",
-"class": "Dock",
-"language": "GDScript",
-"path": "res://src/Controls/Docker/Dock/Dock.gd"
-}, {
-"base": "Container",
-"class": "Docker",
-"language": "GDScript",
-"path": "res://src/Controls/Docker/Docker.gd"
-} ]
+_global_script_classes=[  ]
 _global_script_class_icons={
-"Dock": "",
-"Docker": ""
+
 }
 
 [application]
 
 config/name="Voxly"
 config/description="Intuitive open source voxel editor; for both small and big ideas!"
-run/main_scene="res://src/Editor/Editor.tscn"
 boot_splash/image="res://assets/Voxly.splash.png"
 boot_splash/bg_color=Color( 1, 1, 1, 1 )
 config/icon="res://icon.png"
 
+[gui]
+
+theme/custom="res://assets/themes/default/default.tres"
+
 [rendering]
 
-environment/default_environment="res://default_env.tres"
+environment/default_environment="res://assets/environments/default/default.tres"

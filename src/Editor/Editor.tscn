@@ -1,156 +1,200 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://src/Editor/EditorBar/EditorBar.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/themes/default/default.tres" type="Theme" id=1]
 
-[node name="Editor" type="Control"]
+[sub_resource type="ProceduralSky" id=1]
+
+[sub_resource type="Environment" id=2]
+background_mode = 2
+background_sky = SubResource( 1 )
+
+[sub_resource type="World" id=3]
+environment = SubResource( 2 )
+
+[node name="Panel" type="Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Editor" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 6.0
+margin_top = 6.0
+margin_right = -6.0
+margin_bottom = -6.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_constants/separation = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="EditorBar" type="HBoxContainer" parent="Editor"]
+margin_right = 1012.0
+margin_bottom = 22.0
 
-[node name="EditorBar" parent="VBoxContainer" instance=ExtResource( 2 )]
-anchor_right = 0.0
-margin_right = 1024.0
-margin_bottom = 72.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 72.0
-margin_right = 1024.0
-margin_bottom = 600.0
-size_flags_vertical = 3
-
-[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer/HBoxContainer"]
-margin_right = 1024.0
-margin_bottom = 528.0
+[node name="Left" type="HBoxContainer" parent="Editor/EditorBar"]
+margin_right = 334.0
+margin_bottom = 22.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-split_offset = 3
 
-[node name="Left" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/HSplitContainer"]
-margin_right = 178.0
-margin_bottom = 528.0
+[node name="File" type="MenuButton" parent="Editor/EditorBar/Left"]
+margin_right = 35.0
+margin_bottom = 22.0
+text = "File"
 
-[node name="ColorRect" type="ColorRect" parent="VBoxContainer/HBoxContainer/HSplitContainer/Left"]
-margin_right = 178.0
-margin_bottom = 528.0
-rect_min_size = Vector2( 175, 0 )
+[node name="Center" type="HBoxContainer" parent="Editor/EditorBar"]
+margin_left = 338.0
+margin_right = 673.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer/HBoxContainer/HSplitContainer"]
-margin_left = 190.0
-margin_right = 1024.0
-margin_bottom = 528.0
-split_offset = 3
-
-[node name="Center" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer"]
-margin_right = 647.0
-margin_bottom = 528.0
+[node name="Right" type="HBoxContainer" parent="Editor/EditorBar"]
+margin_left = 677.0
+margin_right = 1012.0
+margin_bottom = 22.0
 size_flags_horizontal = 3
-
-[node name="Views" type="HSplitContainer" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/Center"]
-margin_right = 647.0
-margin_bottom = 374.0
 size_flags_vertical = 3
 
-[node name="Left" type="VSplitContainer" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/Center/Views"]
-margin_right = 317.0
-margin_bottom = 374.0
+[node name="Workspace" type="HSplitContainer" parent="Editor"]
+margin_top = 26.0
+margin_right = 1012.0
+margin_bottom = 588.0
 size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="First" type="ViewportContainer" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/Center/Views/Left"]
-margin_right = 317.0
-margin_bottom = 181.0
+[node name="Left" type="PanelContainer" parent="Editor/Workspace"]
+margin_right = 150.0
+margin_bottom = 562.0
+rect_min_size = Vector2( 150, 0 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Editor/Workspace/Left"]
+margin_left = 6.0
+margin_top = 4.0
+margin_right = 144.0
+margin_bottom = 558.0
+
+[node name="SceneTree" type="Tree" parent="Editor/Workspace/Left/VBoxContainer"]
+margin_right = 138.0
+margin_bottom = 275.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ObjectProperties" type="Panel" parent="Editor/Workspace/Left/VBoxContainer"]
+margin_top = 279.0
+margin_right = 138.0
+margin_bottom = 554.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Editor/Workspace"]
+margin_left = 158.0
+margin_right = 1012.0
+margin_bottom = 562.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+split_offset = 250
+
+[node name="VSplitContainer" type="VSplitContainer" parent="Editor/Workspace/HSplitContainer"]
+margin_right = 696.0
+margin_bottom = 562.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+split_offset = 450
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Editor/Workspace/HSplitContainer/VSplitContainer"]
+margin_right = 696.0
+margin_bottom = 429.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Files" type="Tabs" parent="Editor/Workspace/HSplitContainer/VSplitContainer/VBoxContainer"]
+margin_right = 696.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+tab_align = 0
+tab_close_display_policy = 1
+drag_to_rearrange_enabled = true
+
+[node name="ToolBar" type="HBoxContainer" parent="Editor/Workspace/HSplitContainer/VSplitContainer/VBoxContainer"]
+margin_top = 28.0
+margin_right = 696.0
+margin_bottom = 50.0
+
+[node name="Button" type="Button" parent="Editor/Workspace/HSplitContainer/VSplitContainer/VBoxContainer/ToolBar"]
+margin_right = 20.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 20, 20 )
+
+[node name="ViewportContainer" type="ViewportContainer" parent="Editor/Workspace/HSplitContainer/VSplitContainer/VBoxContainer"]
+margin_top = 54.0
+margin_right = 696.0
+margin_bottom = 429.0
+rect_min_size = Vector2( 128, 128 )
+size_flags_horizontal = 3
 size_flags_vertical = 3
 stretch = true
 
-[node name="Viewport" type="Viewport" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/Center/Views/Left/First"]
-size = Vector2( 317, 181 )
+[node name="Viewport" type="Viewport" parent="Editor/Workspace/HSplitContainer/VSplitContainer/VBoxContainer/ViewportContainer"]
+size = Vector2( 696, 375 )
+world = SubResource( 3 )
 handle_input_locally = false
 render_target_update_mode = 3
 
-[node name="Camera" type="Camera" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/Center/Views/Left/First/Viewport"]
+[node name="Camera" type="Camera" parent="Editor/Workspace/HSplitContainer/VSplitContainer/VBoxContainer/ViewportContainer/Viewport"]
 current = true
 
-[node name="Second" type="ViewportContainer" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/Center/Views/Left"]
-margin_top = 193.0
-margin_right = 317.0
-margin_bottom = 374.0
-size_flags_vertical = 3
-stretch = true
+[node name="VBoxContainer2" type="VBoxContainer" parent="Editor/Workspace/HSplitContainer/VSplitContainer"]
+margin_top = 437.0
+margin_right = 696.0
+margin_bottom = 562.0
+rect_min_size = Vector2( 0, 125 )
 
-[node name="Viewport" type="Viewport" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/Center/Views/Left/Second"]
-size = Vector2( 317, 181 )
-handle_input_locally = false
-render_target_update_mode = 3
-
-[node name="Camera" type="Camera" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/Center/Views/Left/Second/Viewport"]
-current = true
-
-[node name="Right" type="VSplitContainer" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/Center/Views"]
-margin_left = 329.0
-margin_right = 647.0
-margin_bottom = 374.0
+[node name="Center" type="PanelContainer" parent="Editor/Workspace/HSplitContainer/VSplitContainer/VBoxContainer2"]
+margin_right = 696.0
+margin_bottom = 125.0
 size_flags_horizontal = 3
-
-[node name="Third" type="ViewportContainer" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/Center/Views/Right"]
-margin_right = 318.0
-margin_bottom = 181.0
 size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="Editor/Workspace/HSplitContainer/VSplitContainer/VBoxContainer2/Center"]
+margin_left = 6.0
+margin_top = 4.0
+margin_right = 690.0
+margin_bottom = 121.0
+
+[node name="Right" type="PanelContainer" parent="Editor/Workspace/HSplitContainer"]
+margin_left = 704.0
+margin_right = 854.0
+margin_bottom = 562.0
+rect_min_size = Vector2( 150, 0 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Editor/Workspace/HSplitContainer/Right"]
+margin_left = 6.0
+margin_top = 4.0
+margin_right = 144.0
+margin_bottom = 558.0
+
+[node name="ViewportContainer2" type="ViewportContainer" parent="Editor/Workspace/HSplitContainer/Right/VBoxContainer"]
+margin_right = 138.0
+margin_bottom = 136.0
+rect_min_size = Vector2( 136, 136 )
 stretch = true
 
-[node name="Viewport" type="Viewport" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/Center/Views/Right/Third"]
-size = Vector2( 318, 181 )
+[node name="Viewport" type="Viewport" parent="Editor/Workspace/HSplitContainer/Right/VBoxContainer/ViewportContainer2"]
+size = Vector2( 138, 136 )
+world = SubResource( 3 )
 handle_input_locally = false
 render_target_update_mode = 3
 
-[node name="Camera" type="Camera" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/Center/Views/Right/Third/Viewport"]
+[node name="Camera" type="Camera" parent="Editor/Workspace/HSplitContainer/Right/VBoxContainer/ViewportContainer2/Viewport"]
 current = true
 
-[node name="Fourth" type="ViewportContainer" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/Center/Views/Right"]
-margin_top = 193.0
-margin_right = 318.0
-margin_bottom = 374.0
-size_flags_vertical = 3
-stretch = true
-
-[node name="Viewport" type="Viewport" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/Center/Views/Right/Fourth"]
-size = Vector2( 318, 181 )
-handle_input_locally = false
-render_target_update_mode = 3
-
-[node name="Camera" type="Camera" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/Center/Views/Right/Fourth/Viewport"]
-current = true
-
-[node name="ColorRect" type="ColorRect" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/Center"]
-margin_top = 378.0
-margin_right = 647.0
-margin_bottom = 528.0
-rect_min_size = Vector2( 0, 150 )
-
-[node name="Right" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer"]
-margin_left = 659.0
-margin_right = 834.0
-margin_bottom = 528.0
-
-[node name="ColorRect" type="ColorRect" parent="VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/Right"]
-margin_right = 175.0
-margin_bottom = 528.0
-rect_min_size = Vector2( 175, 0 )
-size_flags_horizontal = 0
+[node name="Panel" type="Panel" parent="Editor/Workspace/HSplitContainer/Right/VBoxContainer"]
+margin_top = 140.0
+margin_right = 138.0
+margin_bottom = 554.0
+size_flags_horizontal = 3
 size_flags_vertical = 3
