@@ -4,30 +4,21 @@ extends ViewportContainer
 
 
 ## OnReady Variables
+onready var options : MenuButton = get_node("Options")
+
+onready var options_menu : PopupMenu = options.get_popup()
+
 onready var camera : Camera = get_node("Viewport/Camera")
 
 
 
 ## Built-In Virtual Methods
+func _ready() -> void:
+	options_menu.connect("id_pressed", self, "_on_options_menu_id_pressed")
+
+
 func _gui_input(event : InputEvent) -> void:
-	if event is InputEventMouseButton and not event.is_pressed():
-		match event.button_index:
-			BUTTON_RIGHT:
-				var context_menu : PopupMenu = get_node("/root/ContextMenu")
-				context_menu.clear()
-				
-				if is_split():
-					context_menu.add_item("Merge views", 2)
-					context_menu.add_separator()
-				
-				context_menu.add_item("Split vertically", 1)
-				context_menu.add_item("Split horizontally", 0)
-				
-				context_menu.connect("id_pressed", self, "_on_ContextMenu_id_pressed")
-				context_menu.connect("popup_hide", self, "_on_ContextMenu_id_popup_hide")
-				
-				context_menu.open(event.global_position)
-	camera.handle_input(event)
+	pass
 
 
 
@@ -84,8 +75,17 @@ func _on_mouse_exited():
 	camera.focused = false
 
 
-func _on_ContextMenu_id_pressed(id : int) -> void:
-	var context_menu : PopupMenu = get_node("/root/ContextMenu")
+func _on_options_about_to_show():
+	options_menu.clear()
+	if is_split():
+		options_menu.add_item("Merge views", 2)
+		options_menu.add_separator()
+	
+	options_menu.add_item("Split vertically", 1)
+	options_menu.add_item("Split horizontally", 0)
+
+
+func _on_options_menu_id_pressed(id : int) -> void:
 	match id:
 		0: # Split horizontally
 			split_horizontally()
@@ -95,9 +95,3 @@ func _on_ContextMenu_id_pressed(id : int) -> void:
 			merge_view()
 
 
-func _on_ContextMenu_id_popup_hide() -> void:
-	var context_menu : PopupMenu = get_node("/root/ContextMenu")
-	if context_menu.is_connected("id_pressed", self, "_on_ContextMenu_id_pressed"):
-		context_menu.disconnect("id_pressed", self, "_on_ContextMenu_id_pressed")
-	if context_menu.is_connected("popup_hide", self, "_on_ContextMenu_id_popup_hide"):
-		context_menu.disconnect("popup_hide", self, "_on_ContextMenu_id_popup_hide")
