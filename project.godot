@@ -21,6 +21,10 @@ boot_splash/image="res://assets/Voxly.splash.png"
 boot_splash/bg_color=Color( 1, 1, 1, 1 )
 config/icon="res://icon.png"
 
+[autoload]
+
+ContextMenu="*res://src/controls/context_menu/context_menu.gd"
+
 [gui]
 
 theme/custom="res://assets/themes/default/default.tres"
