@@ -58,7 +58,9 @@ func _input(event : InputEvent):
 	if Input.is_mouse_button_pressed(BUTTON_RIGHT):
 		if event is InputEventMouseMotion:
 			var movement : Vector2 = event.relative.normalized()
-			rotation_degrees.x += -movement.y * sensitivity
+			var x := rotation_degrees.x + (-movement.y * sensitivity)
+			if x <= 90.0 and x >= -90.0:
+				rotation_degrees.x = x
 			rotation_degrees.y += -movement.x * sensitivity
 			get_tree().set_input_as_handled()
 		
