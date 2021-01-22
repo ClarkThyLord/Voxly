@@ -6,6 +6,8 @@
 [node name="view" type="ViewportContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = 1.0
+margin_bottom = 1.0
 rect_min_size = Vector2( 150, 150 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -15,6 +17,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 1025, 601 )
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="Camera" parent="Viewport" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3 )
+
 [node name="Options" type="MenuButton" parent="."]
 margin_left = 6.0
 margin_top = 6.0
@@ -23,13 +33,6 @@ margin_bottom = 22.0
 mouse_default_cursor_shape = 2
 text = "..."
 flat = false
-
-[node name="Viewport" type="Viewport" parent="."]
-size = Vector2( 1024, 600 )
-handle_input_locally = false
-render_target_update_mode = 3
-
-[node name="Camera" parent="Viewport" instance=ExtResource( 2 )]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="about_to_show" from="Options" to="." method="_on_options_about_to_show"]

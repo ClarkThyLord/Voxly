@@ -4,22 +4,22 @@ extends ViewportContainer
 
 
 ## OnReady Variables
+onready var viewport : Viewport = get_node("Viewport")
+
+onready var camera : Camera = get_node("Viewport/Camera")
+
 onready var options : MenuButton = get_node("Options")
 
 onready var options_menu : PopupMenu = options.get_popup()
-
-onready var camera : Camera = get_node("Viewport/Camera")
 
 
 
 ## Built-In Virtual Methods
 func _ready() -> void:
+	viewport.size = rect_size
+	
 	options_menu.connect("id_focused", self, "_on_options_menu_id_focused")
 	options_menu.connect("id_pressed", self, "_on_options_menu_id_pressed")
-
-
-func _gui_input(event : InputEvent) -> void:
-	pass
 
 
 
@@ -28,12 +28,12 @@ func is_split() -> bool:
 	return get_parent() is SplitContainer
 
 
-func split_horizontally() -> void:
-	_split_view(VSplitContainer.new())
-
-
 func split_vertically() -> void:
 	_split_view(HSplitContainer.new())
+
+
+func split_horizontally() -> void:
+	_split_view(VSplitContainer.new())
 
 
 func merge_view() -> void:
