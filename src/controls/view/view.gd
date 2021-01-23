@@ -22,6 +22,11 @@ func _ready() -> void:
 	options_menu.connect("id_pressed", self, "_on_options_menu_id_pressed")
 
 
+func _gui_input(event : InputEvent) -> void:
+	if get_node("/root/VoxlyInterface").forward_input(camera, event):
+		accept_event()
+
+
 
 ## Public Methods
 func is_split() -> bool:
@@ -36,9 +41,9 @@ func split_horizontally() -> void:
 	_split_view(VSplitContainer.new())
 
 
-func merge_view() -> void:
+func merge_split() -> void:
 	var parent := get_parent()
-	if parent.get_child_count() == 2:
+	if is_split():
 		parent.remove_child(self)
 		
 		var grandparent := parent.get_parent()
@@ -95,4 +100,4 @@ func _on_options_menu_id_pressed(id : int) -> void:
 		1: # Split vertically
 			split_vertically()
 		2: # Merge views
-			merge_view()
+			merge_split()

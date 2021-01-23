@@ -24,6 +24,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
+VoxlyInterface="*res://src/interfaces/voxly.gd"
 ContextMenu="*res://src/controls/context_menu/context_menu.gd"
 
 [gui]

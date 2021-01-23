@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://src/controls/view/camera/camera.gd" type="Script" id=1]
-
-[node name="Camera" type="Camera"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3 )
-current = true
-script = ExtResource( 1 )
-sensitivity = 5.0
