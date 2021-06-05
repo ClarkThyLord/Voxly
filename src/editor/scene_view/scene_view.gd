@@ -6,7 +6,7 @@ extends ViewportContainer
 ## OnReady Variables
 onready var viewport : Viewport = get_node("Viewport")
 
-onready var camera : Camera = get_node("Viewport/Camera")
+onready var camera : Camera = get_node("Viewport/SceneCamera")
 
 onready var options : MenuButton = get_node("Options")
 
@@ -18,8 +18,7 @@ onready var options_menu : PopupMenu = options.get_popup()
 func _ready() -> void:
 	viewport.size = rect_size
 	
-	options_menu.connect("id_focused", self, "_on_options_menu_id_focused")
-	options_menu.connect("id_pressed", self, "_on_options_menu_id_pressed")
+	options_menu.connect("id_pressed", self, "_on_OptionsMenu_id_pressed")
 
 
 func _gui_input(event : InputEvent) -> void:
@@ -33,11 +32,25 @@ func is_split() -> bool:
 	return get_parent() is SplitContainer
 
 
+func can_split_vertically() -> bool:
+	return rect_size.x / rect_min_size.x > 2
+
+
+func can_split_horizontally() -> bool:
+	return rect_size.y / rect_min_size.y > 2
+
+
 func split_vertically() -> void:
+	if not can_split_vertically():
+		printerr("Cannot split SceneView vertically")
+	
 	_split_view(HSplitContainer.new())
 
 
 func split_horizontally() -> void:
+	if not can_split_horizontally():
+		printerr("Cannot split SceneView horizontally")
+	
 	_split_view(VSplitContainer.new())
 
 
@@ -81,19 +94,26 @@ func _on_mouse_exited():
 	camera.focused = false
 
 
-func _on_options_about_to_show():
+func _on_OptionsMenu_about_to_show():
 	options_menu.clear()
+	var separate := false
 	if is_split():
+		separate = true
 		options_menu.add_item("Merge views", 2)
-		options_menu.add_separator()
 	
-	if rect_size.x / rect_min_size.x > 2:
+	if can_split_vertically():
+		if separate:
+			separate = false
+			options_menu.add_separator()
 		options_menu.add_item("Split vertically", 1)
-	if rect_size.y / rect_min_size.y > 2:
+	if can_split_horizontally():
+		if separate:
+			separate = false
+			options_menu.add_separator()
 		options_menu.add_item("Split horizontally", 0)
 
 
-func _on_options_menu_id_pressed(id : int) -> void:
+func _on_OptionsMenu_id_pressed(id : int) -> void:
 	match id:
 		0: # Split horizontally
 			split_horizontally()

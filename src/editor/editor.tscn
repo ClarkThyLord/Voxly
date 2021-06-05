@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/themes/default/default.tres" type="Theme" id=1]
 [ext_resource path="res://src/editor/scene_view/scene_view.tscn" type="PackedScene" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 1, 0, 0, 1 )
 
 [node name="Editor" type="Panel"]
 anchor_right = 1.0
@@ -105,20 +108,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Views" type="PanelContainer" parent="VBoxContainer/Workspace/HSplitContainer/VSplitContainer/VBoxContainer"]
+[node name="SceneViews" type="PanelContainer" parent="VBoxContainer/Workspace/HSplitContainer/VSplitContainer/VBoxContainer"]
 margin_top = 32.0
 margin_right = 696.0
 margin_bottom = 423.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_styles/panel = SubResource( 1 )
 
-[node name="SceneView" parent="VBoxContainer/Workspace/HSplitContainer/VSplitContainer/VBoxContainer/Views" instance=ExtResource( 2 )]
+[node name="SceneView" parent="VBoxContainer/Workspace/HSplitContainer/VSplitContainer/VBoxContainer/SceneViews" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 694.0
-margin_bottom = 389.0
+margin_right = 696.0
+margin_bottom = 391.0
 
 [node name="BottomPanels" type="PanelContainer" parent="VBoxContainer/Workspace/HSplitContainer/VSplitContainer"]
 margin_top = 431.0
