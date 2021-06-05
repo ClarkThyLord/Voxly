@@ -10,21 +10,22 @@ config_version=4
 
 _global_script_classes=[  ]
 _global_script_class_icons={
-
 }
 
 [application]
 
 config/name="Voxly"
 config/description="Intuitive open source voxel editor; for both small and big ideas!"
-run/main_scene="res://src/editor/editor.tscn"
+run/main_scene="res://src/editor/_editor.tscn"
 boot_splash/image="res://assets/Voxly.splash.png"
 boot_splash/bg_color=Color( 1, 1, 1, 1 )
 config/icon="res://icon.png"
 
 [autoload]
 
-VoxlyInterface="*res://src/interfaces/voxly.gd"
+VoxlyInterface="*res://src/voxly.gd"
+SettingsInterface="*res://src/settings/settings.gd"
+ProjectsInterface="*res://src/projects/projects.gd"
 ContextMenu="*res://src/controls/context_menu/context_menu.gd"
 
 [gui]

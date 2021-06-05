@@ -1,9 +1,8 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://src/controls/settings_menu/settings_menu.gd" type="Script" id=1]
+[ext_resource path="res://src/settings/settings_menu/settings_menu.gd" type="Script" id=1]
 
 [node name="SettingsMenu" type="PopupDialog"]
-visible = true
 anchor_left = 0.109375
 anchor_top = 0.108333
 anchor_right = 0.890625
@@ -141,5 +140,6 @@ margin_left = 205.0
 margin_right = 259.0
 margin_bottom = 24.0
 text = "Cancel"
+
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/Right/Apply" to="." method="_on_Apply_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/Right/Cancel" to="." method="_on_Cancel_pressed"]
