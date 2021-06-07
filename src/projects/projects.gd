@@ -1,16 +1,41 @@
 extends Node
+## Projects Interface
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+
+## Private Variables
+var _projects := []
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+
+## Public Methods
+func current_project() -> String:
+	return ""
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func get_project(project_name : String):
+	return
+
+
+func get_projects() -> Array:
+	return []
+
+
+func new_project(project_name : String) -> void:
+	pass
+
+
+func save_project(project_name : String) -> int:
+	return OK
+
+
+func open_project(project) -> int:
+	return OK
+
+
+func open_project_from(project_path : String) -> int:
+	return OK
+
+
+func close_project(project_name : String) -> void:
+	pass
