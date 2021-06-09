@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/editor/editor_bar/project/project.gd" type="Script" id=1]
+
+[node name="Project" type="MenuButton"]
+margin_right = 49.0
+margin_bottom = 24.0
+focus_mode = 2
+text = "Project"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="about_to_show" from="." to="." method="_on_about_to_show"]

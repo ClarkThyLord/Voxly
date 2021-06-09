@@ -2,9 +2,7 @@
 
 [ext_resource path="res://assets/themes/default/default.tres" type="Theme" id=1]
 [ext_resource path="res://src/editor/scene_view/scene_view.tscn" type="PackedScene" id=2]
-
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 1, 0, 0, 1 )
+[ext_resource path="res://src/editor/editor_bar/project/project.tscn" type="PackedScene" id=3]
 
 [node name="Editor" type="Panel"]
 anchor_right = 1.0
@@ -36,10 +34,7 @@ margin_bottom = 24.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ToolButton" type="ToolButton" parent="VBoxContainer/EditorBar/Left"]
-margin_right = 55.0
-margin_bottom = 24.0
-text = "Settings"
+[node name="Project" parent="VBoxContainer/EditorBar/Left" instance=ExtResource( 3 )]
 
 [node name="Center" type="HBoxContainer" parent="VBoxContainer/EditorBar"]
 margin_left = 338.0
@@ -114,13 +109,14 @@ margin_right = 696.0
 margin_bottom = 423.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 1 )
 
 [node name="SceneView" parent="VBoxContainer/Workspace/HSplitContainer/VSplitContainer/VBoxContainer/SceneViews" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 696.0
-margin_bottom = 391.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 694.0
+margin_bottom = 389.0
 
 [node name="BottomPanels" type="PanelContainer" parent="VBoxContainer/Workspace/HSplitContainer/VSplitContainer"]
 margin_top = 431.0
