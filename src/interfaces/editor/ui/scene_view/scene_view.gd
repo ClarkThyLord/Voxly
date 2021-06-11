@@ -22,7 +22,7 @@ func _ready() -> void:
 
 
 func _gui_input(event : InputEvent) -> void:
-	if get_node("/root/VoxlyInterface").forward_input(camera, event):
+	if get_node("/root/Voxly").forward_input(camera, event):
 		accept_event()
 
 
