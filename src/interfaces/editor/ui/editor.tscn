@@ -60,10 +60,10 @@ margin_bottom = 560.0
 rect_min_size = Vector2( 150, 0 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Workspace/LeftPanels"]
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 148.0
-margin_bottom = 558.0
+margin_left = 6.0
+margin_top = 4.0
+margin_right = 144.0
+margin_bottom = 556.0
 
 [node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer/Workspace"]
 margin_left = 158.0
@@ -82,51 +82,51 @@ split_offset = 450
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Workspace/HSplitContainer/VSplitContainer"]
 margin_right = 696.0
-margin_bottom = 423.0
+margin_bottom = 419.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="ToolBar" type="PanelContainer" parent="VBoxContainer/Workspace/HSplitContainer/VSplitContainer/VBoxContainer"]
 margin_right = 696.0
-margin_bottom = 28.0
+margin_bottom = 32.0
 
 [node name="Tools" type="HBoxContainer" parent="VBoxContainer/Workspace/HSplitContainer/VSplitContainer/VBoxContainer/ToolBar"]
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 694.0
-margin_bottom = 26.0
+margin_left = 6.0
+margin_top = 4.0
+margin_right = 690.0
+margin_bottom = 28.0
 rect_min_size = Vector2( 24, 24 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="SceneViews" type="PanelContainer" parent="VBoxContainer/Workspace/HSplitContainer/VSplitContainer/VBoxContainer"]
-margin_top = 32.0
+margin_top = 36.0
 margin_right = 696.0
-margin_bottom = 423.0
+margin_bottom = 419.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="SceneView" parent="VBoxContainer/Workspace/HSplitContainer/VSplitContainer/VBoxContainer/SceneViews" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 694.0
-margin_bottom = 389.0
+margin_left = 6.0
+margin_top = 4.0
+margin_right = 690.0
+margin_bottom = 379.0
 
 [node name="BottomPanels" type="PanelContainer" parent="VBoxContainer/Workspace/HSplitContainer/VSplitContainer"]
-margin_top = 431.0
+margin_top = 427.0
 margin_right = 696.0
 margin_bottom = 560.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Workspace/HSplitContainer/VSplitContainer/BottomPanels"]
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 694.0
-margin_bottom = 127.0
+margin_left = 6.0
+margin_top = 4.0
+margin_right = 690.0
+margin_bottom = 129.0
 rect_min_size = Vector2( 0, 125 )
 
 [node name="RightPanels" type="PanelContainer" parent="VBoxContainer/Workspace/HSplitContainer"]
@@ -136,7 +136,7 @@ margin_bottom = 560.0
 rect_min_size = Vector2( 150, 0 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Workspace/HSplitContainer/RightPanels"]
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 148.0
-margin_bottom = 558.0
+margin_left = 6.0
+margin_top = 4.0
+margin_right = 144.0
+margin_bottom = 556.0

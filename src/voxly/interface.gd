@@ -1,4 +1,4 @@
-extends Node
+extends VoxlyPlugin
 class_name VoxlyInterface
 ## Voxly Interface Class
 
@@ -6,4 +6,4 @@ class_name VoxlyInterface
 
 ## Built-In Virtual Methods
 func _ready() -> void:
-	pass
+	get_node("/root/Voxly").connect_interface(self)

@@ -1,18 +1,9 @@
-extends Node
+extends VoxlyInterface
 ## Projects Interface
 
 
 
 ## Constants
-const PROJECTS := "res://src/projects/projects.json"
-
-const PROJECTS_DEFAULT := {
-	"version": "0.0.0",
-	"magic": "voxly.projects",
-	"preset.default": "",
-	"projects.recent": "",
-}
-
 const PRESETS_DIR := "res://src/projects/presets/"
 
 
@@ -20,51 +11,9 @@ const PRESETS_DIR := "res://src/projects/presets/"
 ## Private Variables
 var _project : Spatial = null
 
-var _projects : Dictionary
-
-
-
-## Built-In Virtual Methods
-func _enter_tree() -> void:
-	if not load_projects() == OK:
-		_projects = PROJECTS_DEFAULT.duplicate(true)
-
-
-func _exit_tree() -> void:
-	save_projects()
-
 
 
 ## Public Methods
-func load_projects(projects_path := PROJECTS) -> int:
-	var file = File.new()
-	var error = file.open(projects_path, File.READ)
-	if error == OK:
-		var content = file.get_as_text()
-		var json = JSON.parse(content)
-		if json.error == OK:
-			if typeof(json.result) == TYPE_DICTIONARY \
-					and json.result.get("magic") == PROJECTS_DEFAULT["magic"]:
-				_projects = json.result
-			else:
-				error = ERR_FILE_UNRECOGNIZED
-		else:
-			error = json.error
-	if file.is_open():
-		file.close()
-	return error
-
-
-func save_projects(projects_path := PROJECTS) -> int:
-	var file = File.new()
-	var error = file.open(projects_path, File.WRITE)
-	if error == OK:
-		file.store_string(JSON.print(_projects, "\t"))
-	if file.is_open():
-		file.close()
-	return error
-
-
 func get_presets() -> Array:
 	var presets := []
 	var presets_dir = Directory.new()

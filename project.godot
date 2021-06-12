@@ -9,13 +9,19 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node",
+"base": "VoxlyPlugin",
 "class": "VoxlyInterface",
 "language": "GDScript",
 "path": "res://src/voxly/interface.gd"
+}, {
+"base": "Node",
+"class": "VoxlyPlugin",
+"language": "GDScript",
+"path": "res://src/voxly/plugin.gd"
 } ]
 _global_script_class_icons={
-"VoxlyInterface": ""
+"VoxlyInterface": "",
+"VoxlyPlugin": ""
 }
 
 [application]
@@ -29,10 +35,10 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Voxly="*res://src/voxly.gd"
 VoxlyEditor="*res://src/interfaces/editor/editor.gd"
-VoxlySettings="*res://src/interfaces/settings/settings.gd"
 VoxlyProjects="*res://src/interfaces/projects/projects.gd"
+VoxlySettings="*res://src/interfaces/settings/settings.gd"
+Voxly="*res://src/voxly.gd"
 
 [gui]
 
