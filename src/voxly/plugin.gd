@@ -15,20 +15,22 @@ var _active : bool = false
 onready var _profile := {
 	"magic": profile_name(),
 	"version": profile_version(),
-	"properties": [],
+	"properties": profile_properties(),
 }
 
 
 
-## Virtual Methods
-func _activated() -> void:
-	pass
+## Built-In Virtual Methods
+func _enter_tree() -> void:
+	load_profile()
 
 
-func _deactivated() -> void:
-	pass
+func _exit_tree() -> void:
+	save_profile()
 
 
+
+## Public Virtual Methods
 func profile_name() -> String:
 	return ""
 
@@ -37,8 +39,18 @@ func profile_version() -> String:
 	return "0.0.0"
 
 
-func default_profile() -> Dictionary:
-	return {}
+func profile_properties() -> Array:
+	return []
+
+
+
+## Private Virtual Methods
+func _activated() -> void:
+	pass
+
+
+func _deactivated() -> void:
+	pass
 
 
 
@@ -58,6 +70,8 @@ func get_profile_path() -> String:
 
 
 func save_profile() -> int:
+	if profile_name() == "" or profile_version() == "0.0.0":
+		return ERR_UNAVAILABLE
 	var file = File.new()
 	var error = file.open(get_profile_path(), File.WRITE)
 	if error == OK:
@@ -87,10 +101,29 @@ func load_profile() -> int:
 
 
 func reset_profile() -> void:
-	pass
+	_profile["properties"] = profile_properties()
 
 
 func get_profile_property(property_path : String):
+	if not property_path.empty():
+		var path_index := 0
+		var path := property_path.split("/")
+		var properties : Array = _profile["properties"]
+		while typeof(properties) == TYPE_ARRAY:
+			var found := false
+			for property in properties:
+				property = property as Dictionary
+				if property["name"] == path[path_index]:
+					found = true
+					path_index += 1
+					var at_end := path_index == path.size()
+					if property["type"] == -1 and not at_end:
+						properties = property["properties"]
+						break
+					else:
+						return property.get("value")
+			if not found:
+				break
 	return null
 
 
@@ -103,6 +136,7 @@ func _profile_property(
 		"name": name,
 		"type": typeof(default),
 		"default": default,
+		"value": default,
 	}
 
 
@@ -111,6 +145,7 @@ func _profile_property_group(
 			properties : Array) -> Dictionary:
 	return {
 		"name": name,
+		"type": -1,
 		"properties": properties,
 	}
 

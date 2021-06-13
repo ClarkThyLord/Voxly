@@ -7,4 +7,5 @@ export_presets.cfg
 # Mono-specific ignores
 .mono/
 
-testing/
+# Voxly
+src/profiles/*.json
