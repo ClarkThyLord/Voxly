@@ -1,12 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/themes/default/default.tres" type="Theme" id=1]
 [ext_resource path="res://src/interfaces/editor/ui/scene_view/scene_view.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/interfaces/editor/ui/editor.gd" type="Script" id=3]
 
 [node name="Editor" type="Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
