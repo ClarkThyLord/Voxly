@@ -4,55 +4,54 @@ extends Panel
 
 
 ## OnReady Variables
-onready var editor_bar_left : HBoxContainer = get_node("VBoxContainer/EditorBar/Left")
+onready var editor_bar_left : HBoxContainer setget set_editor_bar_left, get_editor_bar_left
 
-onready var editor_bar_center : HBoxContainer = get_node("VBoxContainer/EditorBar/Center")
+onready var editor_bar_center : HBoxContainer setget set_editor_bar_center, get_editor_bar_center
 
-onready var editor_bar_right : HBoxContainer = get_node("VBoxContainer/EditorBar/Right")
+onready var editor_bar_right : HBoxContainer setget set_editor_bar_right, get_editor_bar_right
 
-onready var editor_tools : HBoxContainer = get_node("VBoxContainer/Workspace/HSplitContainer/VSplitContainer/VBoxContainer/ToolBar/Tools")
+onready var editor_tools : HBoxContainer setget set_editor_tools, get_editor_tools
 
-onready var scene_views : PanelContainer = get_node("VBoxContainer/Workspace/HSplitContainer/VSplitContainer/VBoxContainer/SceneViews")
-
+onready var scene_views : PanelContainer setget set_editor_scene_views, get_editor_scene_views
 
 
 
 ## Public Methods
-func add_button_to_editor_bar_left(
-		button : Button) -> void:
-	editor_bar_left.add_child(button)
+func set_editor_bar_left(control : HBoxContainer) -> void:
+	return
 
 
-func remove_button_from_editor_bar_left(
-		button : Button) -> void:
-	editor_bar_left.remove_child(button)
+func get_editor_bar_left() -> HBoxContainer:
+	return get_node_or_null("VBoxContainer/EditorBar/Left") as HBoxContainer
 
 
-func add_button_to_editor_bar_center(
-		button : Button) -> void:
-	editor_bar_center.add_child(button)
+func set_editor_bar_center(control : HBoxContainer) -> void:
+	return
 
 
-func remove_button_from_editor_bar_center(
-		button : Button) -> void:
-	editor_bar_center.remove_child(button)
+func get_editor_bar_center() -> HBoxContainer:
+	return get_node_or_null("VBoxContainer/EditorBar/Center") as HBoxContainer
 
 
-func add_button_to_editor_bar_right(
-		button : Button) -> void:
-	editor_bar_right.add_child(button)
+func set_editor_bar_right(control : HBoxContainer) -> void:
+	return
 
 
-func remove_button_from_editor_bar_right(
-		button : Button) -> void:
-	editor_bar_right.remove_child(button)
+func get_editor_bar_right() -> HBoxContainer:
+	return get_node_or_null("VBoxContainer/EditorBar/Right") as HBoxContainer
 
 
-func add_button_to_editor_tools(
-		button : Button) -> void:
-	editor_tools.add_child(button)
+func set_editor_tools(control : HBoxContainer) -> void:
+	return
 
 
-func remove_button_from_editor_tools(
-		button : Button) -> void:
-	editor_tools.remove_child(button)
+func get_editor_tools() -> HBoxContainer:
+	return get_node_or_null("VBoxContainer/Workspace/HSplitContainer/VSplitContainer/VBoxContainer/ToolBar/Tools") as HBoxContainer
+
+
+func set_editor_scene_views(control : PanelContainer) -> void:
+	return
+
+
+func get_editor_scene_views() -> PanelContainer:
+	return get_node_or_null("VBoxContainer/Workspace/HSplitContainer/VSplitContainer/VBoxContainer/SceneViews") as PanelContainer

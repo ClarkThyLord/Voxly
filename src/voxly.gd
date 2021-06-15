@@ -19,6 +19,14 @@ func _ready() -> void:
 		plugin.activate()
 
 
+func _exit_tree() -> void:
+	for interface in _interfaces:
+		interface.deactivate()
+	
+	for plugin in _plugins:
+		plugin.deactivate()
+
+
 
 ## Public Methods
 func connect_interface(interface : VoxlyInterface) -> void:

@@ -13,6 +13,22 @@ var _project : Spatial = null
 
 
 
+## OnReady Variables
+onready var projects_menu := preload("res://src/interfaces/projects/ui/projects_menu/projects_menu.tscn").instance()
+
+
+
+
+## Private Virtual Methods
+func _activated() -> void:
+	get_node("/root/VoxlyEditor").add_button_to_editor_bar_left(projects_menu)
+
+
+func _deactivated() -> void:
+	get_node("/root/VoxlyEditor").remove_button_to_editor_bar_left(projects_menu)
+
+
+
 ## Public Methods
 func get_presets() -> Array:
 	var presets := []
