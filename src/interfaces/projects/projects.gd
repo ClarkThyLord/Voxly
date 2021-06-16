@@ -4,12 +4,12 @@ extends VoxlyInterface
 
 
 ## Constants
-const PRESETS_DIR := "res://src/projects/presets/"
+const PRESETS_DIR := "res://src/interfaces/projects/presets/"
 
 
 
 ## Private Variables
-var _project : Spatial = null
+var _project : Spatial
 
 
 
@@ -18,10 +18,27 @@ onready var projects_menu := preload("res://src/interfaces/projects/ui/projects_
 
 
 
+## Public Virtual Methods
+func profile_name() -> String:
+	return "voxly.projects"
+
+
+func profile_version() -> String:
+	return "0.0.1"
+
+
+func profile_properties() -> Array:
+	return [
+		_profile_property_string("default_preset", "default"),
+	]
+
+
 
 ## Private Virtual Methods
 func _activated() -> void:
 	get_node("/root/VoxlyEditor").add_button_to_editor_bar_left(projects_menu)
+	
+	new_project("default")
 
 
 func _deactivated() -> void:
@@ -30,6 +47,13 @@ func _deactivated() -> void:
 
 
 ## Public Methods
+func get_preset_path(preset : String) -> String:
+	if not get_presets().has(preset):
+		print("Error preset '" + preset + "' doesn't exist...")
+		return ""
+	return PRESETS_DIR + preset + ".tscn"
+
+
 func get_presets() -> Array:
 	var presets := []
 	var presets_dir = Directory.new()
@@ -46,11 +70,15 @@ func get_presets() -> Array:
 
 
 func get_project():
-	return
+	return _project
 
 
-func new_project() -> void:
-	pass
+func new_project(preset : String) -> void:
+	var preset_path := get_preset_path(preset)
+	if preset_path:
+		open_project(load(preset_path).instance() as Spatial)
+	else:
+		print("An error occured when trying to create a new project from '" + str(preset) + "' preset...")
 
 
 func save_project(project_name : String) -> int:
