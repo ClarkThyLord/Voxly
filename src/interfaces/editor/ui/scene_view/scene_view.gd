@@ -60,10 +60,10 @@ func merge_split() -> void:
 		parent.remove_child(self)
 		
 		var grandparent := parent.get_parent()
+		grandparent.add_child_below_node(parent, self)
 		grandparent.remove_child(parent)
 		parent.queue_free()
 		
-		grandparent.add_child(self)
 		set_anchors_and_margins_preset(Control.PRESET_WIDE)
 
 
