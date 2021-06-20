@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/interfaces/editor/ui/dock/dock.gd" type="Script" id=1]
+
+[node name="TopDock" type="TabContainer"]
+margin_right = 188.0
+margin_bottom = 272.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+tab_align = 0
+drag_to_rearrange_enabled = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

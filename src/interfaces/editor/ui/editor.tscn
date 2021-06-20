@@ -3,8 +3,7 @@
 [ext_resource path="res://assets/themes/default/default.tres" type="Theme" id=1]
 [ext_resource path="res://src/interfaces/editor/ui/scene_view/scene_view.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/interfaces/editor/ui/editor.gd" type="Script" id=3]
-
-[sub_resource type="StyleBoxEmpty" id=1]
+[ext_resource path="res://src/interfaces/editor/ui/dock/dock.tscn" type="PackedScene" id=4]
 
 [node name="Editor" type="Panel"]
 anchor_right = 1.0
@@ -59,51 +58,52 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="LeftDocks" type="PanelContainer" parent="VBoxContainer/Workspace"]
-margin_right = 150.0
+margin_right = 200.0
 margin_bottom = 560.0
-rect_min_size = Vector2( 150, 0 )
+rect_min_size = Vector2( 200, 0 )
 
 [node name="VSplitContainer" type="VSplitContainer" parent="VBoxContainer/Workspace/LeftDocks"]
 margin_left = 6.0
 margin_top = 4.0
-margin_right = 144.0
+margin_right = 194.0
 margin_bottom = 556.0
 
-[node name="TopDock" type="PanelContainer" parent="VBoxContainer/Workspace/LeftDocks/VSplitContainer"]
-margin_right = 138.0
-margin_bottom = 272.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_styles/panel = SubResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="TopDock" parent="VBoxContainer/Workspace/LeftDocks/VSplitContainer" instance=ExtResource( 4 )]
 
-[node name="Panel" type="Panel" parent="VBoxContainer/Workspace/LeftDocks/VSplitContainer/TopDock"]
-margin_right = 138.0
-margin_bottom = 272.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+[node name="Scene" type="PanelContainer" parent="VBoxContainer/Workspace/LeftDocks/VSplitContainer/TopDock"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 29.0
+margin_right = -5.0
+margin_bottom = -5.0
 
-[node name="BottomDock" type="PanelContainer" parent="VBoxContainer/Workspace/LeftDocks/VSplitContainer"]
+[node name="Panel" type="Panel" parent="VBoxContainer/Workspace/LeftDocks/VSplitContainer/TopDock/Scene"]
+margin_left = 6.0
+margin_top = 4.0
+margin_right = 172.0
+margin_bottom = 234.0
+
+[node name="BottomDock" parent="VBoxContainer/Workspace/LeftDocks/VSplitContainer" instance=ExtResource( 4 )]
 margin_top = 280.0
-margin_right = 138.0
 margin_bottom = 552.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_styles/panel = SubResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Panel" type="Panel" parent="VBoxContainer/Workspace/LeftDocks/VSplitContainer/BottomDock"]
-margin_right = 138.0
-margin_bottom = 272.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+[node name="Inspector" type="PanelContainer" parent="VBoxContainer/Workspace/LeftDocks/VSplitContainer/BottomDock"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 29.0
+margin_right = -5.0
+margin_bottom = -5.0
+
+[node name="Panel" type="Panel" parent="VBoxContainer/Workspace/LeftDocks/VSplitContainer/BottomDock/Inspector"]
+margin_left = 6.0
+margin_top = 4.0
+margin_right = 172.0
+margin_bottom = 234.0
 
 [node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer/Workspace"]
-margin_left = 158.0
+margin_left = 208.0
 margin_right = 1012.0
 margin_bottom = 560.0
 size_flags_horizontal = 3
@@ -111,26 +111,26 @@ size_flags_vertical = 3
 split_offset = 250
 
 [node name="VSplitContainer" type="VSplitContainer" parent="VBoxContainer/Workspace/HSplitContainer"]
-margin_right = 696.0
+margin_right = 596.0
 margin_bottom = 560.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 split_offset = 450
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Workspace/HSplitContainer/VSplitContainer"]
-margin_right = 696.0
-margin_bottom = 419.0
+margin_right = 596.0
+margin_bottom = 390.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="ToolBar" type="PanelContainer" parent="VBoxContainer/Workspace/HSplitContainer/VSplitContainer/VBoxContainer"]
-margin_right = 696.0
+margin_right = 596.0
 margin_bottom = 32.0
 
 [node name="Tools" type="HBoxContainer" parent="VBoxContainer/Workspace/HSplitContainer/VSplitContainer/VBoxContainer/ToolBar"]
 margin_left = 6.0
 margin_top = 4.0
-margin_right = 690.0
+margin_right = 590.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 24, 24 )
 __meta__ = {
@@ -139,8 +139,8 @@ __meta__ = {
 
 [node name="SceneViews" type="PanelContainer" parent="VBoxContainer/Workspace/HSplitContainer/VSplitContainer/VBoxContainer"]
 margin_top = 36.0
-margin_right = 696.0
-margin_bottom = 419.0
+margin_right = 596.0
+margin_bottom = 390.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -149,64 +149,76 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 6.0
 margin_top = 4.0
-margin_right = 690.0
-margin_bottom = 379.0
+margin_right = 590.0
+margin_bottom = 350.0
 
 [node name="BottomDock" type="PanelContainer" parent="VBoxContainer/Workspace/HSplitContainer/VSplitContainer"]
-margin_top = 427.0
-margin_right = 696.0
+margin_top = 398.0
+margin_right = 596.0
 margin_bottom = 560.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="Panel" parent="VBoxContainer/Workspace/HSplitContainer/VSplitContainer/BottomDock"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Workspace/HSplitContainer/VSplitContainer/BottomDock"]
 margin_left = 6.0
 margin_top = 4.0
-margin_right = 690.0
-margin_bottom = 129.0
-rect_min_size = Vector2( 0, 125 )
+margin_right = 590.0
+margin_bottom = 158.0
 
-[node name="RightPanels" type="PanelContainer" parent="VBoxContainer/Workspace/HSplitContainer"]
-margin_left = 704.0
-margin_right = 854.0
+[node name="Panel" type="Panel" parent="VBoxContainer/Workspace/HSplitContainer/VSplitContainer/BottomDock/VBoxContainer"]
+margin_right = 584.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 0, 150 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Workspace/HSplitContainer/VSplitContainer/BottomDock/VBoxContainer"]
+margin_top = 154.0
+margin_right = 584.0
+margin_bottom = 154.0
+
+[node name="RightDocks" type="PanelContainer" parent="VBoxContainer/Workspace/HSplitContainer"]
+margin_left = 604.0
+margin_right = 804.0
 margin_bottom = 560.0
-rect_min_size = Vector2( 150, 0 )
+rect_min_size = Vector2( 200, 0 )
 
-[node name="VSplitContainer" type="VSplitContainer" parent="VBoxContainer/Workspace/HSplitContainer/RightPanels"]
+[node name="VSplitContainer" type="VSplitContainer" parent="VBoxContainer/Workspace/HSplitContainer/RightDocks"]
 margin_left = 6.0
 margin_top = 4.0
-margin_right = 144.0
+margin_right = 194.0
 margin_bottom = 556.0
 
-[node name="TopDock" type="PanelContainer" parent="VBoxContainer/Workspace/HSplitContainer/RightPanels/VSplitContainer"]
-margin_right = 138.0
-margin_bottom = 272.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_styles/panel = SubResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="TopDock" parent="VBoxContainer/Workspace/HSplitContainer/RightDocks/VSplitContainer" instance=ExtResource( 4 )]
 
-[node name="Panel" type="Panel" parent="VBoxContainer/Workspace/HSplitContainer/RightPanels/VSplitContainer/TopDock"]
-margin_right = 138.0
-margin_bottom = 272.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+[node name="VoxelSet" type="PanelContainer" parent="VBoxContainer/Workspace/HSplitContainer/RightDocks/VSplitContainer/TopDock"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 29.0
+margin_right = -5.0
+margin_bottom = -5.0
 
-[node name="BottomDock" type="PanelContainer" parent="VBoxContainer/Workspace/HSplitContainer/RightPanels/VSplitContainer"]
+[node name="Panel" type="Panel" parent="VBoxContainer/Workspace/HSplitContainer/RightDocks/VSplitContainer/TopDock/VoxelSet"]
+margin_left = 6.0
+margin_top = 4.0
+margin_right = 172.0
+margin_bottom = 234.0
+
+[node name="BottomDock" parent="VBoxContainer/Workspace/HSplitContainer/RightDocks/VSplitContainer" instance=ExtResource( 4 )]
 margin_top = 280.0
-margin_right = 138.0
 margin_bottom = 552.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_styles/panel = SubResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Panel" type="Panel" parent="VBoxContainer/Workspace/HSplitContainer/RightPanels/VSplitContainer/BottomDock"]
-margin_right = 138.0
-margin_bottom = 272.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+[node name="History" type="PanelContainer" parent="VBoxContainer/Workspace/HSplitContainer/RightDocks/VSplitContainer/BottomDock"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 29.0
+margin_right = -5.0
+margin_bottom = -5.0
+
+[node name="Panel" type="Panel" parent="VBoxContainer/Workspace/HSplitContainer/RightDocks/VSplitContainer/BottomDock/History"]
+margin_left = 6.0
+margin_top = 4.0
+margin_right = 172.0
+margin_bottom = 234.0
