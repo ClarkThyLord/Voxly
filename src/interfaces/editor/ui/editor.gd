@@ -14,6 +14,14 @@ onready var editor_tools : HBoxContainer setget set_editor_tools, get_editor_too
 
 onready var scene_views : PanelContainer setget set_editor_scene_views, get_editor_scene_views
 
+onready var dock_left_top setget set_dock_left_top, get_dock_left_top
+
+onready var dock_left_bottom setget set_dock_left_bottom, get_dock_left_bottom
+
+onready var dock_right_top setget set_dock_right_top, get_dock_right_top
+
+onready var dock_right_bottom setget set_dock_right_bottom, get_dock_right_bottom
+
 
 
 ## Public Methods
@@ -55,3 +63,35 @@ func set_editor_scene_views(control : PanelContainer) -> void:
 
 func get_editor_scene_views() -> PanelContainer:
 	return get_node_or_null("VBoxContainer/Workspace/HSplitContainer/VSplitContainer/VBoxContainer/SceneViews") as PanelContainer
+
+
+func set_dock_left_top(dock) -> void:
+	return
+
+
+func get_dock_left_top():
+	return get_node_or_null("VBoxContainer/Workspace/LeftDocks/VSplitContainer/TopDock")
+
+
+func set_dock_left_bottom(dock) -> void:
+	return
+
+
+func get_dock_left_bottom():
+	return get_node_or_null("VBoxContainer/Workspace/LeftDocks/VSplitContainer/BottomDock")
+
+
+func set_dock_right_top(dock) -> void:
+	return
+
+
+func get_dock_right_top():
+	return get_node_or_null("VBoxContainer/Workspace/RightDocks/VSplitContainer/TopDock")
+
+
+func set_dock_right_bottom(dock) -> void:
+	return
+
+
+func get_dock_right_bottom():
+	return get_node_or_null("VBoxContainer/Workspace/RightDocks/VSplitContainer/BottomDock")
