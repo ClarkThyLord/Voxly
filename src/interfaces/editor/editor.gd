@@ -3,6 +3,16 @@ extends VoxlyInterface
 
 
 
+## Constants
+enum DockPositions {
+	LEFT_TOP,
+	LEFT_BOTTOM,
+	RIGHT_TOP,
+	RIGHT_BOTTOM,
+}
+
+
+
 ## OnReady Variables
 onready var ui := get_node("/root/Editor")
 
@@ -47,3 +57,27 @@ func add_button_to_editor_tools(
 func remove_button_from_editor_tools(
 		button : Button) -> void:
 	ui.editor_tools.remove_child(button)
+
+
+func add_dock(
+		name : String,
+		position : int,
+		control : Control) -> void:
+	control.name = name
+	remove_dock(control)
+	match position:
+		DockPositions.LEFT_TOP:
+			ui.dock_left_top.add_child(control)
+		DockPositions.LEFT_BOTTOM:
+			ui.dock_left_bottom.add_child(control)
+		DockPositions.RIGHT_TOP:
+			ui.dock_right_top.add_child(control)
+		DockPositions.RIGHT_BOTTOM:
+			ui.dock_right_bottom.add_child(control)
+
+
+func remove_dock(
+		control : Control) -> void:
+	var parent := control.get_parent()
+	if is_instance_valid(parent):
+		parent.remove_child(control)
