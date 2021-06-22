@@ -86,7 +86,7 @@ func set_dock_right_top(dock) -> void:
 
 
 func get_dock_right_top():
-	return get_node_or_null("VBoxContainer/Workspace/RightDocks/VSplitContainer/TopDock")
+	return get_node_or_null("VBoxContainer/Workspace/HSplitContainer/RightDocks/VSplitContainer/TopDock")
 
 
 func set_dock_right_bottom(dock) -> void:
@@ -94,4 +94,4 @@ func set_dock_right_bottom(dock) -> void:
 
 
 func get_dock_right_bottom():
-	return get_node_or_null("VBoxContainer/Workspace/RightDocks/VSplitContainer/BottomDock")
+	return get_node_or_null("VBoxContainer/Workspace/HSplitContainer/RightDocks/VSplitContainer/BottomDock")

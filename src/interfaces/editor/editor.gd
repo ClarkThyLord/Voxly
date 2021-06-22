@@ -60,10 +60,8 @@ func remove_button_from_editor_tools(
 
 
 func add_dock(
-		name : String,
 		position : int,
 		control : Control) -> void:
-	control.name = name
 	remove_dock(control)
 	match position:
 		DockPositions.LEFT_TOP:

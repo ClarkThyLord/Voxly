@@ -1,18 +1,17 @@
 extends TabContainer
-## Dock
+## Dock Container
 
 
 
 ## OnReady Variables
-onready var menu := PopupMenu.new()
+onready var menu := preload("res://src/interfaces/editor/ui/dock_container/menu/menu.tscn").instance()
 
 
 
 ## Built-In Virtual Methods
 func _ready() -> void:
-	menu.name = "Menu"
-	add_child(menu)
 	set_popup(menu)
+	add_child(menu)
 	
 	set_tabs_rearrange_group(0)
 

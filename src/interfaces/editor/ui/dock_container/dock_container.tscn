@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://src/interfaces/editor/ui/dock/dock.gd" type="Script" id=1]
+[ext_resource path="res://src/interfaces/editor/ui/dock_container/dock_container.gd" type="Script" id=1]
 
 [node name="Dock" type="TabContainer"]
 margin_right = 188.0

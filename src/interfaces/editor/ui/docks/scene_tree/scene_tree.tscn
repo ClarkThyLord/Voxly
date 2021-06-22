@@ -1,0 +1,15 @@
+[gd_scene format=2]
+
+[node name="SceneTree" type="ScrollContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+follow_focus = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tree" type="Tree" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
