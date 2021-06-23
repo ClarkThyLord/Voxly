@@ -3,6 +3,11 @@ extends PopupMenu
 
 
 
+## Signals
+signal move_dock(position)
+
+
+
 ## OnReady Variables
 onready var dock_positions := PopupMenu.new()
 
@@ -26,5 +31,4 @@ func _on_about_to_show():
 
 
 func _on_DockPositions_index_pressed(index : int) -> void:
-	get_node("/root/VoxlyEditor").add_dock(
-			index, get_parent().get_current_tab_control())
+	emit_signal("move_dock", index)
