@@ -70,52 +70,9 @@ margin_bottom = 556.0
 
 [node name="TopDock" parent="VBoxContainer/Workspace/LeftDocks/VSplitContainer" instance=ExtResource( 4 )]
 
-[node name="Scene" type="PanelContainer" parent="VBoxContainer/Workspace/LeftDocks/VSplitContainer/TopDock"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 5.0
-margin_top = 29.0
-margin_right = -5.0
-margin_bottom = -5.0
-
-[node name="Panel" type="Panel" parent="VBoxContainer/Workspace/LeftDocks/VSplitContainer/TopDock/Scene"]
-margin_left = 6.0
-margin_top = 4.0
-margin_right = 172.0
-margin_bottom = 234.0
-
-[node name="History" type="PanelContainer" parent="VBoxContainer/Workspace/LeftDocks/VSplitContainer/TopDock"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 5.0
-margin_top = 29.0
-margin_right = -5.0
-margin_bottom = -5.0
-
-[node name="Panel" type="Panel" parent="VBoxContainer/Workspace/LeftDocks/VSplitContainer/TopDock/History"]
-margin_left = 6.0
-margin_top = 4.0
-margin_right = 172.0
-margin_bottom = 234.0
-
 [node name="BottomDock" parent="VBoxContainer/Workspace/LeftDocks/VSplitContainer" instance=ExtResource( 4 )]
 margin_top = 280.0
 margin_bottom = 552.0
-
-[node name="Inspector" type="PanelContainer" parent="VBoxContainer/Workspace/LeftDocks/VSplitContainer/BottomDock"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 5.0
-margin_top = 29.0
-margin_right = -5.0
-margin_bottom = -5.0
-
-[node name="Panel" type="Panel" parent="VBoxContainer/Workspace/LeftDocks/VSplitContainer/BottomDock/Inspector"]
-margin_left = 6.0
-margin_top = 4.0
-margin_right = 172.0
-margin_bottom = 234.0
 
 [node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer/Workspace"]
 margin_left = 208.0
@@ -205,20 +162,6 @@ margin_right = 194.0
 margin_bottom = 556.0
 
 [node name="TopDock" parent="VBoxContainer/Workspace/HSplitContainer/RightDocks/VSplitContainer" instance=ExtResource( 4 )]
-
-[node name="VoxelSet" type="PanelContainer" parent="VBoxContainer/Workspace/HSplitContainer/RightDocks/VSplitContainer/TopDock"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 5.0
-margin_top = 29.0
-margin_right = -5.0
-margin_bottom = -5.0
-
-[node name="Panel" type="Panel" parent="VBoxContainer/Workspace/HSplitContainer/RightDocks/VSplitContainer/TopDock/VoxelSet"]
-margin_left = 6.0
-margin_top = 4.0
-margin_right = 172.0
-margin_bottom = 234.0
 
 [node name="BottomDock" parent="VBoxContainer/Workspace/HSplitContainer/RightDocks/VSplitContainer" instance=ExtResource( 4 )]
 margin_top = 280.0
