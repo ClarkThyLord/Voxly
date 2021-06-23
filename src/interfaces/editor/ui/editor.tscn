@@ -166,3 +166,8 @@ margin_bottom = 556.0
 [node name="BottomDock" parent="VBoxContainer/Workspace/HSplitContainer/RightDocks/VSplitContainer" instance=ExtResource( 4 )]
 margin_top = 280.0
 margin_bottom = 552.0
+
+[connection signal="visibility_changed" from="VBoxContainer/Workspace/LeftDocks/VSplitContainer/TopDock" to="." method="_on_LeftDock_visibility_changed"]
+[connection signal="visibility_changed" from="VBoxContainer/Workspace/LeftDocks/VSplitContainer/BottomDock" to="." method="_on_LeftDock_visibility_changed"]
+[connection signal="visibility_changed" from="VBoxContainer/Workspace/HSplitContainer/RightDocks/VSplitContainer/TopDock" to="." method="_on_RightDock_visibility_changed"]
+[connection signal="visibility_changed" from="VBoxContainer/Workspace/HSplitContainer/RightDocks/VSplitContainer/BottomDock" to="." method="_on_RightDock_visibility_changed"]

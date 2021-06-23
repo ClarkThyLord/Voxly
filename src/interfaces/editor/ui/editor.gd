@@ -14,9 +14,13 @@ onready var editor_tools : HBoxContainer setget set_editor_tools, get_editor_too
 
 onready var scene_views : PanelContainer setget set_editor_scene_views, get_editor_scene_views
 
+onready var left_docks : PanelContainer = get_node("VBoxContainer/Workspace/LeftDocks")
+
 onready var dock_left_top setget set_dock_left_top, get_dock_left_top
 
 onready var dock_left_bottom setget set_dock_left_bottom, get_dock_left_bottom
+
+onready var right_docks : PanelContainer = get_node("VBoxContainer/Workspace/HSplitContainer/RightDocks")
 
 onready var dock_right_top setget set_dock_right_top, get_dock_right_top
 
@@ -95,3 +99,11 @@ func set_dock_right_bottom(dock) -> void:
 
 func get_dock_right_bottom():
 	return get_node_or_null("VBoxContainer/Workspace/HSplitContainer/RightDocks/VSplitContainer/BottomDock")
+
+
+func _on_LeftDock_visibility_changed():
+	left_docks.visible = self.dock_left_top.visible or self.dock_left_bottom.visible
+
+
+func _on_RightDock_visibility_changed():
+	right_docks.visible = self.dock_right_top.visible or self.dock_right_bottom.visible

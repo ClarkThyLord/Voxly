@@ -31,7 +31,7 @@ func get_current_dock_index():
 	return current_tab
 
 
-func get_current_dock_count() -> int:
+func get_docks_count() -> int:
 	return get_tab_count()
 
 
@@ -47,7 +47,7 @@ func move_current_dock(position : int) -> void:
 
 ## Private Methods
 func _on_sort_children():
-	visible = get_child_count() > 1
+	visible = get_docks_count() > 0
 
 
 func _on_Menu_move_dock(position : int) -> void:
