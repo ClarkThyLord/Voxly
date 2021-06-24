@@ -22,6 +22,15 @@ onready var ui := get_node("/root/Editor")
 func _ready() -> void:
 	var scene_tree := preload("res://src/interfaces/editor/ui/docks/scene/scene.tscn").instance()
 	add_dock(DockPositions.LEFT_TOP, scene_tree)
+	
+	var inspector := preload("res://src/interfaces/editor/ui/docks/inspector/inspector.tscn").instance()
+	add_dock(DockPositions.LEFT_BOTTOM, inspector)
+	
+	var voxel_set := preload("res://src/interfaces/editor/ui/docks/voxel_set/voxel_set.tscn").instance()
+	add_dock(DockPositions.RIGHT_TOP, voxel_set)
+	
+	var history := preload("res://src/interfaces/editor/ui/docks/history/history.tscn").instance()
+	add_dock(DockPositions.RIGHT_BOTTOM, history)
 
 
 
