@@ -13,11 +13,6 @@ var _project : Spatial
 
 
 
-## OnReady Variables
-onready var projects_menu := preload("res://src/interfaces/projects/ui/projects_menu/projects_menu.tscn").instance()
-
-
-
 ## Public Virtual Methods
 func profile_name() -> String:
 	return "voxly.projects"
@@ -31,18 +26,6 @@ func profile_properties() -> Array:
 	return [
 		_profile_property_string("default_preset", "default"),
 	]
-
-
-
-## Private Virtual Methods
-func _activated() -> void:
-	get_node("/root/VoxlyEditor").add_button_to_editor_bar_left(projects_menu)
-	
-	new_project("default")
-
-
-func _deactivated() -> void:
-	get_node("/root/VoxlyEditor").remove_button_to_editor_bar_left(projects_menu)
 
 
 

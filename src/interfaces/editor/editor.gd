@@ -20,6 +20,10 @@ onready var ui := get_node("/root/Editor")
 
 ## Built-In Virtual Methods
 func _ready() -> void:
+	var projects := preload("res://src/interfaces/editor/ui/editor_bar/buttons/projects/projects.tscn").instance()
+	add_button_to_editor_bar_left(projects)
+	
+	
 	var scene_tree := preload("res://src/interfaces/editor/ui/docks/scene/scene.tscn").instance()
 	add_dock(DockPositions.LEFT_TOP, scene_tree)
 	

@@ -5,7 +5,7 @@ extends MenuButton
 ## OnReady Variables
 onready var options : PopupMenu = get_popup()
 
-onready var recents : PopupMenu = preload("res://src/interfaces/projects/ui/projects_menu/recents_menu/recents_menu.tscn").instance()
+onready var recents : PopupMenu = preload("res://src/interfaces/editor/ui/editor_bar/buttons/projects/recents/recents.tscn").instance()
 
 
 
