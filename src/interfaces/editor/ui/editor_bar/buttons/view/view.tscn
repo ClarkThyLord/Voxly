@@ -4,6 +4,7 @@
 margin_right = 12.0
 margin_bottom = 22.0
 text = "View"
+switch_on_hover = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

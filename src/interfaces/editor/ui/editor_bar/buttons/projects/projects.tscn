@@ -5,8 +5,8 @@
 [node name="Project" type="MenuButton"]
 margin_right = 49.0
 margin_bottom = 24.0
-focus_mode = 2
 text = "Project"
+switch_on_hover = true
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
