@@ -23,6 +23,15 @@ func _ready() -> void:
 	var projects := preload("res://src/interfaces/editor/ui/editor_bar/buttons/projects/projects.tscn").instance()
 	add_button_to_editor_bar_left(projects)
 	
+	var edit := preload("res://src/interfaces/editor/ui/editor_bar/buttons/edit/edit.tscn").instance()
+	add_button_to_editor_bar_left(edit)
+	
+	var view := preload("res://src/interfaces/editor/ui/editor_bar/buttons/view/view.tscn").instance()
+	add_button_to_editor_bar_left(view)
+	
+	var help := preload("res://src/interfaces/editor/ui/editor_bar/buttons/help/help.tscn").instance()
+	add_button_to_editor_bar_left(help)
+	
 	
 	var scene_tree := preload("res://src/interfaces/editor/ui/docks/scene/scene.tscn").instance()
 	add_dock(DockPositions.LEFT_TOP, scene_tree)

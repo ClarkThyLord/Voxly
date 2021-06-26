@@ -1,0 +1,9 @@
+[gd_scene format=2]
+
+[node name="View" type="MenuButton"]
+margin_right = 12.0
+margin_bottom = 22.0
+text = "View"
+__meta__ = {
+"_edit_use_anchors_": false
+}

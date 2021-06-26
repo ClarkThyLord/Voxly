@@ -29,6 +29,16 @@ func profile_properties() -> Array:
 
 
 
+## Private Virtual Methods
+func _activated() -> void:
+	new_project("default")
+
+
+func _deactivated() -> void:
+	pass
+
+
+
 ## Public Methods
 func get_preset_path(preset : String) -> String:
 	if not get_presets().has(preset):
