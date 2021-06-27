@@ -26,6 +26,12 @@ onready var dock_right_top setget set_dock_right_top, get_dock_right_top
 
 onready var dock_right_bottom setget set_dock_right_bottom, get_dock_right_bottom
 
+onready var bottom_docks : PanelContainer = get_node("VBoxContainer/Workspace/HSplitContainer/VSplitContainer/BottomDocks")
+
+onready var bottom_docks_buttons setget set_bottom_docks_buttons, get_bottom_docks_buttons
+
+onready var dock_bottom setget set_dock_bottom, get_dock_bottom
+
 
 
 ## Public Methods
@@ -99,6 +105,22 @@ func set_dock_right_bottom(dock) -> void:
 
 func get_dock_right_bottom():
 	return get_node_or_null("VBoxContainer/Workspace/HSplitContainer/RightDocks/VSplitContainer/BottomDock")
+
+
+func set_bottom_docks_buttons(control) -> void:
+	return
+
+
+func get_bottom_docks_buttons():
+	return get_node_or_null("VBoxContainer/Workspace/HSplitContainer/VSplitContainer/BottomDocks/VBoxContainer/BottomDocksButtons")
+
+
+func set_dock_bottom(dock) -> void:
+	return
+
+
+func get_dock_bottom():
+	return get_node_or_null("VBoxContainer/Workspace/HSplitContainer/VSplitContainer/BottomDocks/VBoxContainer/BottomDock")
 
 
 func _on_LeftDock_visibility_changed():

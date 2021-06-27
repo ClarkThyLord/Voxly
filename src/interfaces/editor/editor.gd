@@ -13,6 +13,17 @@ enum DockPositions {
 
 
 
+## Private Variables
+var _bottom_dock : Control = null
+
+var _bottom_docks := {}
+
+var _bottom_docks_buttons := {}
+
+var _bottom_docks_buttons_group := ButtonGroup.new()
+
+
+
 ## OnReady Variables
 onready var ui := get_node("/root/Editor")
 
@@ -44,6 +55,10 @@ func _ready() -> void:
 	
 	var history := preload("res://src/interfaces/editor/ui/docks/history/history.tscn").instance()
 	add_dock(DockPositions.RIGHT_BOTTOM, history)
+	
+	
+	var animation := preload("res://src/interfaces/editor/ui/bottom_docks/Animation.tscn").instance()
+	add_bottom_dock(animation)
 
 
 
@@ -108,3 +123,54 @@ func remove_dock(
 	var parent := control.get_parent()
 	if is_instance_valid(parent):
 		parent.remove_child(control)
+
+
+func add_bottom_dock(
+		control : Control) -> void:
+	remove_bottom_dock(control)
+	
+	var dock_button := ToolButton.new()
+	dock_button.text = control.name
+	dock_button.toggle_mode = true
+	dock_button.group = _bottom_docks_buttons_group
+	_bottom_docks[str(control)] = dock_button
+	_bottom_docks_buttons[str(dock_button)] = control
+	dock_button.connect("pressed", self, "_on_BottomDockButton_pressed", [dock_button])
+	ui.bottom_docks_buttons.add_child(dock_button)
+	
+	control.visible = false
+	ui.dock_bottom.add_child(control)
+
+
+func remove_bottom_dock(
+		control : Control) -> void:
+	var dock_button : ToolButton = _bottom_docks.get(str(control))
+	if is_instance_valid(dock_button):
+		var parent := dock_button.get_parent()
+		if is_instance_valid(parent):
+			parent.remove_child(dock_button)
+		dock_button.group = null
+		dock_button.queue_free()
+		_bottom_docks.erase(str(control))
+		_bottom_docks_buttons.erase(str(dock_button))
+	
+	var parent := control.get_parent()
+	if is_instance_valid(parent):
+		parent.remove_child(control)
+
+
+
+## Private Methods
+func _on_BottomDockButton_pressed(dock_button : ToolButton) -> void:
+	if is_instance_valid(_bottom_dock):
+		var _dock_button : ToolButton = _bottom_docks.get(str(_bottom_dock))
+		if is_instance_valid(_dock_button):
+			_dock_button.pressed = false
+		_bottom_dock.visible = false
+		_bottom_dock = null
+	
+	if dock_button.pressed:
+		var dock : Control = _bottom_docks_buttons.get(str(dock_button))
+		if is_instance_valid(dock):
+			dock.visible = true
+			_bottom_dock = dock
