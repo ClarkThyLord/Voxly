@@ -1,8 +1,11 @@
 [gd_scene format=2]
 
-[node name="Animation" type="Control"]
+[node name="Animation" type="PanelContainer"]
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.25
+margin_bottom = -142.0
+rect_min_size = Vector2( 0, 150 )
+size_flags_horizontal = 3
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }

@@ -4,7 +4,7 @@ extends TabContainer
 
 
 ## OnReady Variables
-onready var menu := preload("res://src/interfaces/editor/ui/dock_container/menu/menu.tscn").instance()
+onready var menu := preload("res://src/interfaces/editor/ui/dock_container/dock_container_menu/dock_container_menu.tscn").instance()
 
 
 

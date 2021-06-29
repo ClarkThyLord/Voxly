@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/interfaces/editor/ui/dock_container/dock_container.gd" type="Script" id=1]
 
-[node name="Dock" type="TabContainer"]
+[node name="DockContainer" type="TabContainer"]
 margin_right = 188.0
 margin_bottom = 272.0
 size_flags_horizontal = 3

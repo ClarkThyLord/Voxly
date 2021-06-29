@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/themes/default/default.tres" type="Theme" id=1]
 [ext_resource path="res://src/interfaces/editor/ui/scene_view/scene_view.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/interfaces/editor/ui/editor.gd" type="Script" id=3]
 [ext_resource path="res://src/interfaces/editor/ui/dock_container/dock_container.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/interfaces/editor/ui/bottom_dock_container/bottom_dock_container.tscn" type="PackedScene" id=5]
 
 [node name="Editor" type="Panel"]
 anchor_right = 1.0
@@ -91,7 +92,7 @@ split_offset = 450
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Workspace/HSplitContainer/VSplitContainer"]
 margin_right = 596.0
-margin_bottom = 390.0
+margin_bottom = 540.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -112,7 +113,7 @@ __meta__ = {
 [node name="SceneViews" type="PanelContainer" parent="VBoxContainer/Workspace/HSplitContainer/VSplitContainer/VBoxContainer"]
 margin_top = 36.0
 margin_right = 596.0
-margin_bottom = 390.0
+margin_bottom = 540.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -122,32 +123,14 @@ anchor_bottom = 0.0
 margin_left = 6.0
 margin_top = 4.0
 margin_right = 590.0
-margin_bottom = 350.0
+margin_bottom = 500.0
 
-[node name="BottomDocks" type="PanelContainer" parent="VBoxContainer/Workspace/HSplitContainer/VSplitContainer"]
-margin_top = 398.0
+[node name="BottomDocks" parent="VBoxContainer/Workspace/HSplitContainer/VSplitContainer" instance=ExtResource( 5 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 548.0
 margin_right = 596.0
 margin_bottom = 560.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Workspace/HSplitContainer/VSplitContainer/BottomDocks"]
-margin_left = 6.0
-margin_top = 4.0
-margin_right = 590.0
-margin_bottom = 158.0
-
-[node name="BottomDock" type="Control" parent="VBoxContainer/Workspace/HSplitContainer/VSplitContainer/BottomDocks/VBoxContainer"]
-margin_right = 584.0
-margin_bottom = 150.0
-rect_min_size = Vector2( 0, 150 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="BottomDocksButtons" type="HBoxContainer" parent="VBoxContainer/Workspace/HSplitContainer/VSplitContainer/BottomDocks/VBoxContainer"]
-margin_top = 154.0
-margin_right = 584.0
-margin_bottom = 154.0
 
 [node name="RightDocks" type="PanelContainer" parent="VBoxContainer/Workspace/HSplitContainer"]
 margin_left = 604.0

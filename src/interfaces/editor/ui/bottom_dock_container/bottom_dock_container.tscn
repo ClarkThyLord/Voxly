@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/interfaces/editor/ui/bottom_dock_container/bottom_dock_container.gd" type="Script" id=1]
+
+[node name="BottomDockContainer" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 6.0
+margin_top = 4.0
+margin_right = 1018.0
+margin_bottom = 596.0
+
+[node name="BottomDock" type="MarginContainer" parent="VBoxContainer"]
+margin_right = 1012.0
+margin_bottom = 588.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BottomDocksButtons" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 592.0
+margin_right = 1012.0
+margin_bottom = 592.0
