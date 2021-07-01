@@ -1,12 +1,12 @@
 [gd_scene format=2]
 
-[node name="ActionBar" type="LineEdit"]
+[node name="CommandPalette" type="LineEdit"]
 margin_right = 60.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 clear_button_enabled = true
-placeholder_text = "Search actions..."
+placeholder_text = "Search commands..."
 __meta__ = {
 "_edit_use_anchors_": false
 }
