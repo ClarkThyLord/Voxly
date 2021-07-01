@@ -23,6 +23,7 @@ func _ready() -> void:
 
 func _gui_input(event : InputEvent) -> void:
 	if get_node("/root/Voxly").forward_input(camera, event):
+		grab_focus()
 		accept_event()
 
 
