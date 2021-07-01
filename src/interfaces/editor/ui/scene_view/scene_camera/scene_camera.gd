@@ -52,29 +52,35 @@ func handle_input(event : InputEvent) -> bool:
 		return false
 	
 	var consumed := false
-	if event is InputEventMouseMotion and event.button_mask == BUTTON_MASK_RIGHT:
-		if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
-			_mouse_position = get_viewport().get_mouse_position()
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		
-		var movement : Vector2 = event.relative.normalized()
-		var x := rotation_degrees.x + (-movement.y * sensitivity)
-		if x <= 90.0 and x >= -90.0:
-			rotation_degrees.x = x
-		rotation_degrees.y += -movement.x * sensitivity
-		get_tree().set_input_as_handled()
-		consumed = true
-	elif event is InputEventMouseButton and not event.is_pressed():
+	
+	if event is InputEventMouseMotion:
+		match event.button_mask:
+			BUTTON_MASK_RIGHT:
+				var movement : Vector2 = event.relative.normalized()
+				var x := rotation_degrees.x + (-movement.y * sensitivity)
+				if x <= 90.0 and x >= -90.0:
+					rotation_degrees.x = x
+				rotation_degrees.y += -movement.x * sensitivity
+				get_tree().set_input_as_handled()
+				consumed = true
+	elif event is InputEventMouseButton:
 		match event.button_index:
 			BUTTON_LEFT:
-				var from := project_ray_origin(event.position)
-				var to := from + project_ray_normal(event.position) * 1000
-				var hit := get_world().direct_space_state.intersect_ray(from, to)
-				print(hit)
-				consumed = true
+				if not event.is_pressed():
+					var from := project_ray_origin(event.position)
+					var to := from + project_ray_normal(event.position) * 1000
+					var hit := get_world().direct_space_state.intersect_ray(from, to)
+					
+					print(hit)
+					
+					consumed = true
 			BUTTON_RIGHT:
-				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-				owner.warp_mouse(_mouse_position)
+				if event.is_pressed():
+					Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+					_mouse_position = get_viewport().get_mouse_position()
+				else:
+					Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+					owner.warp_mouse(_mouse_position)
 				consumed = true
 	
 	return consumed
