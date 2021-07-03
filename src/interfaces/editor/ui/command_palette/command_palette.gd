@@ -2,17 +2,31 @@ extends LineEdit
 ## Command Palette
 
 
+
 ## OnReady Variables
 onready var commands := get_node("Commands")
 
 
+
+## Built-In Virtual Methods
+func _ready() -> void:
+	commands.visible = false
+
+
+
 ## Private Methods
 func _on_focus_entered():
-	print(get_global_rect().position)
-	commands.popup(Rect2(
-		get_global_rect().position,
-		commands.get_minimum_size()
-	))
+	var rect := get_global_rect()
+	commands.rect_position = Vector2(
+		rect.position.x,
+		rect.position.y + rect.size.y
+	)
+	commands.rect_size = Vector2(
+		rect.size.x,
+		commands.get_minimum_size().y
+	)
+	commands.show()
+	commands.set_as_toplevel(true)
 
 
 func _on_focus_exited():
