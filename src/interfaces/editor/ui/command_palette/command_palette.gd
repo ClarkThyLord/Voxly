@@ -60,6 +60,10 @@ func _on_focus_exited() -> void:
 		commands.hide()
 
 
+func _on_text_changed(new_text : String) -> void:
+	pass
+
+
 func _on_CommandButton_focuse_entered(command_button : Button) -> void:
 	_command_button_focused = command_button
 
