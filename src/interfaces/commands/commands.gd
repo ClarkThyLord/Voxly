@@ -49,6 +49,8 @@ func search_commands(
 	for command_name in get_commands():
 		if command_name.to_lower().find(sub_string) > -1:
 			matches.append(command_name)
+			if matches.size() == limit:
+				break
 	return matches
 
 

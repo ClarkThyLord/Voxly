@@ -38,6 +38,7 @@ config/icon="res://icon.png"
 VoxlyEditor="*res://src/interfaces/editor/editor.gd"
 VoxlyProjects="*res://src/interfaces/projects/projects.gd"
 VoxlySettings="*res://src/interfaces/settings/settings.gd"
+VoxlyCommands="*res://src/interfaces/commands/commands.gd"
 Voxly="*res://src/voxly.gd"
 
 [gui]
