@@ -74,14 +74,17 @@ func new_project(preset : String) -> void:
 		print("An error occured when trying to create a new project from '" + str(preset) + "' preset...")
 
 
-func save_project(project_name : String) -> int:
-	return OK
+func save_project(project_path : String) -> int:
+	var project := PackedScene.new()
+	var error := project.pack(_project)
+	if error == OK:
+		error = ResourceSaver.save(project_path, project)
+		ResourceSaver.free()
+	return error
 
 
 func open_project(project) -> int:
-	if is_instance_valid(_project):
-		remove_child(_project)
-		_project.queue_free()
+	close_project()
 	_project = project
 	add_child(_project)
 	return OK
@@ -92,4 +95,6 @@ func open_project_from(project_path : String) -> int:
 
 
 func close_project() -> void:
-	pass
+	if is_instance_valid(_project):
+		remove_child(_project)
+		_project.queue_free()
