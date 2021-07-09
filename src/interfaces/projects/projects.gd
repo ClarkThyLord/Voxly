@@ -31,7 +31,7 @@ func profile_properties() -> Array:
 
 ## Private Virtual Methods
 func _activated() -> void:
-	new_project("default")
+	new_project(get_profile_property("default_preset"))
 
 
 func _deactivated() -> void:
@@ -66,12 +66,15 @@ func get_project():
 	return _project
 
 
-func new_project(preset : String) -> void:
-	var preset_path := get_preset_path(preset)
-	if preset_path:
-		open_project(load(preset_path).instance() as Spatial)
+func new_project(preset := "") -> void:
+	if preset.empty():
+		close_project()
 	else:
-		print("An error occured when trying to create a new project from '" + str(preset) + "' preset...")
+		var preset_path := get_preset_path(preset)
+		if preset_path:
+			open_project(load(preset_path).instance() as Spatial)
+		else:
+			print("An error occured when trying to create a new project from '" + str(preset) + "' preset...")
 
 
 func save_project(project_path : String) -> int:
