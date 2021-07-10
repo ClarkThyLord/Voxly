@@ -28,10 +28,16 @@ func profile_properties() -> Array:
 	]
 
 
+func pprofile_properties() -> Dictionary:
+	return {
+		"recent_projects": [],
+	}
+
+
 
 ## Private Virtual Methods
 func _activated() -> void:
-	new_project(get_profile_property("default_preset"))
+	new_project(get_profile_property_value("default_preset"))
 
 
 func _deactivated() -> void:
@@ -60,6 +66,10 @@ func get_presets() -> Array:
 	else:
 		print("An error occurred when trying to access project presets...")
 	return presets
+
+
+func get_recent_projects() -> Array:
+	return get_pprofile_property("recent_projects").duplicate()
 
 
 func get_project():

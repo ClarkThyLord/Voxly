@@ -16,6 +16,7 @@ onready var _profile := {
 	"magic": profile_name(),
 	"version": profile_version(),
 	"properties": profile_properties(),
+	"_properties": pprofile_properties(),
 }
 
 
@@ -41,6 +42,10 @@ func profile_version() -> String:
 
 func profile_properties() -> Array:
 	return []
+
+
+func pprofile_properties() -> Dictionary:
+	return {}
 
 
 
@@ -121,10 +126,69 @@ func get_profile_property(property_path : String):
 						properties = property["properties"]
 						break
 					else:
+						return property
+			if not found:
+				break
+	return null
+
+
+func get_profile_property_value(property_path : String):
+	if not property_path.empty():
+		var path_index := 0
+		var path := property_path.split("/")
+		var properties : Array = _profile["properties"]
+		while typeof(properties) == TYPE_ARRAY:
+			var found := false
+			for property in properties:
+				property = property as Dictionary
+				if property["name"] == path[path_index]:
+					found = true
+					path_index += 1
+					var at_end := path_index == path.size()
+					if property["type"] == -1 and not at_end:
+						properties = property["properties"]
+						break
+					else:
 						return property.get("value")
 			if not found:
 				break
 	return null
+
+
+func set_profile_property_value(
+		property_path : String,
+		value):
+	if not property_path.empty():
+		var path_index := 0
+		var path := property_path.split("/")
+		var properties : Array = _profile["properties"]
+		while typeof(properties) == TYPE_ARRAY:
+			var found := false
+			for property in properties:
+				property = property as Dictionary
+				if property["name"] == path[path_index]:
+					found = true
+					path_index += 1
+					var at_end := path_index == path.size()
+					if property["type"] == -1 and not at_end:
+						properties = property["properties"]
+						break
+					else:
+						property["value"] = value
+			if not found:
+				break
+
+
+func get_pprofile_property(
+		property : String):
+	return _profile["_properties"].get(property)
+
+
+func set_pprofile_property(
+		property : String,
+		value):
+	if _profile["_properties"].has(property):
+		_profile["_properties"][property] = value
 
 
 
