@@ -12,6 +12,8 @@ onready var recents : PopupMenu = preload("res://src/interfaces/editor/ui/editor
 ## Built-In Virtual Methods
 func _ready() -> void:
 	options.add_child(recents)
+	
+	get_popup().connect("index_pressed", self, "_on_index_pressed")
 
 
 
@@ -19,11 +21,17 @@ func _ready() -> void:
 func _on_about_to_show():
 	options.clear()
 	
-	options.add_item("New project...", 0)
-	options.add_item("Load project...", 1)
-	options.add_submenu_item("Recent projects...", "Recents", 2)
-#	options.set_item_disabled(2, true)
+	options.add_item("New project...")
+	options.add_item("Load project...")
+	options.add_submenu_item("Recent projects...", "Recents")
+	options.set_item_disabled(2, true)
 	
 	options.add_separator()
-	options.add_item("Save project", 3)
-	options.add_item("Save project as...", 4)
+	options.add_item("Save project")
+	options.add_item("Save project as...")
+
+
+func _on_index_pressed(index : int):
+	match index:
+		0:
+			get_node("/root/VoxlyProjects").new_project()
