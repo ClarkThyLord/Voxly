@@ -1,0 +1,6 @@
+[gd_scene format=2]
+
+[node name="SaveDialog" type="FileDialog"]
+margin_right = 325.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 325, 350 )

@@ -13,6 +13,19 @@ var _project : Spatial
 
 
 
+## OnReady Variables
+onready var save_project_dialog : FileDialog = preload("res://src/interfaces/projects/ui/save_dialog/save_dialog.tscn").instance()
+
+onready var load_project_dialog : FileDialog = preload("res://src/interfaces/projects/ui/load_dialog/load_dialog.tscn").instance()
+
+
+
+## Built-In Virtual Methods
+func _ready() -> void:
+	add_child(save_project_dialog)
+	add_child(load_project_dialog)
+
+
 ## Public Virtual Methods
 func profile_name() -> String:
 	return "voxly.projects"
@@ -111,3 +124,11 @@ func close_project() -> void:
 	if is_instance_valid(_project):
 		remove_child(_project)
 		_project.queue_free()
+
+
+func show_save_project_dialog() -> void:
+	save_project_dialog.popup_centered_minsize()
+
+
+func show_load_project_dialog() -> void:
+	load_project_dialog.popup_centered_minsize()

@@ -12,17 +12,4 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Save" type="FileDialog" parent="."]
-margin_right = 325.0
-margin_bottom = 350.0
-rect_min_size = Vector2( 325, 350 )
-window_title = "Save project..."
-
-[node name="Open" type="FileDialog" parent="."]
-margin_right = 325.0
-margin_bottom = 140.0
-rect_min_size = Vector2( 325, 350 )
-window_title = "Open project..."
-mode = 0
-
 [connection signal="about_to_show" from="." to="." method="_on_about_to_show"]
