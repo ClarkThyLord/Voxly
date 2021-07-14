@@ -14,6 +14,8 @@ var _project : Spatial
 
 
 ## OnReady Variables
+onready var layer := CanvasLayer.new()
+
 onready var save_project_dialog : FileDialog = preload("res://src/interfaces/projects/ui/save_dialog/save_dialog.tscn").instance()
 
 onready var load_project_dialog : FileDialog = preload("res://src/interfaces/projects/ui/load_dialog/load_dialog.tscn").instance()
@@ -22,8 +24,9 @@ onready var load_project_dialog : FileDialog = preload("res://src/interfaces/pro
 
 ## Built-In Virtual Methods
 func _ready() -> void:
-	add_child(save_project_dialog)
-	add_child(load_project_dialog)
+	add_child(layer)
+	layer.add_child(save_project_dialog)
+	layer.add_child(load_project_dialog)
 
 
 ## Public Virtual Methods
