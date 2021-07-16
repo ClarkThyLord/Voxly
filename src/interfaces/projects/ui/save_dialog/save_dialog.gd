@@ -5,6 +5,7 @@ extends FileDialog
 
 ## Built-In Virtual Methods
 func _ready() -> void:
+	access = FileDialog.ACCESS_FILESYSTEM
 	get_viewport().connect("size_changed", self, "center")
 
 

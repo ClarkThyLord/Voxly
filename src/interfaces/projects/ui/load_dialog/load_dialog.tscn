@@ -8,6 +8,8 @@ margin_right = 325.0
 margin_bottom = 140.0
 rect_min_size = Vector2( 325, 350 )
 theme = ExtResource( 2 )
-window_title = "Open Project"
+window_title = "Open a File"
 mode = 0
 script = ExtResource( 1 )
+
+[connection signal="file_selected" from="." to="." method="_on_file_selected"]
