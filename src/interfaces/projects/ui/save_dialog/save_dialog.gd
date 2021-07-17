@@ -13,3 +13,9 @@ func _ready() -> void:
 ## Public Methods
 func center() -> void:
 	rect_position = (get_viewport().size / 2) - (rect_size / 2)
+
+
+
+## Private Methods
+func _on_file_selected(path : String):
+	get_node("/root/VoxlyProjects").save_project(path)

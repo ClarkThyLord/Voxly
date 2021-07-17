@@ -10,3 +10,5 @@ rect_min_size = Vector2( 325, 350 )
 theme = ExtResource( 2 )
 window_title = "Save Project"
 script = ExtResource( 1 )
+
+[connection signal="file_selected" from="." to="." method="_on_file_selected"]
