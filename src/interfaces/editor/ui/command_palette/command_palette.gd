@@ -32,10 +32,21 @@ func _ready() -> void:
 
 
 func _input(event : InputEvent) -> void:
-	if has_focus():
-		if event is InputEventMouseButton:
+	if event is InputEventMouseButton:
+		if has_focus():
 			if not get_global_rect().has_point(event.position):
 				release_focus()
+		elif is_instance_valid(_command_button_focused):
+			if not _command_button_focused\
+					.get_global_rect().has_point(event.position):
+				release_focus()
+
+
+
+## Public Methods
+func release_focus() -> void:
+	commands.hide()
+	.release_focus()
 
 
 
