@@ -44,12 +44,6 @@ func profile_properties() -> Array:
 	]
 
 
-func pprofile_properties() -> Dictionary:
-	return {
-		"recent_projects": [],
-	}
-
-
 
 ## Private Virtual Methods
 func _activated() -> void:
@@ -85,7 +79,7 @@ func get_presets() -> Array:
 
 
 func get_recent_projects() -> Array:
-	return get_pprofile_property("recent_projects").duplicate()
+	return []
 
 
 func get_project():

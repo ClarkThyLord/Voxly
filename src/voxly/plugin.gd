@@ -16,7 +16,6 @@ onready var _profile := {
 	"magic": profile_name(),
 	"version": profile_version(),
 	"properties": profile_properties(),
-	"_properties": pprofile_properties(),
 }
 
 
@@ -42,10 +41,6 @@ func profile_version() -> String:
 
 func profile_properties() -> Array:
 	return []
-
-
-func pprofile_properties() -> Dictionary:
-	return {}
 
 
 
@@ -177,18 +172,6 @@ func set_profile_property_value(
 						property["value"] = value
 			if not found:
 				break
-
-
-func get_pprofile_property(
-		property : String):
-	return _profile["_properties"].get(property)
-
-
-func set_pprofile_property(
-		property : String,
-		value):
-	if _profile["_properties"].has(property):
-		_profile["_properties"][property] = value
 
 
 
