@@ -75,7 +75,16 @@ func save_profile() -> int:
 	var file = File.new()
 	var error = file.open(get_profile_path(), File.WRITE)
 	if error == OK:
+		var __meta__ := get_meta_list()
+		if not __meta__.empty():
+			_profile["__meta__"] = {}
+			for name in __meta__:
+				_profile["__meta__"][name] = get_meta(name)
+		
 		file.store_string(JSON.print(_profile, "\t"))
+		
+		if _profile.has("__meta__"):
+			_profile.erase("__meta__")
 	if file.is_open():
 		file.close()
 	return error
@@ -90,6 +99,11 @@ func load_profile() -> int:
 		if json.error == OK:
 			if typeof(json.result) == TYPE_DICTIONARY \
 					and json.result.get("magic") == profile_name():
+				if json.result.has("__meta__"):
+					for name in json.result["__meta__"].keys():
+						set_meta(name, json.result["__meta___"][name])
+					json.result.remove("__meta__")
+				
 				_profile = json.result
 			else:
 				error = ERR_FILE_UNRECOGNIZED
