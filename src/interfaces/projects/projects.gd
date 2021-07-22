@@ -24,6 +24,8 @@ onready var load_project_dialog : FileDialog = preload("res://src/interfaces/pro
 
 ## Built-In Virtual Methods
 func _ready() -> void:
+	set_meta("recent_projects", [])
+	
 	add_child(layer)
 	layer.add_child(save_project_dialog)
 	layer.add_child(load_project_dialog)

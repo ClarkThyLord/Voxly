@@ -101,8 +101,8 @@ func load_profile() -> int:
 					and json.result.get("magic") == profile_name():
 				if json.result.has("__meta__"):
 					for name in json.result["__meta__"].keys():
-						set_meta(name, json.result["__meta___"][name])
-					json.result.remove("__meta__")
+						set_meta(name, json.result["__meta__"][name])
+					json.result.erase("__meta__")
 				
 				_profile = json.result
 			else:
