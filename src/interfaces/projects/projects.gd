@@ -29,6 +29,8 @@ func _ready() -> void:
 	add_child(layer)
 	layer.add_child(save_project_dialog)
 	layer.add_child(load_project_dialog)
+	
+	._ready()
 
 
 ## Public Virtual Methods
