@@ -107,6 +107,13 @@ func save_project(project_path : String) -> int:
 	if error == OK:
 		error = ResourceSaver.save(project_path, project)
 		ResourceSaver.free()
+		
+		var recent_projects : Array = get_meta("recent_projects") \
+				if has_meta("recent_projects") else []
+		recent_projects.append(project_path)
+		if len(recent_projects) > 7:
+			recent_projects.pop_back()
+		set_meta("recent_projects", recent_projects)
 	return error
 
 
