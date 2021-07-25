@@ -106,7 +106,6 @@ func save_project(project_path : String) -> int:
 	var error := project.pack(_project)
 	if error == OK:
 		error = ResourceSaver.save(project_path, project)
-		ResourceSaver.free()
 		
 		var recent_projects : Array = get_meta("recent_projects") \
 				if has_meta("recent_projects") else []
