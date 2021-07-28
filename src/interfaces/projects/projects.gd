@@ -11,6 +11,8 @@ const PRESETS_DIR := "res://src/interfaces/projects/presets/"
 ## Private Variables
 var _project : Spatial
 
+var __recent_projects__ := []
+
 
 
 ## OnReady Variables
@@ -24,8 +26,6 @@ onready var load_project_dialog : FileDialog = preload("res://src/interfaces/pro
 
 ## Built-In Virtual Methods
 func _ready() -> void:
-	set_meta("recent_projects", [])
-	
 	add_child(layer)
 	layer.add_child(save_project_dialog)
 	layer.add_child(load_project_dialog)
@@ -60,6 +60,20 @@ func _deactivated() -> void:
 
 
 ## Public Methods
+func get_project():
+	return _project
+
+
+func add_recent_project(project_path : String) -> void:
+	__recent_projects__.insert(0, project_path)
+	if __recent_projects__.size() > 5:
+		__recent_projects__.pop_back()
+
+
+func get_recent_projects() -> Array:
+	return __recent_projects__.duplicate()
+
+
 func get_preset_path(preset : String) -> String:
 	if not get_presets().has(preset):
 		print("Error preset '" + preset + "' doesn't exist...")
@@ -82,14 +96,6 @@ func get_presets() -> Array:
 	return presets
 
 
-func get_recent_projects() -> Array:
-	return []
-
-
-func get_project():
-	return _project
-
-
 func new_project(preset := "") -> void:
 	if preset.empty():
 		close_project()
@@ -106,13 +112,7 @@ func save_project(project_path : String) -> int:
 	var error := project.pack(_project)
 	if error == OK:
 		error = ResourceSaver.save(project_path, project)
-		
-		var recent_projects : Array = get_meta("recent_projects") \
-				if has_meta("recent_projects") else []
-		recent_projects.append(project_path)
-		if len(recent_projects) > 7:
-			recent_projects.pop_back()
-		set_meta("recent_projects", recent_projects)
+		add_recent_project(project_path)
 	return error
 
 
@@ -124,6 +124,7 @@ func open_project(project) -> int:
 
 
 func open_project_from(project_path : String) -> int:
+	add_recent_project(project_path)
 	return open_project(load(project_path).instance())
 
 

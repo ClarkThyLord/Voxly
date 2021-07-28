@@ -75,16 +75,19 @@ func save_profile() -> int:
 	var file = File.new()
 	var error = file.open(get_profile_path(), File.WRITE)
 	if error == OK:
-		var __meta__ := get_meta_list()
-		if not __meta__.empty():
-			_profile["__meta__"] = {}
-			for name in __meta__:
-				_profile["__meta__"][name] = get_meta(name)
+		_profile["__properties__"] = {}
+		for property in get_property_list():
+			var property_name : String = property["name"]
+			if property_name.begins_with("__") \
+					and property_name.ends_with("__"):
+				_profile["__properties__"][property_name] = get(property_name)
+		if _profile["__properties__"].empty():
+			_profile.erase("__properties__")
 		
 		file.store_string(JSON.print(_profile, "\t"))
 		
-		if _profile.has("__meta__"):
-			_profile.erase("__meta__")
+		if _profile.has("__properties__"):
+			_profile.erase("__properties__")
 	if file.is_open():
 		file.close()
 	return error
@@ -99,10 +102,10 @@ func load_profile() -> int:
 		if json.error == OK:
 			if typeof(json.result) == TYPE_DICTIONARY \
 					and json.result.get("magic") == profile_name():
-				if json.result.has("__meta__"):
-					for name in json.result["__meta__"].keys():
-						set_meta(name, json.result["__meta__"][name])
-					json.result.erase("__meta__")
+				if json.result.has("__properties__"):
+					for name in json.result["__properties__"].keys():
+						set(name, json.result["__properties__"][name])
+					json.result.erase("__properties__")
 				
 				_profile = json.result
 			else:
