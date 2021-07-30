@@ -24,7 +24,8 @@ func _on_about_to_show():
 	options.add_item("New project...")
 	options.add_item("Load project...")
 	options.add_submenu_item("Recent projects...", "Recents")
-	options.set_item_disabled(2, true)
+	if recents.get_item_count() == 0:
+		options.set_item_disabled(2, true)
 	
 	options.add_separator()
 	options.add_item("Save project")
