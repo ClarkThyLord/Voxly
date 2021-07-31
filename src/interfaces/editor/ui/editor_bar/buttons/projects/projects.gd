@@ -29,6 +29,8 @@ func _on_about_to_show():
 	
 	options.add_separator()
 	options.add_item("Save project")
+	if not get_node("/root/VoxlyProjects").get_project_path():
+		options.set_item_disabled(4, true)
 	options.add_item("Save project as...")
 
 

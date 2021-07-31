@@ -11,6 +11,8 @@ const PRESETS_DIR := "res://src/interfaces/projects/presets/"
 ## Private Variables
 var _project : Spatial
 
+var _project_path : String = ""
+
 var __recent_projects__ := []
 
 
@@ -64,6 +66,10 @@ func get_project():
 	return _project
 
 
+func get_project_path() -> String:
+	return _project_path
+
+
 func add_recent_project(project_path : String) -> void:
 	if project_path.is_abs_path() \
 			and not __recent_projects__.has(project_path):
@@ -115,6 +121,7 @@ func save_project(project_path : String) -> int:
 	if error == OK:
 		error = ResourceSaver.save(project_path, project)
 		add_recent_project(project_path)
+		_project_path = project_path
 	return error
 
 
