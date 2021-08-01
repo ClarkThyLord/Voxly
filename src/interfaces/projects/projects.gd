@@ -71,8 +71,9 @@ func get_project_path() -> String:
 
 
 func add_recent_project(project_path : String) -> void:
-	if project_path.is_abs_path() \
-			and not __recent_projects__.has(project_path):
+	if project_path.is_abs_path():
+		if __recent_projects__.has(project_path):
+			__recent_projects__.erase(project_path)
 		__recent_projects__.insert(0, project_path)
 		if __recent_projects__.size() > 5:
 			__recent_projects__.pop_back()
