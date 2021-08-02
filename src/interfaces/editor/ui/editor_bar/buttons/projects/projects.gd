@@ -19,6 +19,9 @@ func _ready() -> void:
 
 ## Private Methods
 func _on_about_to_show():
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	
 	options.clear()
 	
 	options.add_item("New project...")
