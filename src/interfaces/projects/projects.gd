@@ -137,6 +137,8 @@ func open_project(project : Node) -> int:
 
 func open_project_from(project_path : String) -> int:
 	if project_path.is_abs_path():
+		if not ResourceLoader.exists(project_path):
+			return ERR_FILE_NOT_FOUND
 		add_recent_project(project_path)
 		return open_project(load(project_path).instance())
 	return ERR_FILE_BAD_PATH
