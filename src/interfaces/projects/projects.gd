@@ -116,17 +116,19 @@ func new_project(preset := "") -> void:
 			print("An error occured when trying to create a new project from '" + str(preset) + "' preset...")
 
 
-func save_project(project_path : String) -> int:
-	var project := PackedScene.new()
-	var error := project.pack(_project)
-	if error == OK:
-		error = ResourceSaver.save(project_path, project)
-		add_recent_project(project_path)
-		_project_path = project_path
-	return error
+func save_project(project_path : String = _project_path) -> int:
+	if is_instance_valid(_project) and project_path.is_abs_path():
+		var project := PackedScene.new()
+		var error := project.pack(_project)
+		if error == OK:
+			error = ResourceSaver.save(project_path, project)
+			add_recent_project(project_path)
+			_project_path = project_path
+		return error
+	return ERR_FILE_BAD_PATH
 
 
-func open_project(project) -> int:
+func open_project(project : Node) -> int:
 	close_project()
 	_project = project
 	add_child(_project)
@@ -134,8 +136,10 @@ func open_project(project) -> int:
 
 
 func open_project_from(project_path : String) -> int:
-	add_recent_project(project_path)
-	return open_project(load(project_path).instance())
+	if project_path.is_abs_path():
+		add_recent_project(project_path)
+		return open_project(load(project_path).instance())
+	return ERR_FILE_BAD_PATH
 
 
 func close_project() -> void:

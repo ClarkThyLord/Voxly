@@ -1,4 +1,5 @@
 extends MenuButton
+## Projects Editor Bar Button
 
 
 
@@ -28,13 +29,16 @@ func _on_about_to_show():
 	options.add_item("Load project...")
 	options.add_submenu_item("Recent projects...", "Recents")
 	if recents.get_item_count() == 0:
-		options.set_item_disabled(2, true)
+		options.set_item_disabled(options.get_item_count() - 1, true)
 	
 	options.add_separator()
 	options.add_item("Save project")
 	if not get_node("/root/VoxlyProjects").get_project_path():
-		options.set_item_disabled(4, true)
+		options.set_item_disabled(options.get_item_count() - 1, true)
 	options.add_item("Save project as...")
+	if not is_instance_valid(get_node("/root/VoxlyProjects").get_project()):
+		options.set_item_disabled(options.get_item_count() - 2, true)
+		options.set_item_disabled(options.get_item_count() - 1, true)
 
 
 func _on_index_pressed(index : int):
@@ -43,9 +47,7 @@ func _on_index_pressed(index : int):
 			get_node("/root/VoxlyProjects").new_project()
 		1:
 			get_node("/root/VoxlyProjects").show_load_project_dialog()
-		2:
-			pass
 		4:
-			get_node("/root/VoxlyProjects").show_save_project_dialog()
+			get_node("/root/VoxlyProjects").save_project()
 		5:
 			get_node("/root/VoxlyProjects").show_save_project_dialog()
