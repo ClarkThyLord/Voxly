@@ -85,7 +85,7 @@ func get_recent_projects() -> Array:
 
 func get_preset_path(preset : String) -> String:
 	if not get_presets().has(preset):
-		print("Error preset '" + preset + "' doesn't exist...")
+		print("Error preset '" + preset + "' not found")
 		return ""
 	return PRESETS_DIR + preset + ".tscn"
 
@@ -101,7 +101,7 @@ func get_presets() -> Array:
 				presets.append(file_name.get_basename())
 			file_name = presets_dir.get_next()
 	else:
-		print("An error occurred when trying to access project presets...")
+		print("An error occurred when trying to open project presets...")
 	return presets
 
 
@@ -112,6 +112,7 @@ func new_project(preset := "") -> void:
 		var preset_path := get_preset_path(preset)
 		if preset_path:
 			open_project(load(preset_path).instance() as Spatial)
+			_project_path = ""
 		else:
 			print("An error occured when trying to create a new project from '" + str(preset) + "' preset...")
 
@@ -139,6 +140,7 @@ func open_project_from(project_path : String) -> int:
 	if project_path.is_abs_path():
 		if not ResourceLoader.exists(project_path):
 			return ERR_FILE_NOT_FOUND
+		_project_path = project_path
 		add_recent_project(project_path)
 		return open_project(load(project_path).instance())
 	return ERR_FILE_BAD_PATH
