@@ -24,11 +24,14 @@ onready var save_project_dialog : FileDialog = preload("res://src/interfaces/pro
 
 onready var load_project_dialog : FileDialog = preload("res://src/interfaces/projects/ui/load_dialog/load_dialog.tscn").instance()
 
+onready var projects_overview : Control = preload("res://src/interfaces/projects/ui/projects/projects.tscn").instance()
+
 
 
 ## Built-In Virtual Methods
 func _ready() -> void:
 	add_child(layer)
+	layer.add_child(projects_overview)
 	layer.add_child(save_project_dialog)
 	layer.add_child(load_project_dialog)
 	
