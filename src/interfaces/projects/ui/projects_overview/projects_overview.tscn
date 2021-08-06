@@ -1,8 +1,11 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
 
-[node name="Projects" type="PanelContainer"]
+[ext_resource path="res://src/interfaces/projects/ui/projects_overview/projects_overview.gd" type="Script" id=1]
+
+[node name="ProjectsOverview" type="PanelContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

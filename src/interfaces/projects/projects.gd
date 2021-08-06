@@ -20,11 +20,11 @@ var __recent_projects__ := []
 ## OnReady Variables
 onready var layer := CanvasLayer.new()
 
-onready var save_project_dialog : FileDialog = preload("res://src/interfaces/projects/ui/save_dialog/save_dialog.tscn").instance()
+onready var projects_save_dialog : FileDialog = preload("res://src/interfaces/projects/ui/save_dialog/projects_save_dialog.tscn").instance()
 
-onready var load_project_dialog : FileDialog = preload("res://src/interfaces/projects/ui/load_dialog/load_dialog.tscn").instance()
+onready var projects_load_dialog : FileDialog = preload("res://src/interfaces/projects/ui/load_dialog/projects_load_dialog.tscn").instance()
 
-onready var projects_overview : Control = preload("res://src/interfaces/projects/ui/projects/projects.tscn").instance()
+onready var projects_overview : Control = preload("res://src/interfaces/projects/ui/projects_overview/projects_overview.tscn").instance()
 
 
 
@@ -32,8 +32,8 @@ onready var projects_overview : Control = preload("res://src/interfaces/projects
 func _ready() -> void:
 	add_child(layer)
 	layer.add_child(projects_overview)
-	layer.add_child(save_project_dialog)
-	layer.add_child(load_project_dialog)
+	layer.add_child(projects_save_dialog)
+	layer.add_child(projects_load_dialog)
 	
 	._ready()
 
@@ -155,9 +155,9 @@ func close_project() -> void:
 		_project.queue_free()
 
 
-func show_save_project_dialog() -> void:
-	save_project_dialog.popup_centered_minsize()
+func show_projects_save_dialog() -> void:
+	projects_save_dialog.popup_centered_minsize()
 
 
-func show_load_project_dialog() -> void:
-	load_project_dialog.popup_centered_minsize()
+func show_projects_load_dialog() -> void:
+	projects_load_dialog.popup_centered_minsize()

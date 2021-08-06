@@ -7,6 +7,7 @@ extends FileDialog
 func _ready() -> void:
 	access = FileDialog.ACCESS_FILESYSTEM
 	get_viewport().connect("size_changed", self, "center")
+	window_title = "Open Project"
 
 
 

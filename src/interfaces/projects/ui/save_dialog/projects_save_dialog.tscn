@@ -1,15 +1,14 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://src/interfaces/projects/ui/load_dialog/load_dialog.gd" type="Script" id=1]
+[ext_resource path="res://src/interfaces/projects/ui/save_dialog/projects_save_dialog.gd" type="Script" id=1]
 [ext_resource path="res://assets/themes/default/default.tres" type="Theme" id=2]
 
-[node name="LoadDialog" type="FileDialog"]
+[node name="ProjectsSaveDialog" type="FileDialog"]
 margin_right = 325.0
-margin_bottom = 140.0
+margin_bottom = 350.0
 rect_min_size = Vector2( 325, 350 )
 theme = ExtResource( 2 )
-window_title = "Open a File"
-mode = 0
+window_title = "Save Project"
 filters = PoolStringArray( "*.tscn ; Godot Scene" )
 script = ExtResource( 1 )
 

@@ -46,8 +46,8 @@ func _on_index_pressed(index : int):
 		0:
 			get_node("/root/VoxlyProjects").new_project()
 		1:
-			get_node("/root/VoxlyProjects").show_load_project_dialog()
+			get_node("/root/VoxlyProjects").show_projects_load_dialog()
 		4:
 			get_node("/root/VoxlyProjects").save_project()
 		5:
-			get_node("/root/VoxlyProjects").show_save_project_dialog()
+			get_node("/root/VoxlyProjects").show_projects_save_dialog()
