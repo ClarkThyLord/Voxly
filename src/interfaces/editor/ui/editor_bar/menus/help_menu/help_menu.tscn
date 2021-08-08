@@ -1,6 +1,6 @@
 [gd_scene format=2]
 
-[node name="Help" type="MenuButton"]
+[node name="HelpMenu" type="MenuButton"]
 margin_right = 12.0
 margin_bottom = 22.0
 text = "Help"

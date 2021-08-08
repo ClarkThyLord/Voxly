@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://src/interfaces/editor/ui/editor_bar/buttons/projects/recents/recents.gd" type="Script" id=1]
+[ext_resource path="res://src/interfaces/editor/ui/editor_bar/menus/projects_menu/recents_menu/recents_menu.gd" type="Script" id=1]
 
-[node name="Recents" type="PopupMenu"]
+[node name="RecentsMenu" type="PopupMenu"]
 margin_right = 16.0
 margin_bottom = 16.0
 script = ExtResource( 1 )

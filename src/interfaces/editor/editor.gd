@@ -20,16 +20,16 @@ onready var ui := get_node("/root/Editor")
 
 ## Built-In Virtual Methods
 func _ready() -> void:
-	var projects := preload("res://src/interfaces/editor/ui/editor_bar/buttons/projects/projects.tscn").instance()
+	var projects := preload("res://src/interfaces/editor/ui/editor_bar/menus/projects_menu/projects_menu.tscn").instance()
 	add_button_to_editor_bar_left(projects)
 	
-	var edit := preload("res://src/interfaces/editor/ui/editor_bar/buttons/edit/edit.tscn").instance()
+	var edit := preload("res://src/interfaces/editor/ui/editor_bar/menus/edit_menu/edit_menu.tscn").instance()
 	add_button_to_editor_bar_left(edit)
 	
-	var view := preload("res://src/interfaces/editor/ui/editor_bar/buttons/view/view.tscn").instance()
+	var view := preload("res://src/interfaces/editor/ui/editor_bar/menus/view_menu/view_menu.tscn").instance()
 	add_button_to_editor_bar_left(view)
 	
-	var help := preload("res://src/interfaces/editor/ui/editor_bar/buttons/help/help.tscn").instance()
+	var help := preload("res://src/interfaces/editor/ui/editor_bar/menus/help_menu/help_menu.tscn").instance()
 	add_button_to_editor_bar_left(help)
 	
 	
