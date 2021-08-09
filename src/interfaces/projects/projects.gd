@@ -155,6 +155,10 @@ func close_project() -> void:
 		_project.queue_free()
 
 
+func show_projects_overview_dialog() -> void:
+	projects_overview.show()
+
+
 func show_projects_save_dialog() -> void:
 	projects_save_dialog.popup_centered_minsize()
 

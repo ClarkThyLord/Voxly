@@ -27,7 +27,7 @@ margin_bottom = 22.0
 margin_right = 954.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
-text = "Search presets and projects..."
+placeholder_text = "Search presets and projects..."
 
 [node name="Search" type="Button" parent="VBoxContainer/HBoxContainer"]
 margin_left = 958.0
@@ -108,8 +108,29 @@ margin_right = 1012.0
 margin_bottom = 592.0
 alignment = 2
 
-[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer2"]
+[node name="Load" type="Button" parent="VBoxContainer/HBoxContainer2"]
+margin_left = 799.0
+margin_right = 902.0
+margin_bottom = 22.0
+text = "Load project..."
+
+[node name="Open" type="Button" parent="VBoxContainer/HBoxContainer2"]
+margin_left = 906.0
+margin_right = 953.0
+margin_bottom = 22.0
+text = "Open"
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/HBoxContainer2"]
+margin_left = 957.0
+margin_right = 961.0
+margin_bottom = 22.0
+
+[node name="Close" type="Button" parent="VBoxContainer/HBoxContainer2"]
 margin_left = 965.0
 margin_right = 1012.0
 margin_bottom = 22.0
 text = "Close"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/Load" to="." method="_on_Load_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/Open" to="." method="_on_Open_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/Close" to="." method="_on_Close_pressed"]
