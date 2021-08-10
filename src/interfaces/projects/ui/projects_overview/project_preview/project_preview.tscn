@@ -1,38 +1,25 @@
 [gd_scene format=2]
 
-[node name="ProjectPreview" type="ColorRect"]
-margin_right = 128.0
-margin_bottom = 128.0
-rect_min_size = Vector2( 128, 128 )
-size_flags_horizontal = 0
-size_flags_vertical = 0
-color = Color( 0.14902, 0.172549, 0.231373, 1 )
+[node name="ProjectPreview" type="HBoxContainer"]
+margin_right = 1012.0
+margin_bottom = 22.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 5.0
-margin_top = 5.0
-margin_right = -5.0
-margin_bottom = -5.0
-alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Name" type="Label" parent="."]
+margin_right = 893.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
 
-[node name="TextureButton" type="TextureButton" parent="VBoxContainer"]
-margin_top = 3.0
-margin_right = 118.0
-margin_bottom = 89.0
-rect_min_size = Vector2( 86, 86 )
-expand = true
-stretch_mode = 5
+[node name="Remove" type="Button" parent="."]
+margin_left = 897.0
+margin_right = 961.0
+margin_bottom = 22.0
+text = "Remove"
 
-[node name="Label" type="Label" parent="VBoxContainer"]
-margin_top = 93.0
-margin_right = 118.0
-margin_bottom = 115.0
-clip_text = true
+[node name="Open" type="Button" parent="."]
+margin_left = 965.0
+margin_right = 1012.0
+margin_bottom = 22.0
+text = "Open"
