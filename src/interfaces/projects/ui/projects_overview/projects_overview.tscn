@@ -51,7 +51,7 @@ margin_right = 1012.0
 margin_bottom = 22.0
 text = "Presets"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/VBoxContainer"]
+[node name="Presets" type="ScrollContainer" parent="VBoxContainer/VBoxContainer"]
 margin_top = 26.0
 margin_right = 1012.0
 margin_bottom = 154.0
@@ -60,7 +60,7 @@ size_flags_horizontal = 3
 follow_focus = true
 scroll_horizontal_enabled = false
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/Presets"]
 margin_right = 1012.0
 margin_bottom = 128.0
 size_flags_horizontal = 3
@@ -82,6 +82,10 @@ follow_focus = true
 scroll_horizontal_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/Projects"]
+margin_right = 1012.0
+margin_bottom = 336.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
 margin_top = 524.0
@@ -122,6 +126,7 @@ margin_right = 1012.0
 margin_bottom = 22.0
 text = "Close"
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/Load" to="." method="_on_Load_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/Open" to="." method="_on_Open_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/Close" to="." method="_on_Close_pressed"]

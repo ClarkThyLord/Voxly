@@ -1,8 +1,11 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/interfaces/projects/ui/projects_overview/project_preview/project_preview.gd" type="Script" id=1]
 
 [node name="ProjectPreview" type="HBoxContainer"]
 margin_right = 1012.0
 margin_bottom = 22.0
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
