@@ -49,7 +49,10 @@ func profile_version() -> String:
 
 func profile_properties() -> Array:
 	return [
-		_profile_property_string("default_preset", "default"),
+		_profile_property_string(
+			"default_preset",
+			"res://src/interfaces/projects/presets/default.tscn"
+		),
 	]
 
 
@@ -86,50 +89,45 @@ func get_recent_projects() -> Array:
 	return __recent_projects__.duplicate()
 
 
-func get_preset_path(preset : String) -> String:
-	if not get_presets().has(preset):
-		print("Error preset '" + preset + "' not found")
-		return ""
-	return PRESETS_DIR + preset + ".tscn"
+func add_preset(name : String, node : Node = _project) -> int:
+	var path : String = PRESETS_DIR + name + ".tscn"
+	return _save_node(_project, path)
 
 
 func get_presets() -> Array:
 	var presets := []
-	var presets_dir = Directory.new()
+	var presets_dir := Directory.new()
 	if presets_dir.open(PRESETS_DIR) == OK:
-		presets_dir.list_dir_begin()
-		var file_name = presets_dir.get_next()
+		presets_dir.list_dir_begin(true, true)
+		var file_name := presets_dir.get_next()
 		while file_name != "":
 			if not presets_dir.current_is_dir():
-				presets.append(file_name.get_basename())
+				presets.append(PRESETS_DIR + file_name)
 			file_name = presets_dir.get_next()
 	else:
-		print("An error occurred when trying to open project presets...")
+		print_stack()
+		printerr("Error when opening project presets")
 	return presets
 
 
-func new_project(preset := "") -> void:
-	if preset.empty():
+func new_project(project_path : String = "") -> void:
+	if project_path.empty():
 		close_project()
 	else:
-		var preset_path := get_preset_path(preset)
-		if preset_path:
-			open_project(load(preset_path).instance() as Spatial)
+		if project_path.is_abs_path():
+			open_project(load(project_path).instance() as Spatial)
 			_project_path = ""
 		else:
-			print("An error occured when trying to create a new project from '" + str(preset) + "' preset...")
+			print_stack()
+			printerr("Error when creating new project from `" + str(project_path) + "`")
 
 
 func save_project(project_path : String = _project_path) -> int:
-	if is_instance_valid(_project) and project_path.is_abs_path():
-		var project := PackedScene.new()
-		var error := project.pack(_project)
-		if error == OK:
-			error = ResourceSaver.save(project_path, project)
-			add_recent_project(project_path)
-			_project_path = project_path
-		return error
-	return ERR_FILE_BAD_PATH
+	var error := _save_node(_project, project_path)
+	if error == OK:
+		add_recent_project(project_path)
+		_project_path = project_path
+	return error
 
 
 func open_project(project : Node) -> int:
@@ -165,3 +163,18 @@ func show_projects_save_dialog() -> void:
 
 func show_projects_load_dialog() -> void:
 	projects_load_dialog.popup_centered_minsize()
+
+
+
+## Private Methods
+func _save_node(node : Node, path : String) -> int:
+	if is_instance_valid(node):
+		var packed_scene := PackedScene.new()
+		var error := packed_scene.pack(node)
+		if error == OK:
+			error = ResourceSaver.save(path, packed_scene)
+		if not error == OK:
+			print_stack()
+			printerr("Error when saving `" + path + "`, code: " + str(error))
+		return error
+	return FAILED
