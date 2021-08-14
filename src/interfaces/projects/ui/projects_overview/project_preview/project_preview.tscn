@@ -2,27 +2,55 @@
 
 [ext_resource path="res://src/interfaces/projects/ui/projects_overview/project_preview/project_preview.gd" type="Script" id=1]
 
-[node name="ProjectPreview" type="HBoxContainer"]
-margin_right = 1012.0
-margin_bottom = 22.0
+[node name="ProjectPreview" type="MarginContainer"]
+anchor_right = 1.0
+margin_bottom = 28.0
+custom_constants/margin_right = 3
+custom_constants/margin_top = 3
+custom_constants/margin_left = 3
+custom_constants/margin_bottom = 3
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Name" type="Label" parent="."]
-margin_right = 893.0
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 1021.0
+margin_bottom = 33.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 1018.0
+margin_bottom = 22.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_right = 836.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
 
-[node name="Remove" type="Button" parent="."]
-margin_left = 897.0
-margin_right = 961.0
+[node name="Open" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 840.0
+margin_right = 887.0
+margin_bottom = 22.0
+text = "Open"
+
+[node name="Explore" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 891.0
+margin_right = 950.0
+margin_bottom = 22.0
+text = "Explore"
+
+[node name="Remove" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 954.0
+margin_right = 1018.0
 margin_bottom = 22.0
 text = "Remove"
 
-[node name="Open" type="Button" parent="."]
-margin_left = 965.0
-margin_right = 1012.0
-margin_bottom = 22.0
-text = "Open"
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+margin_top = 26.0
+margin_right = 1018.0
+margin_bottom = 30.0

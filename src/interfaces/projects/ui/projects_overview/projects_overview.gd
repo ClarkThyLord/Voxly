@@ -9,9 +9,9 @@ const project_preview := preload("res://src/interfaces/projects/ui/projects_over
 
 
 ## OnReady Variables
-onready var preset_projects := get_node("VBoxContainer/VBoxContainer/Presets/VBoxContainer")
+onready var presets := get_node("ProjectsOverview/VBoxContainer/VBoxContainer/Presets/ScrollContainer/VBoxContainer")
 
-onready var recent_projects := get_node("VBoxContainer/VBoxContainer/Projects/VBoxContainer")
+onready var recents := get_node("ProjectsOverview/VBoxContainer/VBoxContainer/Recents/ScrollContainer/VBoxContainer")
 
 
 
@@ -23,21 +23,21 @@ func _ready():
 
 ## Private Methods
 func _on_visibility_changed():
-	for child in preset_projects.get_children():
-		preset_projects.remove_child(child)
+	for child in presets.get_children():
+		presets.remove_child(child)
 		child.queue_free()
 	for project_path in get_node("/root/VoxlyProjects").get_presets():
 		var _project_preview := project_preview.instance()
 		_project_preview.project_path = project_path
-		preset_projects.add_child(_project_preview)
+		presets.add_child(_project_preview)
 	
-	for child in recent_projects.get_children():
-		recent_projects.remove_child(child)
+	for child in recents.get_children():
+		recents.remove_child(child)
 		child.queue_free()
 	for project_path in get_node("/root/VoxlyProjects").get_recent_projects():
 		var _project_preview := project_preview.instance()
 		_project_preview.project_path = project_path
-		recent_projects.add_child(_project_preview)
+		recents.add_child(_project_preview)
 
 
 func _on_Load_pressed():

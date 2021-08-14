@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/interfaces/projects/ui/projects_overview/projects_overview.gd" type="Script" id=1]
 
-[node name="ProjectsOverview" type="PanelContainer"]
+[node name="PanelContainer" type="PanelContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
@@ -10,123 +10,163 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="ProjectsOverview" type="MarginContainer" parent="."]
 margin_left = 6.0
 margin_top = 4.0
 margin_right = 1018.0
 margin_bottom = 596.0
+custom_constants/margin_right = 6
+custom_constants/margin_top = 6
+custom_constants/margin_left = 6
+custom_constants/margin_bottom = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ProjectsOverview"]
+margin_left = 6.0
+margin_top = 6.0
+margin_right = 1006.0
+margin_bottom = 586.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_right = 1012.0
+[node name="HBoxContainer" type="HBoxContainer" parent="ProjectsOverview/VBoxContainer"]
+margin_right = 1000.0
 margin_bottom = 22.0
 
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
-margin_right = 954.0
+[node name="LineEdit" type="LineEdit" parent="ProjectsOverview/VBoxContainer/HBoxContainer"]
+margin_right = 942.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
 placeholder_text = "Search presets and projects..."
+caret_blink = true
+caret_blink_speed = 0.5
 
-[node name="Search" type="Button" parent="VBoxContainer/HBoxContainer"]
-margin_left = 958.0
-margin_right = 1012.0
+[node name="Search" type="Button" parent="ProjectsOverview/VBoxContainer/HBoxContainer"]
+margin_left = 946.0
+margin_right = 1000.0
 margin_bottom = 22.0
 text = "Search"
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="ProjectsOverview/VBoxContainer"]
 margin_top = 26.0
-margin_right = 1012.0
+margin_right = 1000.0
 margin_bottom = 30.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ProjectsOverview/VBoxContainer"]
 margin_top = 34.0
-margin_right = 1012.0
-margin_bottom = 558.0
+margin_right = 1000.0
+margin_bottom = 546.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer"]
-margin_right = 1012.0
+[node name="Label" type="Label" parent="ProjectsOverview/VBoxContainer/VBoxContainer"]
+margin_right = 1000.0
 margin_bottom = 22.0
 text = "Presets"
 
-[node name="Presets" type="ScrollContainer" parent="VBoxContainer/VBoxContainer"]
+[node name="Presets" type="Panel" parent="ProjectsOverview/VBoxContainer/VBoxContainer"]
 margin_top = 26.0
-margin_right = 1012.0
-margin_bottom = 154.0
+margin_right = 1000.0
+margin_bottom = 252.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ProjectsOverview/VBoxContainer/VBoxContainer/Presets"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 rect_min_size = Vector2( 0, 128 )
 size_flags_horizontal = 3
+size_flags_vertical = 3
 follow_focus = true
 scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/Presets"]
-margin_right = 1012.0
-margin_bottom = 128.0
+[node name="VBoxContainer" type="VBoxContainer" parent="ProjectsOverview/VBoxContainer/VBoxContainer/Presets/ScrollContainer"]
+margin_right = 1000.0
+margin_bottom = 226.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Label2" type="Label" parent="VBoxContainer/VBoxContainer"]
-margin_top = 158.0
-margin_right = 1012.0
-margin_bottom = 180.0
+[node name="Label2" type="Label" parent="ProjectsOverview/VBoxContainer/VBoxContainer"]
+margin_top = 256.0
+margin_right = 1000.0
+margin_bottom = 278.0
 text = "Recent Projects"
 
-[node name="Projects" type="ScrollContainer" parent="VBoxContainer/VBoxContainer"]
-margin_top = 184.0
-margin_right = 1012.0
-margin_bottom = 520.0
+[node name="Recents" type="Panel" parent="ProjectsOverview/VBoxContainer/VBoxContainer"]
+margin_top = 282.0
+margin_right = 1000.0
+margin_bottom = 508.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ProjectsOverview/VBoxContainer/VBoxContainer/Recents"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 follow_focus = true
 scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/Projects"]
-margin_right = 1012.0
-margin_bottom = 336.0
+[node name="VBoxContainer" type="VBoxContainer" parent="ProjectsOverview/VBoxContainer/VBoxContainer/Recents/ScrollContainer"]
+margin_right = 1000.0
+margin_bottom = 226.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
-margin_top = 524.0
-margin_right = 1012.0
-margin_bottom = 524.0
+[node name="HBoxContainer" type="HBoxContainer" parent="ProjectsOverview/VBoxContainer/VBoxContainer"]
+margin_top = 512.0
+margin_right = 1000.0
+margin_bottom = 512.0
 
-[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
-margin_top = 562.0
-margin_right = 1012.0
-margin_bottom = 566.0
+[node name="HSeparator2" type="HSeparator" parent="ProjectsOverview/VBoxContainer"]
+margin_top = 550.0
+margin_right = 1000.0
+margin_bottom = 554.0
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 570.0
-margin_right = 1012.0
-margin_bottom = 592.0
+[node name="HBoxContainer2" type="HBoxContainer" parent="ProjectsOverview/VBoxContainer"]
+margin_top = 558.0
+margin_right = 1000.0
+margin_bottom = 580.0
 alignment = 2
 
-[node name="Load" type="Button" parent="VBoxContainer/HBoxContainer2"]
-margin_left = 799.0
-margin_right = 902.0
+[node name="Load" type="Button" parent="ProjectsOverview/VBoxContainer/HBoxContainer2"]
+margin_left = 649.0
+margin_right = 791.0
 margin_bottom = 22.0
-text = "Load project..."
+text = "Open project from..."
 
-[node name="Open" type="Button" parent="VBoxContainer/HBoxContainer2"]
-margin_left = 906.0
-margin_right = 953.0
+[node name="New" type="Button" parent="ProjectsOverview/VBoxContainer/HBoxContainer2"]
+margin_left = 795.0
+margin_right = 941.0
 margin_bottom = 22.0
-text = "Open"
+text = "New empty project..."
 
-[node name="VSeparator" type="VSeparator" parent="VBoxContainer/HBoxContainer2"]
-margin_left = 957.0
-margin_right = 961.0
+[node name="VSeparator" type="VSeparator" parent="ProjectsOverview/VBoxContainer/HBoxContainer2"]
+margin_left = 945.0
+margin_right = 949.0
 margin_bottom = 22.0
 
-[node name="Close" type="Button" parent="VBoxContainer/HBoxContainer2"]
-margin_left = 965.0
-margin_right = 1012.0
+[node name="Close" type="Button" parent="ProjectsOverview/VBoxContainer/HBoxContainer2"]
+margin_left = 953.0
+margin_right = 1000.0
 margin_bottom = 22.0
 text = "Close"
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer2/Load" to="." method="_on_Load_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer2/Open" to="." method="_on_Open_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer2/Close" to="." method="_on_Close_pressed"]
+[connection signal="pressed" from="ProjectsOverview/VBoxContainer/HBoxContainer2/Load" to="ProjectsOverview" method="_on_Load_pressed"]
+[connection signal="pressed" from="ProjectsOverview/VBoxContainer/HBoxContainer2/New" to="ProjectsOverview" method="_on_Open_pressed"]
+[connection signal="pressed" from="ProjectsOverview/VBoxContainer/HBoxContainer2/Close" to="ProjectsOverview" method="_on_Close_pressed"]
