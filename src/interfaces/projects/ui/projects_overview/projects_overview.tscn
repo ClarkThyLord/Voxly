@@ -169,4 +169,4 @@ text = "Close"
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="ProjectsOverview/VBoxContainer/HBoxContainer2/Load" to="ProjectsOverview" method="_on_Load_pressed"]
 [connection signal="pressed" from="ProjectsOverview/VBoxContainer/HBoxContainer2/New" to="ProjectsOverview" method="_on_Open_pressed"]
-[connection signal="pressed" from="ProjectsOverview/VBoxContainer/HBoxContainer2/Close" to="ProjectsOverview" method="_on_Close_pressed"]
+[connection signal="pressed" from="ProjectsOverview/VBoxContainer/HBoxContainer2/Close" to="." method="_on_Close_pressed"]
