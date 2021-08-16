@@ -9,9 +9,11 @@ const project_preview := preload("res://src/interfaces/projects/ui/projects_over
 
 
 ## OnReady Variables
-onready var presets := get_node("ProjectsOverview/VBoxContainer/VBoxContainer/Presets/ScrollContainer/VBoxContainer")
+onready var search : LineEdit = get_node("ProjectsOverview/VBoxContainer/HBoxContainer/Search")
 
-onready var recents := get_node("ProjectsOverview/VBoxContainer/VBoxContainer/Recents/ScrollContainer/VBoxContainer")
+onready var presets : VBoxContainer = get_node("ProjectsOverview/VBoxContainer/VBoxContainer/Presets/ScrollContainer/VBoxContainer")
+
+onready var recents : VBoxContainer = get_node("ProjectsOverview/VBoxContainer/VBoxContainer/Recents/ScrollContainer/VBoxContainer")
 
 
 
@@ -50,3 +52,28 @@ func _on_Open_pressed():
 
 func _on_Close_pressed():
 	hide()
+
+
+func _search_projects(search_term : String) -> void:
+	search_term = search_term.to_lower()
+	for project_preview in presets.get_children():
+		if search_term:
+			project_preview.visible = project_preview\
+				.get_project_name().to_lower().find(search_term) > -1
+		else:
+			project_preview.visible = true
+	
+	for project_preview in recents.get_children():
+		if search_term:
+			project_preview.visible = project_preview\
+				.get_project_name().to_lower().find(search_term) > -1
+		else:
+			project_preview.visible = true
+
+
+func _on_Search_text_changed(new_text : String) -> void:
+	_search_projects(new_text)
+
+
+func _on_SearchEnter_pressed():
+	_search_projects(search.text)

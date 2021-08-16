@@ -19,6 +19,10 @@ func _ready() -> void:
 
 
 ## Public Methods
+func get_project_name() -> String:
+	return project_name.text
+
+
 func set_project_path(value : String) -> void:
 	project_path = value
 	if is_instance_valid(project_name):
