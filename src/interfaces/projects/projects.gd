@@ -153,8 +153,12 @@ func close_project() -> void:
 		_project.queue_free()
 
 
-func show_projects_overview_dialog() -> void:
+func show_projects_overview() -> void:
 	projects_overview.show()
+
+
+func hide_projects_overview() -> void:
+	projects_overview.hide()
 
 
 func show_projects_save_dialog() -> void:

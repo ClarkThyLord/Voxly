@@ -54,3 +54,7 @@ text = "Remove"
 margin_top = 26.0
 margin_right = 1018.0
 margin_bottom = 30.0
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Open" to="." method="_on_Open_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Explore" to="." method="_on_Explore_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Remove" to="." method="_on_Remove_pressed"]

@@ -44,7 +44,7 @@ func _on_about_to_show():
 func _on_index_pressed(index : int):
 	match index:
 		0:
-			get_node("/root/VoxlyProjects").show_projects_overview_dialog()
+			get_node("/root/VoxlyProjects").show_projects_overview()
 		1:
 			get_node("/root/VoxlyProjects").show_projects_load_dialog()
 		4:

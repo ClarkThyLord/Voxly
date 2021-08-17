@@ -28,3 +28,16 @@ func set_project_path(value : String) -> void:
 	if is_instance_valid(project_name):
 		project_name.text = project_path.get_file()\
 				.replace("." + project_path.get_extension(), "").capitalize()
+
+
+func _on_Open_pressed():
+	get_node("/root/VoxlyProjects").open_project_from(project_path)
+	get_node("/root/VoxlyProjects").hide_projects_overview()
+
+
+func _on_Explore_pressed():
+	pass # Replace with function body.
+
+
+func _on_Remove_pressed():
+	pass # Replace with function body.
