@@ -44,10 +44,12 @@ func _on_visibility_changed():
 
 func _on_Load_pressed():
 	get_node("/root/VoxlyProjects").show_projects_load_dialog()
+	get_node("/root/VoxlyProjects").hide_projects_overview()
 
 
-func _on_Open_pressed():
-	pass # Replace with function body.
+func _on_New_pressed():
+	get_node("/root/VoxlyProjects").new_project()
+	get_node("/root/VoxlyProjects").hide_projects_overview()
 
 
 func _on_Close_pressed():
