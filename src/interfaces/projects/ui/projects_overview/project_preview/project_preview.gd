@@ -36,7 +36,7 @@ func _on_Open_pressed():
 
 
 func _on_Explore_pressed():
-	pass # Replace with function body.
+	OS.shell_open(ProjectSettings.globalize_path(project_path.get_base_dir()))
 
 
 func _on_Remove_pressed():
