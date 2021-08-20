@@ -76,6 +76,14 @@ func get_project_path() -> String:
 	return _project_path
 
 
+func remove_project(project_path : String) -> void:
+	if project_path in __recent_projects__:
+		__recent_projects__.erase(project_path)
+	
+	var dir = Directory.new()
+	dir.remove(project_path)
+
+
 func add_recent_project(project_path : String) -> void:
 	if project_path.is_abs_path():
 		if __recent_projects__.has(project_path):
@@ -92,6 +100,10 @@ func get_recent_projects() -> Array:
 func add_preset(name : String, node : Node = _project) -> int:
 	var path : String = PRESETS_DIR + name + ".tscn"
 	return _save_node(_project, path)
+
+
+func is_preset(project_path : String) -> bool:
+	return project_path.begins_with(PRESETS_DIR)
 
 
 func get_presets() -> Array:

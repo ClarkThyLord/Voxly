@@ -9,13 +9,21 @@ export var project_path := "" setget set_project_path
 
 
 ## OnReady Variables
-onready var project_name := get_node("VBoxContainer/HBoxContainer/Name")
+onready var project_name : Label = get_node("VBoxContainer/HBoxContainer/Name")
+
+onready var open : Button = get_node("VBoxContainer/HBoxContainer/Open")
+
+onready var explore : Button = get_node("VBoxContainer/HBoxContainer/Explore")
+
+onready var remove : Button = get_node("VBoxContainer/HBoxContainer/Remove")
 
 
 
 ## Built-In Virtual Methods
 func _ready() -> void:
 	set_project_path(project_path)
+	
+	explore.visible = OS.get_name() in ["Windows", "OSX"]
 
 
 ## Public Methods
@@ -40,4 +48,4 @@ func _on_Explore_pressed():
 
 
 func _on_Remove_pressed():
-	pass # Replace with function body.
+	get_node("/root/VoxlyProjects").remove_project(project_path)
