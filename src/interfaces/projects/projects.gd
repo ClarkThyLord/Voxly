@@ -82,6 +82,9 @@ func remove_project(project_path : String) -> void:
 	
 	var dir = Directory.new()
 	dir.remove(project_path)
+	
+	if is_instance_valid(projects_overview):
+		projects_overview.refresh()
 
 
 func add_recent_project(project_path : String) -> void:
@@ -91,6 +94,9 @@ func add_recent_project(project_path : String) -> void:
 		__recent_projects__.insert(0, project_path)
 		if __recent_projects__.size() > 5:
 			__recent_projects__.pop_back()
+	
+	if is_instance_valid(projects_overview):
+		projects_overview.refresh()
 
 
 func get_recent_projects() -> Array:
@@ -99,7 +105,12 @@ func get_recent_projects() -> Array:
 
 func add_preset(name : String, node : Node = _project) -> int:
 	var path : String = PRESETS_DIR + name + ".tscn"
-	return _save_node(_project, path)
+	var result : int = _save_node(_project, path)
+	
+	if is_instance_valid(projects_overview):
+		projects_overview.refresh()
+	
+	return result
 
 
 func is_preset(project_path : String) -> bool:
@@ -139,6 +150,9 @@ func save_project(project_path : String = _project_path) -> int:
 	if error == OK:
 		add_recent_project(project_path)
 		_project_path = project_path
+	
+	if is_instance_valid(projects_overview):
+		projects_overview.refresh()
 	return error
 
 
@@ -146,6 +160,9 @@ func open_project(project : Node) -> int:
 	close_project()
 	_project = project
 	add_child(_project)
+	
+	if is_instance_valid(projects_overview):
+		projects_overview.refresh()
 	return OK
 
 
