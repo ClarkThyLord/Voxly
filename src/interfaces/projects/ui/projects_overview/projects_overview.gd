@@ -25,6 +25,9 @@ func _ready():
 
 ## Public Methods
 func refresh() -> void:
+	if not visible:
+		return
+	
 	for child in presets.get_children():
 		presets.remove_child(child)
 		child.queue_free()
