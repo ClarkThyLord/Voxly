@@ -150,9 +150,6 @@ func save_project(project_path : String = _project_path) -> int:
 	if error == OK:
 		add_recent_project(project_path)
 		_project_path = project_path
-	
-	if is_instance_valid(projects_overview):
-		projects_overview.refresh()
 	return error
 
 
@@ -160,9 +157,6 @@ func open_project(project : Node) -> int:
 	close_project()
 	_project = project
 	add_child(_project)
-	
-	if is_instance_valid(projects_overview):
-		projects_overview.refresh()
 	return OK
 
 
