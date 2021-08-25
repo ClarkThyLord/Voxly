@@ -76,17 +76,6 @@ func get_project_path() -> String:
 	return _project_path
 
 
-func remove_project(project_path : String) -> void:
-	if project_path in __recent_projects__:
-		__recent_projects__.erase(project_path)
-	
-	var dir = Directory.new()
-	dir.remove(project_path)
-	
-	if is_instance_valid(projects_overview):
-		projects_overview.refresh()
-
-
 func add_recent_project(project_path : String) -> void:
 	if project_path.is_abs_path():
 		if __recent_projects__.has(project_path):
@@ -99,18 +88,36 @@ func add_recent_project(project_path : String) -> void:
 		projects_overview.refresh()
 
 
+func remove_recent_project(project_path : String) -> void:
+	if __recent_projects__.has(project_path):
+		__recent_projects__.erase(project_path)
+		
+		if is_instance_valid(projects_overview):
+			projects_overview.refresh()
+
+
 func get_recent_projects() -> Array:
 	return __recent_projects__.duplicate()
 
 
-func add_preset(name : String, node : Node = _project) -> int:
-	var path : String = PRESETS_DIR + name + ".tscn"
+func add_preset(preset_name : String, node : Node = _project) -> int:
+	var path : String = PRESETS_DIR + preset_name + ".tscn"
 	var result : int = _save_node(_project, path)
 	
 	if is_instance_valid(projects_overview):
 		projects_overview.refresh()
 	
 	return result
+
+
+func remove_preset(preset_name : String) -> void:
+	var preset_path := PRESETS_DIR + preset_name + ".tscn"
+	var dir := Directory.new()
+	if dir.file_exist(preset_path):
+		dir.remove(preset_path)
+		
+		if is_instance_valid(projects_overview):
+			projects_overview.refresh()
 
 
 func is_preset(project_path : String) -> bool:

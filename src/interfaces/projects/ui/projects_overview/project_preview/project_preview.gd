@@ -48,4 +48,7 @@ func _on_Explore_pressed():
 
 
 func _on_Remove_pressed():
-	get_node("/root/VoxlyProjects").remove_project(project_path)
+	if get_node("/root/VoxlyProjects").is_preset(project_path):
+		get_node("/root/VoxlyProjects").remove_preset(project_path)
+	else:
+		get_node("/root/VoxlyProjects").remove_recent_project(project_path)
