@@ -77,12 +77,14 @@ func get_project_path() -> String:
 
 
 func add_recent_project(project_path : String) -> void:
-	if project_path.is_abs_path():
-		if __recent_projects__.has(project_path):
-			__recent_projects__.erase(project_path)
-		__recent_projects__.insert(0, project_path)
-		if __recent_projects__.size() > 5:
-			__recent_projects__.pop_back()
+	if is_preset(project_path):
+		return
+	
+	if __recent_projects__.has(project_path):
+		__recent_projects__.erase(project_path)
+	__recent_projects__.insert(0, project_path)
+	if __recent_projects__.size() > 5:
+		__recent_projects__.pop_back()
 	
 	if is_instance_valid(projects_overview):
 		projects_overview.refresh()
@@ -160,21 +162,18 @@ func save_project(project_path : String = _project_path) -> int:
 	return error
 
 
-func open_project(project : Node) -> int:
+func open_project(project : Node) -> void:
 	close_project()
 	_project = project
 	add_child(_project)
-	return OK
 
 
-func open_project_from(project_path : String) -> int:
-	if project_path.is_abs_path():
-		if not ResourceLoader.exists(project_path):
-			return ERR_FILE_NOT_FOUND
-		_project_path = project_path
-		add_recent_project(project_path)
-		return open_project(load(project_path).instance())
-	return ERR_FILE_BAD_PATH
+func open_project_from(project_path : String) -> void:
+	if not ResourceLoader.exists(project_path):
+		return
+	_project_path = project_path
+	add_recent_project(_project_path)
+	open_project(load(_project_path).instance())
 
 
 func close_project() -> void:
