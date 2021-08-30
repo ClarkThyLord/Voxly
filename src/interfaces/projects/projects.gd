@@ -162,7 +162,7 @@ func save_project(project_path : String = _project_path) -> int:
 	return error
 
 
-func open_project(project : Node) -> void:
+func open_project(project : Spatial) -> void:
 	close_project()
 	_project = project
 	add_child(_project)
