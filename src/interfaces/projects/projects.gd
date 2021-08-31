@@ -163,6 +163,8 @@ func save_project(project_path : String = _project_path) -> int:
 
 
 func open_project(project : Spatial) -> void:
+	if not is_instance_valid(project):
+		return
 	close_project()
 	_project = project
 	add_child(_project)
