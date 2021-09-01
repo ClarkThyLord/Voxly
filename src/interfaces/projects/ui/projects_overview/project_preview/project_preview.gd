@@ -39,8 +39,8 @@ func set_project_path(value : String) -> void:
 
 
 func _on_Open_pressed():
-	get_node("/root/VoxlyProjects").open_project_from(project_path)
 	get_node("/root/VoxlyProjects").hide_projects_overview()
+	get_node("/root/VoxlyProjects").open_project_from(project_path)
 
 
 func _on_Explore_pressed():
