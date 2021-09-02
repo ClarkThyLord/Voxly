@@ -17,12 +17,7 @@ func _ready() -> void:
 	get_popup().connect("id_pressed", self, "_on_id_pressed")
 
 
-
-## Private Methods
-func _on_about_to_show():
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
-	
+func refresh() -> void:
 	options.clear()
 	
 	options.add_item("View projects", 2)
@@ -30,6 +25,7 @@ func _on_about_to_show():
 	options.add_separator()
 	options.add_item("New project...", 0)
 	options.add_item("Open project...", 1)
+	recents_menu.refresh()
 	options.add_submenu_item("Recent projects...", "RecentsMenu", 3)
 	if recents_menu.get_item_count() == 0:
 		options.set_item_disabled(options.get_item_count() - 1, true)
@@ -44,6 +40,12 @@ func _on_about_to_show():
 		options.set_item_disabled(options.get_item_count() - 3, true)
 		options.set_item_disabled(options.get_item_count() - 2, true)
 		options.set_item_disabled(options.get_item_count() - 1, true)
+
+
+
+## Private Methods
+func _on_about_to_show():
+	refresh()
 
 
 func _on_id_pressed(index : int):
