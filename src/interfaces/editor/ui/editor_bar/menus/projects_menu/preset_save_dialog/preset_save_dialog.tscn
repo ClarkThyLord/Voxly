@@ -1,6 +1,8 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
 
-[node name="WindowDialog" type="WindowDialog"]
+[ext_resource path="res://src/interfaces/editor/ui/editor_bar/menus/projects_menu/preset_save_dialog/preset_save_dialog.gd" type="Script" id=1]
+
+[node name="PresetSaveDialog" type="WindowDialog"]
 visible = true
 anchor_right = 0.244141
 anchor_bottom = 0.136667
@@ -8,6 +10,7 @@ margin_right = 10.0
 margin_bottom = 8.0
 rect_min_size = Vector2( 250, 82 )
 window_title = "Save Preset"
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -41,7 +44,7 @@ margin_right = 248.0
 margin_bottom = 24.0
 text = "Preset Name:"
 
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer"]
+[node name="Name" type="LineEdit" parent="MarginContainer/VBoxContainer"]
 margin_top = 28.0
 margin_right = 248.0
 margin_bottom = 50.0
@@ -65,3 +68,6 @@ margin_right = 248.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
 text = "Cancel"
+
+[connection signal="about_to_show" from="." to="." method="_on_about_to_show"]
+[connection signal="text_changed" from="MarginContainer/VBoxContainer/Name" to="." method="_on_Name_text_changed"]
