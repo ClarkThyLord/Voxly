@@ -3,7 +3,6 @@
 [ext_resource path="res://src/interfaces/editor/ui/editor_bar/menus/projects_menu/preset_save_dialog/preset_save_dialog.gd" type="Script" id=1]
 
 [node name="PresetSaveDialog" type="WindowDialog"]
-visible = true
 anchor_right = 0.244141
 anchor_bottom = 0.136667
 margin_right = 10.0

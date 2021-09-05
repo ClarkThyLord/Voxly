@@ -8,10 +8,14 @@ onready var options : PopupMenu = get_popup()
 
 onready var recents_menu : PopupMenu = preload("res://src/interfaces/editor/ui/editor_bar/menus/projects_menu/recents_menu/recents_menu.tscn").instance()
 
+onready var preset_save_dialog : WindowDialog = preload("res://src/interfaces/editor/ui/editor_bar/menus/projects_menu/preset_save_dialog/preset_save_dialog.tscn").instance()
+
 
 
 ## Built-In Virtual Methods
 func _ready() -> void:
+	add_child(preset_save_dialog)
+	
 	options.add_child(recents_menu)
 	
 	get_popup().connect("id_pressed", self, "_on_id_pressed")
@@ -61,6 +65,7 @@ func _on_id_pressed(index : int):
 		5:
 			get_node("/root/VoxlyProjects").show_projects_save_dialog()
 		6:
-			get_node("/root/VoxlyProjects").add_preset(
-					get_node("/root/VoxlyProjects").get_project_path().get_file(),
-					get_node("/root/VoxlyProjects").get_project())
+			preset_save_dialog.show()
+#			get_node("/root/VoxlyProjects").add_preset(
+#					get_node("/root/VoxlyProjects").get_project_path().get_file(),
+#					get_node("/root/VoxlyProjects").get_project())
