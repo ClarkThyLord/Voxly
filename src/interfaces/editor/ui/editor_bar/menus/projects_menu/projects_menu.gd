@@ -65,7 +65,4 @@ func _on_id_pressed(index : int):
 		5:
 			get_node("/root/VoxlyProjects").show_projects_save_dialog()
 		6:
-			preset_save_dialog.show()
-#			get_node("/root/VoxlyProjects").add_preset(
-#					get_node("/root/VoxlyProjects").get_project_path().get_file(),
-#					get_node("/root/VoxlyProjects").get_project())
+			preset_save_dialog.popup_centered()
