@@ -8,7 +8,7 @@ anchor_bottom = 0.136667
 margin_right = 10.0
 margin_bottom = 8.0
 rect_min_size = Vector2( 250, 82 )
-window_title = "Save Preset"
+window_title = "Save current project as preset..."
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": true
@@ -69,6 +69,7 @@ size_flags_horizontal = 3
 text = "Cancel"
 
 [connection signal="about_to_show" from="." to="." method="_on_about_to_show"]
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="text_changed" from="MarginContainer/VBoxContainer/Name" to="." method="_on_Name_text_changed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Save" to="." method="_on_Save_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Cancel" to="." method="_on_Cancel_pressed"]
