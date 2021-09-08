@@ -115,7 +115,7 @@ func add_preset(preset_name : String, node : Node = _project) -> int:
 func remove_preset(preset_name : String) -> void:
 	var preset_path := PRESETS_DIR + preset_name + ".tscn"
 	var dir := Directory.new()
-	if dir.file_exist(preset_path):
+	if dir.file_exists(preset_path):
 		dir.remove(preset_path)
 		
 		if is_instance_valid(projects_overview):
