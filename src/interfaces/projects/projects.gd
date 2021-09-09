@@ -173,9 +173,10 @@ func open_project(project : Spatial) -> void:
 func open_project_from(project_path : String) -> void:
 	if not ResourceLoader.exists(project_path):
 		return
-	_project_path = project_path
-	add_recent_project(_project_path)
-	open_project(load(_project_path).instance())
+	if not is_preset(project_path):
+		_project_path = project_path
+		add_recent_project(project_path)
+	open_project(load(project_path).instance())
 
 
 func close_project() -> void:
