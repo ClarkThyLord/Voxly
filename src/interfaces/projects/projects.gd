@@ -98,6 +98,13 @@ func remove_recent_project(project_path : String) -> void:
 			projects_overview.refresh()
 
 
+func remove_recent_projects() -> void:
+	__recent_projects__.clear()
+	
+	if is_instance_valid(projects_overview):
+		projects_overview.refresh()
+
+
 func get_recent_projects() -> Array:
 	return __recent_projects__.duplicate()
 

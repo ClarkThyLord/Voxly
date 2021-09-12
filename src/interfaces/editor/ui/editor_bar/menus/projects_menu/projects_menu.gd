@@ -31,7 +31,7 @@ func refresh() -> void:
 	options.add_item("Open project...", 1)
 	recents_menu.refresh()
 	options.add_submenu_item("Recent projects...", "RecentsMenu", 3)
-	if recents_menu.get_item_count() == 0:
+	if get_node("/root/VoxlyProjects").get_recent_projects().size() == 0:
 		options.set_item_disabled(options.get_item_count() - 1, true)
 	
 	options.add_separator()
