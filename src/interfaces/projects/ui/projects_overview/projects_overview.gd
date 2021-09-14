@@ -90,3 +90,7 @@ func _on_Search_text_changed(new_text : String) -> void:
 
 func _on_SearchEnter_pressed():
 	_search_projects(search.text)
+
+
+func _on_Clear_Recent_Projects_pressed():
+	get_node("/root/VoxlyProjects").remove_recent_projects()

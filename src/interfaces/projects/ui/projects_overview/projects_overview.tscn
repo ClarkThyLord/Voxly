@@ -94,11 +94,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label2" type="Label" parent="ProjectsOverview/VBoxContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="ProjectsOverview/VBoxContainer/VBoxContainer"]
 margin_top = 256.0
 margin_right = 1000.0
 margin_bottom = 278.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="ProjectsOverview/VBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_right = 848.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
 text = "Recent Projects"
+
+[node name="Clear" type="Button" parent="ProjectsOverview/VBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 852.0
+margin_right = 1000.0
+margin_bottom = 22.0
+text = "Clear Recent Projects"
 
 [node name="Recents" type="Panel" parent="ProjectsOverview/VBoxContainer/VBoxContainer"]
 margin_top = 282.0
@@ -169,6 +183,7 @@ text = "Close"
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="text_changed" from="ProjectsOverview/VBoxContainer/HBoxContainer/Search" to="." method="_on_Search_text_changed"]
 [connection signal="pressed" from="ProjectsOverview/VBoxContainer/HBoxContainer/SearchEnter" to="." method="_on_SearchEnter_pressed"]
+[connection signal="pressed" from="ProjectsOverview/VBoxContainer/VBoxContainer/HBoxContainer2/Clear" to="." method="_on_Clear_Recent_Projects_pressed"]
 [connection signal="pressed" from="ProjectsOverview/VBoxContainer/HBoxContainer2/Load" to="." method="_on_Load_pressed"]
 [connection signal="pressed" from="ProjectsOverview/VBoxContainer/HBoxContainer2/New" to="." method="_on_New_pressed"]
 [connection signal="pressed" from="ProjectsOverview/VBoxContainer/HBoxContainer2/Close" to="." method="_on_Close_pressed"]
