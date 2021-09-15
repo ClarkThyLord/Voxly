@@ -3,15 +3,24 @@ extends WindowDialog
 
 
 
+## Private Variables
+var regex = RegEx.new()
+
+
+
 ## OnReady Variables
 onready var preset_name : LineEdit = get_node("MarginContainer/VBoxContainer/Name")
 
 onready var save : Button = get_node("MarginContainer/VBoxContainer/HBoxContainer/Save")
 
 
+## Built-In Virtual Methods
+func _ready() -> void:
+	regex.compile("^[a-zA-Z0-9 _]+$")
+
 
 ## Private Methods
-func _on_about_to_show():
+func _on_about_to_show() -> void:
 	preset_name.text = ""
 	save.disabled = true
 
@@ -23,7 +32,8 @@ func _on_visibility_changed():
 
 
 func _on_Name_text_changed(new_text : String):
-	save.disabled = new_text.empty()
+	save.disabled = new_text.empty()\
+			or !(new_text.is_valid_filename() and regex.search(new_text))
 
 
 func _on_Save_pressed():
