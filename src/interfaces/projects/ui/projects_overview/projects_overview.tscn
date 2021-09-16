@@ -158,16 +158,16 @@ margin_bottom = 580.0
 alignment = 2
 
 [node name="Load" type="Button" parent="ProjectsOverview/VBoxContainer/HBoxContainer2"]
-margin_left = 649.0
-margin_right = 791.0
+margin_left = 647.0
+margin_right = 792.0
 margin_bottom = 22.0
-text = "Open project from..."
+text = "Open Project From..."
 
 [node name="New" type="Button" parent="ProjectsOverview/VBoxContainer/HBoxContainer2"]
-margin_left = 795.0
+margin_left = 796.0
 margin_right = 941.0
 margin_bottom = 22.0
-text = "New empty project..."
+text = "New Empty Project..."
 
 [node name="VSeparator" type="VSeparator" parent="ProjectsOverview/VBoxContainer/HBoxContainer2"]
 margin_left = 945.0

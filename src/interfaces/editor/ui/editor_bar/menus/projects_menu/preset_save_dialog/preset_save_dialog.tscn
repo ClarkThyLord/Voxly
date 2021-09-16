@@ -8,7 +8,7 @@ anchor_bottom = 0.136667
 margin_right = 10.0
 margin_bottom = 8.0
 rect_min_size = Vector2( 250, 82 )
-window_title = "Save current project as preset..."
+window_title = "Save Project Preset"
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": true

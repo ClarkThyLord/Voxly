@@ -24,22 +24,22 @@ func _ready() -> void:
 func refresh() -> void:
 	options.clear()
 	
-	options.add_item("View projects", 2)
+	options.add_item("View Projects", 2)
 	
 	options.add_separator()
-	options.add_item("New project...", 0)
-	options.add_item("Open project...", 1)
+	options.add_item("New Project...", 0)
+	options.add_item("Open Project...", 1)
 	recents_menu.refresh()
-	options.add_submenu_item("Recent projects...", "RecentsMenu", 3)
+	options.add_submenu_item("Recent Projects...", "RecentsMenu", 3)
 	if get_node("/root/VoxlyProjects").get_recent_projects().size() == 0:
 		options.set_item_disabled(options.get_item_count() - 1, true)
 	
 	options.add_separator()
-	options.add_item("Save project", 4)
+	options.add_item("Save Project", 4)
 	if not get_node("/root/VoxlyProjects").get_project_path():
 		options.set_item_disabled(options.get_item_count() - 1, true)
-	options.add_item("Save project as...", 5)
-	options.add_item("Save as preset...", 6)
+	options.add_item("Save Project As...", 5)
+	options.add_item("Save As Preset...", 6)
 	if not is_instance_valid(get_node("/root/VoxlyProjects").get_project()):
 		options.set_item_disabled(options.get_item_count() - 3, true)
 		options.set_item_disabled(options.get_item_count() - 2, true)
