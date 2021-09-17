@@ -18,8 +18,18 @@ onready var recents : VBoxContainer = get_node("ProjectsOverview/VBoxContainer/V
 
 
 ## Built-In Virtual Methods
-func _ready():
+func _ready() -> void:
 	visible = false
+
+
+func _input(event : InputEvent) -> void:
+	if not visible:
+		return
+	
+	if event is InputEventKey and not event.is_pressed():
+		match event.scancode:
+			KEY_ESCAPE:
+				visible = !visible
 
 
 
