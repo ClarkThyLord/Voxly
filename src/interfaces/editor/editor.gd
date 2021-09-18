@@ -48,6 +48,22 @@ func _ready() -> void:
 	
 	var animation := preload("res://src/interfaces/editor/ui/bottom_docks/Animation.tscn").instance()
 	add_bottom_dock(animation)
+	
+	var b := Button.new()
+	b.text = "Select"
+	add_button_to_editor_tools(b)
+	
+	b = Button.new()
+	b.text = "Move"
+	add_button_to_editor_tools(b)
+	
+	b = Button.new()
+	b.text = "Rotate"
+	add_button_to_editor_tools(b)
+	
+	b = Button.new()
+	b.text = "Scale"
+	add_button_to_editor_tools(b)
 
 
 
