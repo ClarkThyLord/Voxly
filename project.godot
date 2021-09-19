@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "VoxlyPlugin",
 "language": "GDScript",
 "path": "res://src/voxly/plugin.gd"
+}, {
+"base": "Reference",
+"class": "VoxlyTool",
+"language": "GDScript",
+"path": "res://src/voxly/tool.gd"
 } ]
 _global_script_class_icons={
 "VoxlyInterface": "",
-"VoxlyPlugin": ""
+"VoxlyPlugin": "",
+"VoxlyTool": ""
 }
 
 [application]
