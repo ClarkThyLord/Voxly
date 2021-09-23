@@ -108,6 +108,16 @@ func remove_button_from_editor_tools(
 	ui.editor_tools.remove_child(button)
 
 
+func add_separator_to_editor_tools(
+		separator : VSeparator) -> void:
+	ui.editor_tools.add_child(separator)
+
+
+func remove_separator_from_editor_tools(
+		separator : VSeparator) -> void:
+	ui.editor_tools.remove_child(separator)
+
+
 func add_dock(
 		position : int,
 		control : Control) -> void:
