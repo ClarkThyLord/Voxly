@@ -20,5 +20,5 @@ var can_mirror_z := false
 
 
 ## Public Methods
-func use(selected : Dictionary) -> void:
+func use(context : Dictionary) -> void:
 	pass
