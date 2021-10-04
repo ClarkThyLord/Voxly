@@ -7,8 +7,14 @@ class_name VoxlySelect
 ## Public Variables
 var name := ""
 
+var multiple := false
+
 
 
 ## Public Methods
 func handle_input(context : Dictionary) -> bool:
 	return false
+
+
+func get_selections() -> Dictionary:
+	return {}
